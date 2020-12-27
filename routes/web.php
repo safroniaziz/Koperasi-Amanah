@@ -1,0 +1,174 @@
+<?php
+
+use App\Anggota;
+use App\Berita;
+use App\Profil;
+use App\Slider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    $sliders = Slider::all();
+    $profils = Profil::first();
+    $jumlah_anggota = count(Anggota::where('status_anggota','1')->get());
+    $beritas = Berita::paginate(6);
+    $anggotas = Anggota::all();
+    return view('layouts.frontend',compact('sliders','profils','jumlah_anggota','beritas','anggotas'));
+})->name('home');
+
+Auth::routes();
+
+Route::group(['prefix' => 'operator'], function () {
+    Route::get('/login', 'Auth\LoginOperatorController@showLoginForm')->name('operator.login');
+    Route::post('/login', 'Auth\LoginOperatorController@login')->name('operator.login.submit');
+    Route::get('/dashboard','Operator\DashboardOperatorController@dashboard')->name('operator.dashboard');
+});
+
+Route::group(['prefix' => 'operator/jenis_transaksi'], function () {
+    Route::get('/','Operator\JenisTransaksiController@index')->name('operator.jenis_transaksi');
+    Route::post('/tambah','Operator\JenisTransaksiController@post')->name('operator.jenis_transaksi.post');
+    Route::get('/{id}/edit','Operator\JenisTransaksiController@edit')->name('operator.jenis_transaksi.edit');
+    Route::patch('/update','Operator\JenisTransaksiController@update')->name('operator.jenis_transaksi.update');
+
+    Route::patch('/aktifkan_status/{id}','Operator\JenisTransaksiController@aktifkanStatus')->name('operator.jenis_transaksi.aktifkan_status');
+    Route::patch('/nonaktifkan_status/{id}','Operator\JenisTransaksiController@nonAktifkanStatus')->name('operator.jenis_transaksi.nonaktifkan_status');
+});
+
+Route::group(['prefix' => 'operator/manajemen_jabatan'], function () {
+    Route::get('/','Operator\JabatanController@index')->name('operator.jabatan');
+    Route::post('/tambah','Operator\JabatanController@post')->name('operator.jabatan.post');
+    Route::get('/{id}/edit','Operator\JabatanController@edit')->name('operator.jabatan.edit');
+    Route::patch('/update','Operator\JabatanController@update')->name('operator.jabatan.update');
+
+    Route::patch('/aktifkan_status/{id}','Operator\JabatanController@aktifkanStatus')->name('operator.jabatan.aktifkan_status');
+    Route::patch('/nonaktifkan_status/{id}','Operator\JabatanController@nonAktifkanStatus')->name('operator.jabatan.nonaktifkan_status');
+});
+
+Route::group(['prefix' => 'operator/simpanan_wajib'], function () {
+    Route::get('/','Operator\SimpananWajibController@index')->name('operator.simpanan_wajib');
+    Route::get('/tambah','Operator\SimpananWajibController@add')->name('operator.simpanan_wajib.add');
+    Route::post('/tambah','Operator\SimpananWajibController@post')->name('operator.simpanan_wajib.post');
+    Route::get('/{id}/edit','Operator\SimpananWajibController@edit')->name('operator.simpanan_wajib.edit');
+    Route::patch('/update','Operator\SimpananWajibController@update')->name('operator.simpanan_wajib.update');
+    Route::get('/cari_bulan','Operator\SimpananWajibController@cariBulan')->name('admin.simpanan_wajib.cari_bulan');
+});
+
+Route::group(['prefix' => 'operator/pinjaman'], function () {
+    Route::get('/','Operator\PinjamanController@index')->name('operator.pinjaman');
+    Route::get('/tambah','Operator\PinjamanController@add')->name('operator.pinjaman.add');
+    Route::post('/tambah','Operator\PinjamanController@post')->name('operator.pinjaman.post');
+    Route::get('/{id}/edit','Operator\PinjamanController@edit')->name('operator.pinjaman.edit');
+    Route::patch('/update','Operator\PinjamanController@update')->name('operator.pinjaman.update');
+    Route::get('/cari_bulan','Operator\PinjamanController@cariBulan')->name('admin.pinjaman.cari_bulan');
+});
+
+Route::group(['prefix' => 'operator/transaksi_angsuran'], function () {
+    Route::get('/','Operator\AngsuranController@index')->name('operator.transaksi_angsuran');
+    Route::get('/tambah','Operator\AngsuranController@add')->name('operator.transaksi_angsuran.add');
+    Route::post('/tambah','Operator\AngsuranController@post')->name('operator.transaksi_angsuran.post');
+    Route::get('/{id}/edit','Operator\AngsuranController@edit')->name('operator.transaksi_angsuran.edit');
+    Route::patch('/update','Operator\AngsuranController@update')->name('operator.transaksi_angsuran.update');
+    Route::get('/cari_angsuran','Operator\AngsuranController@cariAngsuran')->name('admin.transaksi_angsuran.cari_angsuran');
+});
+
+Route::group(['prefix' => 'operator/transaksi_koperasi'], function () {
+    Route::get('/','Operator\TransaksiKoperasiController@index')->name('operator.transaksi_koperasi');
+    Route::get('/tambah','Operator\TransaksiKoperasiController@add')->name('operator.transaksi_koperasi.add');
+    Route::post('/tambah','Operator\TransaksiKoperasiController@post')->name('operator.transaksi_koperasi.post');
+    Route::get('/{id}/edit','Operator\TransaksiKoperasiController@edit')->name('operator.transaksi_koperasi.edit');
+    Route::patch('/update','Operator\TransaksiKoperasiController@update')->name('operator.transaksi_koperasi.update');
+    Route::get('/cari_angsuran','Operator\TransaksiKoperasiController@cariAngsuran')->name('admin.transaksi_koperasi.cari_angsuran');
+});
+
+
+Route::group(['prefix' => 'operator/manajemen_operator'], function () {
+    Route::get('/','Operator\ManajemenOperatorController@index')->name('operator.manajemen_operator');
+    Route::post('/tambah','Operator\ManajemenOperatorController@post')->name('operator.manajemen_operator.post');
+    Route::get('/{id}/edit','Operator\ManajemenOperatorController@edit')->name('operator.manajemen_operator.edit');
+    Route::patch('/update','Operator\ManajemenOperatorController@update')->name('operator.manajemen_operator.update');
+    Route::delete('/hapus','Operator\ManajemenOperatorController@delete')->name('operator.manajemen_operator.delete');
+    Route::patch('/ubah_password','Operator\ManajemenOperatorController@updatePassword')->name('operator.manajemen_operator.update_password');
+
+    Route::patch('/aktifkan_status/{id}','Operator\ManajemenOperatorController@aktifkanStatus')->name('operator.manajemen_operator.aktifkan_status');
+    Route::patch('/nonaktifkan_status/{id}','Operator\ManajemenOperatorController@nonAktifkanStatus')->name('operator.manajemen_operator.nonaktifkan_status');
+});
+
+Route::group(['prefix' => 'operator/manajemen_anggota'], function () {
+    Route::get('/manajemen_anggota','Operator\ManajemenAnggotaController@index')->name('operator.manajemen_anggota');
+    Route::post('/tambah','Operator\ManajemenAnggotaController@post')->name('operator.manajemen_anggota.post');
+    Route::get('/{id}/edit','Operator\ManajemenAnggotaController@edit')->name('operator.manajemen_anggota.edit');
+    Route::patch('/update','Operator\ManajemenAnggotaController@update')->name('operator.manajemen_anggota.update');
+    Route::delete('/hapus','Operator\ManajemenAnggotaController@delete')->name('operator.manajemen_anggota.delete');
+    Route::patch('/ubah_password','Operator\ManajemenAnggotaController@updatePassword')->name('operator.manajemen_anggota.update_password');
+
+    Route::patch('/aktifkan_status/{id}','Operator\ManajemenAnggotaController@aktifkanStatus')->name('operator.manajemen_anggota.aktifkan_status');
+    Route::patch('/nonaktifkan_status/{id}','Operator\ManajemenAnggotaController@nonAktifkanStatus')->name('operator.manajemen_anggota.nonaktifkan_status');
+});
+
+Route::group(['prefix' => 'operator/manajemen_slider'], function(){
+    Route::get('/','Operator\SliderController@index')->name('operator.slider');
+    Route::post('/','Operator\SliderController@post')->name('operator.slider.add');
+    Route::get('/{id}/edit','Operator\SliderController@edit')->name('operator.slider.edit');
+    Route::patch('/','Operator\SliderController@update')->name('operator.slider.update');
+    Route::delete('/','Operator\SliderController@delete')->name('operator.slider.delete');
+});
+
+Route::group(['prefix' => 'operator/manajemen_profil'], function(){
+    Route::get('/','Operator\ProfilController@index')->name('operator.profil');
+    Route::post('/','Operator\ProfilController@post')->name('operator.profil.add');
+    Route::get('/{id}/edit','Operator\ProfilController@edit')->name('operator.profil.edit');
+    Route::patch('/','Operator\ProfilController@update')->name('operator.profil.update');
+    Route::delete('/','Operator\ProfilController@delete')->name('operator.profil.delete');
+});
+
+Route::group(['prefix' => 'operator/manajemen_berita'], function(){
+    Route::get('/','Operator\BeritaController@index')->name('operator.berita');
+    Route::post('/','Operator\BeritaController@post')->name('operator.berita.add');
+    Route::get('/{id}/edit','Operator\BeritaController@edit')->name('operator.berita.edit');
+    Route::patch('/','Operator\BeritaController@update')->name('operator.berita.update');
+    Route::delete('/','Operator\BeritaController@delete')->name('operator.berita.delete');
+});
+
+Route::group(['prefix' => 'operator/anggota'], function(){
+    Route::get('/','Operator\AnggotaController@index')->name('operator.anggota');
+    Route::post('/','Operator\AnggotaController@post')->name('operator.anggota.add');
+    Route::get('/{id}/edit','Operator\AnggotaController@edit')->name('operator.anggota.edit');
+    Route::patch('/','Operator\AnggotaController@update')->name('operator.anggota.update');
+    Route::delete('/','Operator\AnggotaController@delete')->name('operator.anggota.delete');
+});
+
+Route::group(['prefix' => 'operator/testimonial'], function(){
+    Route::get('/','OperatorTestimonialController@index')->name('operator.testimonial');
+    Route::post('/','OperatorTestimonialController@post')->name('operator.testimonial.add');
+    Route::get('/{id}/edit','OperatorTestimonialController@edit')->name('operator.testimonial.edit');
+    Route::patch('/','OperatorTestimonialController@update')->name('operator.testimonial.update');
+    Route::delete('/','OperatorTestimonialController@delete')->name('operator.testimonial.delete');
+});
+
+Route::group(['prefix' => 'operator/layanan'], function(){
+    Route::get('/','OperatorlayananController@index')->name('operator.layanan');
+    Route::post('/','OperatorlayananController@post')->name('operator.layanan.add');
+    Route::get('/{id}/edit','OperatorlayananController@edit')->name('operator.layanan.edit');
+    Route::patch('/','OperatorlayananController@update')->name('operator.layanan.update');
+});
+
+
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'anggota'], function () {
+    Route::get('/login', 'Auth\LoginAnggotaController@showLoginForm')->name('anggota.login');
+    Route::post('/login', 'Auth\LoginAnggotaController@login')->name('anggota.login.submit');
+    Route::get('/dashboard','Anggota\DashboardAnggotaController@dashboard')->name('anggota.dashboard');
+});

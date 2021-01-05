@@ -25,6 +25,26 @@
     </li>
 </li>
 
+<li class="header" style="font-weight:bold;">LAPORAN</li>
+<li class="{{ set_active('operator.laporan.buku_kas') }}">
+    <a href="{{ route('operator.laporan.buku_kas') }}">
+        <i class="fa fa-book"></i> <span>Buku Kas Koperasi</span>
+    </a>
+</li>
+<li class="{{ set_active('operator.laporan.tabelaris') }}">
+    <a href="{{ route('operator.laporan.tabelaris') }}">
+        <i class="fa fa-book"></i> <span>Tabelaris</span>
+    </a>
+</li>
+
+
+
+<li class="{{ set_active('operator.laporan.buku_kas') }}">
+    <a href="{{ route('operator.laporan.cat_simp_wajib') }}">
+        <i class="fa fa-book"></i> <span>Catatan Simpanan Wajib</span>
+    </a>
+</li>
+
 <li class="header" style="font-weight:bold;">PENGATURAN</li>
 <li class="treeview {{ set_active(['operator.manajemen_operator','operator.manajemen_operator.add','operator.manajemen_operator.edit','operator.manajemen_anggota','operator.manajemen_anggota.add','operator.manajemen_anggota.edit']) }}">
     <a href="#">

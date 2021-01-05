@@ -91,6 +91,20 @@ Route::group(['prefix' => 'operator/transaksi_koperasi'], function () {
     Route::get('/cari_angsuran','Operator\TransaksiKoperasiController@cariAngsuran')->name('admin.transaksi_koperasi.cari_angsuran');
 });
 
+Route::group(['prefix' => 'operator/laporan/buku_kas_koperasi'], function () {
+    Route::get('/','Operator\LaporanController@bukuKas')->name('operator.laporan.buku_kas');
+    Route::post('/','Operator\LaporanController@cariBukuKas')->name('operator.laporan.cari_buku_kas');
+});
+
+Route::group(['prefix' => 'operator/laporan/tabelaris'], function () {
+    Route::get('/','Operator\LaporanController@tabelaris')->name('operator.laporan.tabelaris');
+    Route::post('/','Operator\LaporanController@cariTabelaris')->name('operator.laporan.cari_tabelaris');
+});
+
+Route::group(['prefix' => 'operator/laporan/catatan_simpanan_wajib'], function () {
+    Route::get('/','Operator\LaporanController@catSimpWajib')->name('operator.laporan.cat_simp_wajib');
+});
+
 
 Route::group(['prefix' => 'operator/manajemen_operator'], function () {
     Route::get('/','Operator\ManajemenOperatorController@index')->name('operator.manajemen_operator');

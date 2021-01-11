@@ -37,7 +37,11 @@
     </a>
 </li>
 
-
+<li class="{{ set_active('operator.laporan.pinjaman') }}">
+    <a href="{{ route('operator.laporan.pinjaman') }}">
+        <i class="fa fa-id-card"></i> <span>Kartu Pinjaman</span>
+    </a>
+</li>
 
 <li class="{{ set_active('operator.laporan.buku_kas') }}">
     <a href="{{ route('operator.laporan.cat_simp_wajib') }}">

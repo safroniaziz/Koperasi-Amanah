@@ -45,9 +45,7 @@
                                 <label for="exampleInputEmail1">Bulan Transaksi</label>
                                 <select name="bulan" class="form-control" id="bulan">
                                 <option disabled selected>-- pilih bulan --</option>
-                                @foreach ($bulans as $bulan)
-                                    <option value="{{ $bulan['bulan_transaksi'] }}">{{ $bulan['bulan_transaksi'] }}</option>
-                                @endforeach
+                                
                                 </select>
                             </div>
 
@@ -140,7 +138,6 @@
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script>
-
         $('#kelas').DataTable({
             "oLanguage": {
               "sSearch": "Cari Data :",

@@ -101,6 +101,11 @@ Route::group(['prefix' => 'operator/laporan/tabelaris'], function () {
     Route::post('/','Operator\LaporanController@cariTabelaris')->name('operator.laporan.cari_tabelaris');
 });
 
+Route::group(['prefix' => 'operator/laporan/kartu_pinjaman'], function () {
+    Route::get('/','Operator\LaporanController@pinjaman')->name('operator.laporan.pinjaman');
+    Route::post('/','Operator\LaporanController@cariPinjaman')->name('operator.laporan.cari_pinjaman');
+});
+
 Route::group(['prefix' => 'operator/laporan/catatan_simpanan_wajib'], function () {
     Route::get('/','Operator\LaporanController@catSimpWajib')->name('operator.laporan.cat_simp_wajib');
 });

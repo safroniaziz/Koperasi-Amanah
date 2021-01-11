@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Operator;
 
+use App\Anggota;
 use App\Http\Controllers\Controller;
 use App\Transaksi;
 use Illuminate\Http\Request;
@@ -213,5 +214,10 @@ class LaporanController extends Controller
                     ->groupBy('anggota_id')
                     ->get();
         return view('backend/operator/laporan.cat_simp_wajib',compact('laporans'));
+    }
+
+    public function pinjaman(){
+        $anggotas = Anggota::all();
+        return view('backend/operator/laporan.kartu_pinjaman',compact('anggotas'));
     }
 }

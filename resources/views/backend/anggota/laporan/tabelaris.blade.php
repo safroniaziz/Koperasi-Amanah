@@ -1,11 +1,11 @@
 @extends('layouts.backend')
-@section('location','Buku Kas Koperasi')
+@section('location','Dashboard')
 @section('location2')
     <i class="fa fa-dashboard"></i>&nbsp;Laporan Buku Kas Koperasi
 @endsection
-@section('user-login','Operator')
+@section('user-login','Anggota')
 @section('sidebar-menu')
-    @include('backend/operator/sidebar')
+    @include('backend/anggota/sidebar')
 @endsection
 @section('content')
     <div class="callout callout-info ">
@@ -20,9 +20,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Koperasi</h3>
-                    <div class="box-tools pull-right">
-                        <a href="{{ route('operator.transaksi_koperasi.add') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
-                    </div>
+                    
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
@@ -38,7 +36,7 @@
                             <strong>Gagal :</strong> {{ $message2 }}
                         </div>
                     @endif
-                    <form action="{{ route('operator.laporan.cari_buku_kas') }}" method="POST">
+                    <form action="{{ route('anggota.laporan.cari_tabelaris') }}" method="POST">
                         {{ csrf_field() }} {{ method_field('POST') }}
                         <div class="row">
                             <div class="col-md-12">
@@ -70,70 +68,6 @@
                             </div>
                         </div>
                     </form>
-                    <table class="table table-bordered table-hover" id="kelas">
-                        <thead class="bg-primary">
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal Transaksi</th>
-                                <th>Uraian</th>
-                                <th>Masuk</th>
-                                <th>Keluar</th>
-                                <th>Saldo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $no=2;
-                                $sub1 = 0;
-                            @endphp
-                            @if (isset($_POST['bulan']))
-                                <tr>
-                                    <td>1</td>
-                                    <td>1 {{ $bulan1 }} {{ $tahun1 }}</td>
-                                    <td>Modal Awal</td>
-                                    <td>Rp.{{ number_format($modal_awal,2) }}</td>
-                                    <td> - </td>
-                                    <td>Rp.{{ number_format($modal_awal,2) }}</td>
-                                </tr>
-                                    @foreach ($laporans as $laporan)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($laporan->tanggal_transaksi)->format('j F Y') }}</td>
-                                            <td>{{ $laporan->nm_transaksi }} - {{ $laporan->nm_anggota }}</td>
-                                            <td>
-                                                @if ($laporan->jenis_transaksi == "masuk")
-                                                    Rp.{{ number_format($laporan->jumlah_transaksi,2) }}
-                                                    @else 
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($laporan->jenis_transaksi == "keluar")
-                                                    Rp.{{ number_format($laporan->jumlah_transaksi,2) }}
-                                                    @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>
-                                                
-                                                @if ($laporan->jenis_transaksi == "masuk")
-                                                    Rp.{{ number_format($laporan->jumlah_transaksi + $modal_awal,2) }}
-                                                    @php
-                                                        $modal_awal = $laporan->jumlah_transaksi + $modal_awal;
-                                                    @endphp
-                                                    @else
-                                                        Rp.{{ number_format($modal_awal - $laporan->jumlah_transaksi,2) }}
-                                                    @php
-                                                        $modal_awal = $modal_awal - $laporan->jumlah_transaksi;
-                                                    @endphp
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                            @endif
-                        </tbody>
-                    </table>
-                   
                  </div>
             </div>
         </div>
@@ -149,7 +83,6 @@
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script>
-
         $('#kelas').DataTable({
             "oLanguage": {
               "sSearch": "Cari Data :",

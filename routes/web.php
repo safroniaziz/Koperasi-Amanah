@@ -26,8 +26,8 @@ Route::get('/', function () {
     $anggotas = Anggota::all();
     return view('layouts.frontend',compact('sliders','profils','jumlah_anggota','beritas','anggotas'));
 })->name('home');
-
-Auth::routes();
+Route::get('/berita/detail/{id}/{slug}','Operator\BeritaController@detail')->name('berita.detail');
+// Auth::routes();
 
 Route::group(['prefix' => 'operator'], function () {
     Route::get('/login', 'Auth\LoginOperatorController@showLoginForm')->name('operator.login');
@@ -101,8 +101,32 @@ Route::group(['prefix' => 'operator/laporan/tabelaris'], function () {
     Route::post('/','Operator\LaporanController@cariTabelaris')->name('operator.laporan.cari_tabelaris');
 });
 
+Route::group(['prefix' => 'operator/laporan/kartu_pinjaman'], function () {
+    Route::get('/','Operator\LaporanController@pinjaman')->name('operator.laporan.pinjaman');
+    Route::post('/cetak_kartu_pinjaman','Operator\LaporanController@cariKartu')->name('operator.laporan.cari_kartu');
+});
+
 Route::group(['prefix' => 'operator/laporan/catatan_simpanan_wajib'], function () {
     Route::get('/','Operator\LaporanController@catSimpWajib')->name('operator.laporan.cat_simp_wajib');
+});
+
+Route::group(['prefix' => 'anggota/laporan/buku_kas_koperasi'], function () {
+    Route::get('/','Anggota\LaporanController@bukuKas')->name('anggota.laporan.buku_kas');
+    Route::post('/','Anggota\LaporanController@cariBukuKas')->name('anggota.laporan.cari_buku_kas');
+});
+
+Route::group(['prefix' => 'anggota/laporan/tabelaris'], function () {
+    Route::get('/','Anggota\LaporanController@tabelaris')->name('anggota.laporan.tabelaris');
+    Route::post('/','Anggota\LaporanController@cariTabelaris')->name('anggota.laporan.cari_tabelaris');
+});
+
+Route::group(['prefix' => 'anggota/laporan/kartu_pinjaman'], function () {
+    Route::get('/','Anggota\LaporanController@pinjaman')->name('anggota.laporan.pinjaman');
+    Route::post('/cetak_kartu_pinjaman','Anggota\LaporanController@cariKartu')->name('anggota.laporan.cari_kartu');
+});
+
+Route::group(['prefix' => 'anggota/laporan/catatan_simpanan_wajib'], function () {
+    Route::get('/','Anggota\LaporanController@catSimpWajib')->name('anggota.laporan.cat_simp_wajib');
 });
 
 
@@ -181,8 +205,10 @@ Route::group(['prefix' => 'operator/layanan'], function(){
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'anggota'], function () {
+Route::group(['prefix' => ''], function () {
     Route::get('/login', 'Auth\LoginAnggotaController@showLoginForm')->name('anggota.login');
     Route::post('/login', 'Auth\LoginAnggotaController@login')->name('anggota.login.submit');
-    Route::get('/dashboard','Anggota\DashboardAnggotaController@dashboard')->name('anggota.dashboard');
+    Route::get('/anggota/dashboard','Anggota\DashboardAnggotaController@dashboard')->name('anggota.dashboard');
+    Route::post('/logout', 'Auth\LoginAnggotaController@logout')->name('anggota.logout');
+
 });

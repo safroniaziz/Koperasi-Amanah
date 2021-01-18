@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Operator;
 
 use App\Anggota;
 use App\Http\Controllers\Controller;
+use App\Jabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -16,7 +17,8 @@ class ManajemenAnggotaController extends Controller
     
     public function index(){
         $anggotas = Anggota::all();
-        return view('backend/operator/anggota.index',compact('anggotas'));
+        $jabatans = Jabatan::all();
+        return view('backend/operator/anggota.index',compact('anggotas','jabatans'));
     }
 
     public function post(Request $request){
@@ -29,6 +31,7 @@ class ManajemenAnggotaController extends Controller
             'email'  =>  'required|email',
             'password'  =>  'required',
             'foto'    =>  'required',
+            'jabatan'    =>  'required',
         ]);
 
         $model['foto'] = null;
@@ -45,6 +48,7 @@ class ManajemenAnggotaController extends Controller
                 'email'    =>  $request->email,
                 'password'    =>  bcrypt($request->password),
                 'gambar'    =>  $model['foto'],
+                'jabatan_id'   =>  $request->jabatan,
             ]);
         }
         else{
@@ -56,6 +60,7 @@ class ManajemenAnggotaController extends Controller
                 'status_anggota'    =>  '1',
                 'email'    =>  $request->email,
                 'password'    =>  bcrypt($request->password),
+                'jabatan_id'   =>  $request->jabatan,
             ]);
         }
         
@@ -89,28 +94,40 @@ class ManajemenAnggotaController extends Controller
             'alamat'  =>  'required',
             'tahun_keanggotaan'  =>  'required',
             'email'  =>  'required|email',
+            'jabatan'   =>  'required',
         ]);
         $anggota = Anggota::find($request->id);
 
 
         $model = $request->all();
-        $model['foto'] = $anggota->foto;
         if ($request->hasFile('foto')){
+            $model['foto'] = $anggota->foto;
             if (!$anggota->foto == NULL){
                 unlink(public_path($anggota->foto));
             }
             $model['foto'] = '/upload/foto_anggota/'.Str::slug($model['nm_anggota'], '-').'.'.$request->foto->getClientOriginalExtension();
             $request->foto->move(public_path('/upload/foto_anggota/'), $model['foto']);
-        }
 
-        Anggota::where('id',$request->id)->update([
-            'nm_anggota'  =>  $request->nm_anggota,
-            'nik'    =>  $request->nik,
-            'alamat'    =>  $request->alamat,
-            'tahun_keanggotaan'    =>  $request->tahun_keanggotaan,
-            'email'    =>  $request->email,
-            'gambar'    =>  $model['foto'],
-        ]);
+            Anggota::where('id',$request->id)->update([
+                'nm_anggota'  =>  $request->nm_anggota,
+                'nik'    =>  $request->nik,
+                'alamat'    =>  $request->alamat,
+                'tahun_keanggotaan'    =>  $request->tahun_keanggotaan,
+                'email'    =>  $request->email,
+                'gambar'    =>  $model['foto'],
+                'jabatan_id'   =>  $request->jabatan,
+            ]);
+        }
+        else{
+            Anggota::where('id',$request->id)->update([
+                'nm_anggota'  =>  $request->nm_anggota,
+                'nik'    =>  $request->nik,
+                'alamat'    =>  $request->alamat,
+                'tahun_keanggotaan'    =>  $request->tahun_keanggotaan,
+                'email'    =>  $request->email,
+                'jabatan_id'   =>  $request->jabatan,
+            ]);
+        }
 
         return redirect()->route('operator.manajemen_anggota')->with(['success'   =>  'Data Anggota Berhasil Diubah !!']);
     }

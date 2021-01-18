@@ -1,11 +1,11 @@
 @extends('layouts.backend')
-@section('location','Tabelaris')
+@section('location','Dashboard')
 @section('location2')
     <i class="fa fa-dashboard"></i>&nbsp;Laporan Buku Kas Koperasi
 @endsection
-@section('user-login','Operator')
+@section('user-login','Anggota')
 @section('sidebar-menu')
-    @include('backend/operator/sidebar')
+    @include('backend/anggota/sidebar')
 @endsection
 @section('content')
     <div class="callout callout-info ">
@@ -20,9 +20,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Koperasi</h3>
-                    <div class="box-tools pull-right">
-                        <a href="{{ route('operator.transaksi_koperasi.add') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
-                    </div>
+                 
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
@@ -38,38 +36,30 @@
                             <strong>Gagal :</strong> {{ $message2 }}
                         </div>
                     @endif
-                    <form action="{{ route('operator.laporan.cari_tabelaris') }}" method="POST">
-                        {{ csrf_field() }} {{ method_field('POST') }}
-                        <div class="row">
-                            <div class="col-md-12">
-                                @if ($errors->isEmpty())
-                                    @else
-                                    <div class="alert alert-danger alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <strong>Gagal :</strong> Harap memilih bulan dan tahun terlebih dahulu
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Bulan Transaksi</label>
-                                <select name="bulan" class="form-control" id="bulan">
-                                <option disabled selected>-- pilih bulan --</option>
-                                @foreach ($bulans as $bulan)
-                                    <option value="{{ $bulan['bulan_transaksi'] }}">{{ $bulan['bulan_transaksi'] }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Tahun Transaksi</label>
-                                <select name="tahun" id="tahun" class="form-control" required></select>
-                            </div>
-
-                            <div class="col-md-12 text-center" style="margin-bottom: 10px;">
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>&nbsp; Cari Laporan</button>
-                            </div>
-                        </div>
-                    </form>
+                    <table class="table table-bordered table-hover" id="kelas">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Anggota</th>
+                                <th>Jumlah Bulan</th>
+                                <th>Jumlah Transaksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         @php
+                             $no=1;
+                         @endphp
+                           @foreach ($laporans as $laporan)
+                               <tr>
+                                   <td>{{ $no++ }}</td>
+                                   <td>{{ $laporan->nm_anggota }}</td>
+                                   <td>{{ $laporan->jumlah_bulan }}</td>
+                                   <td>{{ $laporan->jumlah_transaksi }}</td>
+                               </tr>
+                           @endforeach
+                        </tbody>
+                    </table>
+                   
                  </div>
             </div>
         </div>
@@ -109,23 +99,10 @@
             buttons: [
                 { extend:'excel', text:'<i class="fa fa-file-excel-o"></i>&nbsp;Export Excel', className:'btn-export-excel',
                     exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5 ],
+                        columns: [ 0, 1, 2, 3 ],
                     },
                 },
             ],
-        })
-
-        $('#tahun').each(function() {
-            var year = (new Date()).getFullYear();
-            var current = year;
-            year -= 3;
-            for (var i = 0; i < 6; i++) {
-            if ((year+i) == current)
-                $(this).append('<option selected value="' + (year + i) + '">' + (year + i) + '</option>');
-            else
-                $(this).append('<option value="' + (year + i) + '">' + (year + i) + '</option>');
-            }
         });
-
     </script>
 @endpush

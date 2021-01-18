@@ -1,7 +1,30 @@
 <li class="header" style="font-weight:bold;">Dashboard Pengguna</li>
-<li class="{{ set_active('operator.dashboard') }}">
-    <a href="{{ route('operator.dashboard') }}">
+<li class="{{ set_active('anggota.dashboard') }}">
+    <a href="{{ route('anggota.dashboard') }}">
         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+    </a>
+</li>
+
+<li class="{{ set_active('anggota.laporan.buku_kas') }}">
+    <a href="{{ route('anggota.laporan.buku_kas') }}">
+        <i class="fa fa-book"></i> <span>Buku Kas Koperasi</span>
+    </a>
+</li>
+<li class="{{ set_active('anggota.laporan.tabelaris') }}">
+    <a href="{{ route('anggota.laporan.tabelaris') }}">
+        <i class="fa fa-book"></i> <span>Tabelaris</span>
+    </a>
+</li>
+
+<li class="{{ set_active('anggota.laporan.pinjaman') }}">
+    <a href="{{ route('anggota.laporan.pinjaman') }}">
+        <i class="fa fa-id-card"></i> <span>Kartu Pinjaman</span>
+    </a>
+</li>
+
+<li class="{{ set_active('anggota.laporan.buku_kas') }}">
+    <a href="{{ route('anggota.laporan.cat_simp_wajib') }}">
+        <i class="fa fa-book"></i> <span>Catatan Simpanan Wajib</span>
     </a>
 </li>
 

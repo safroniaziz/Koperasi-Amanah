@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Operator;
 
 use App\Berita;
 use App\Http\Controllers\Controller;
+use App\Profil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+
 
 class BeritaController extends Controller
 {
@@ -30,12 +34,16 @@ class BeritaController extends Controller
             $berita->judul = $request->judul;
             $berita->isi = $request->isi;
             $berita->gambar = $model['gambar'];
+            $berita->user_id    =   Auth::guard('operator')->user()->id;
+            $berita->slug = \Str::slug($request->judul);
             $berita->save();
         }
         else{
             $berita =new Berita;
             $berita->judul = $request->judul;
             $berita->isi = $request->isi;
+            $berita->user_id    =   Auth::guard('operator')->user()->id;
+            $berita->slug = \Str::slug($request->judul);
             $berita->save();
         }
 
@@ -59,13 +67,15 @@ class BeritaController extends Controller
                 unlink(public_path($berita->gambar));
             }
             $model['gambar'] = '/upload/gambar_berita/'.Str::slug($model['judul'], '-').'.'.$request->gambar->getClientOriginalExtension();
-            $request->gambar->move(public_path('/upload/gambar_berita/'), $model['gambar']);
+        return $slug;
+        $request->gambar->move(public_path('/upload/gambar_berita/'), $model['gambar']);
         }
 
         $berita= Berita::find($request->id);
         $berita->judul = $request->judul;
         $berita->isi = $request->isi;
         $berita->gambar = $model['gambar'];
+        $berita->slug = \Str::slug($request->judul);
         $berita->update();
 
         return redirect()->route('operator.berita')->with(['success' =>  'berita baru berhasil ditambahkan !']);
@@ -76,5 +86,11 @@ class BeritaController extends Controller
         $berita->delete();
 
         return redirect()->route('operator.berita')->with(['success' => 'berita telah dihapus !']);
+    }
+
+    public function detail($id,$slug){
+        $berita = Berita::find($id);
+        $profils = Profil::first();
+        return view('backend/operator/berita.detail',compact('berita','profils'));
     }
 }

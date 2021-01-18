@@ -1,11 +1,11 @@
 @extends('layouts.backend')
-@section('location','Buku Kas Koperasi')
+@section('location','Dashboard')
 @section('location2')
     <i class="fa fa-dashboard"></i>&nbsp;Laporan Buku Kas Koperasi
 @endsection
-@section('user-login','Operator')
+@section('user-login','Anggota')
 @section('sidebar-menu')
-    @include('backend/operator/sidebar')
+    @include('backend/anggota/sidebar')
 @endsection
 @section('content')
     <div class="callout callout-info ">
@@ -20,9 +20,6 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Koperasi</h3>
-                    <div class="box-tools pull-right">
-                        <a href="{{ route('operator.transaksi_koperasi.add') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
-                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
@@ -38,7 +35,7 @@
                             <strong>Gagal :</strong> {{ $message2 }}
                         </div>
                     @endif
-                    <form action="{{ route('operator.laporan.cari_buku_kas') }}" method="POST">
+                    <form action="{{ route('anggota.laporan.cari_buku_kas') }}" method="POST">
                         {{ csrf_field() }} {{ method_field('POST') }}
                         <div class="row">
                             <div class="col-md-12">

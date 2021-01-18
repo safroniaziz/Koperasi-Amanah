@@ -46,6 +46,19 @@
                                                     <small class="form-text text-danger">{{ $errors->first('nm_anggota') }}</small>
                                                 @endif
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Jabatan</label>
+                                                <select name="jabatan" class="form-control" @error('jabatan') is-invalid @enderror>
+                                                    <option disabled selected>-- pilih jabatan --</option>
+                                                    @foreach ($jabatans as $jabatan)
+                                                        <option value="{{ $jabatan->id }}">{{ $jabatan->nm_jabatan }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @if ($errors->has('jabatan'))
+                                                    <small class="form-text text-danger">{{ $errors->first('jabatan') }}</small>
+                                                @endif
+                                            </div>
                                            
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">NIK</label>
@@ -196,6 +209,19 @@
                                                                 <small class="form-text text-danger">{{ $errors->first('nm_anggota') }}</small>
                                                             @endif
                                                         </div>
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Jabatan</label>
+                                                            <select name="jabatan" class="form-control" id="jabatan" @error('jabatan') is-invalid @enderror>
+                                                                <option disabled selected>-- pilih jabatan --</option>
+                                                                @foreach ($jabatans as $jabatan)
+                                                                    <option value="{{ $jabatan->id }}">{{ $jabatan->nm_jabatan }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @if ($errors->has('jabatan'))
+                                                                <small class="form-text text-danger">{{ $errors->first('jabatan') }}</small>
+                                                            @endif
+                                                        </div>
                                                        
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">NIK</label>
@@ -230,7 +256,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="">Foto</label>
-                                                            <input type="file"class="form-control" onchange="previewFoto()" name="foto">
+                                                            <input type="file"class="form-control" id="file2" onchange="previewFoto()" name="foto">
                                                         </div>
             
                                                         <div class="form-group">
@@ -248,7 +274,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                    </table>safroni.aziz@gmail.com	
                     <div class="modal fade" id="modalhapus">
                         <div class="modal-dialog modal-danger">
                             <div class="modal-content">
@@ -325,7 +351,7 @@
 
         function previewFoto() {
             var preview = document.querySelector('#preview-foto');
-            var file    = document.querySelector('input[type=file]').files[0];
+            var file    = document.querySelector('#file2').files[0];
             var reader  = new FileReader();
 
             reader.onloadend = function () {
@@ -385,6 +411,7 @@
                     $('#alamat').val(data.alamat);
                     $('#tahun_keanggotaan').val(data.tahun_keanggotaan);
                     $('#email').val(data.email);
+                    $('#jabatan').val(data.jabatan_id);
                 },
                 error:function(){
                     alert("Nothing Data");

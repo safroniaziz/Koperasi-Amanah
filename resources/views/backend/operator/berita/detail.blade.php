@@ -47,11 +47,8 @@
         <i class="icofont-phone"></i> {{ $profils->telephone }}
       </div>
       <div class="social-links float-right">
-        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-        <a href="#" class="skype"><i class="icofont-skype"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        <a href="{{ $profils->facebook }}" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="{{ $profils->instagram }}" class="instagram"><i class="icofont-instagram"></i></a>
       </div>
     </div>
   </section>
@@ -68,12 +65,7 @@
 
       <nav class="nav-menu float-right d-none d-lg-block">
         <ul>
-          <li class="active"><a href="{{ asset('home') }}">Home</a></li>
-          <li><a href="#about">Profil</a></li>
-          <li><a href="#portfolio">Berita & Pengumuman</a></li>
-          <li><a href="#team">Pengurus & Anggota</a></li>
-          <li><a href="#contact">Kontak</a></li>
-          <li><a href="{{ route('anggota.login') }}" target="_blank">Login</a></li>
+          <li class="active"><a href="{{ route('home') }}">Home</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 

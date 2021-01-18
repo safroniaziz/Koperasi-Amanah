@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Operator;
+namespace App\Http\Controllers\Anggota;
 
-use App\Anggota;
 use App\Http\Controllers\Controller;
-use App\Jabatan;
+use Illuminate\Http\Request;
 use App\Pinjaman;
 use App\Transaksi;
 use Barryvdh\DomPDF\Facade as PDF;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Anggota;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:operator');
+        $this->middleware('auth:anggota');
     }
 
     public function bukuKas(){
@@ -33,7 +33,7 @@ class LaporanController extends Controller
             ['bulan_transaksi'  =>  'November'],
             ['bulan_transaksi'  =>  'Desember'],
         ];
-        return view('backend/operator/laporan.buku_kas',compact('bulans'));
+        return view('backend/anggota/laporan.buku_kas',compact('bulans'));
     }
 
     public function cariBukuKas(Request $request){
@@ -85,15 +85,18 @@ class LaporanController extends Controller
                             ->select(DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'))
                             ->where('bulan_transaksi',$bulan)
                             ->where('jenis_transaksi','masuk')
+                            ->where('anggota_id',Auth::guard('anggota')->user()->id)
                             ->first();
         $data2 = Transaksi::where('tahun_transaksi',$tahun)
                             ->select(DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'))
                             ->where('bulan_transaksi',$bulan)
                             ->where('jenis_transaksi','keluar')
+                            ->where('anggota_id',Auth::guard('anggota')->user()->id)
                             ->first();
         $modal_awal = $data1->jumlah_transaksi - $data2->jumlah_transaksi;
         $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')
+                                ->where('anggota_id',Auth::guard('anggota')->user()->id)
                                 ->where('tahun_transaksi',$request->tahun)->where('bulan_transaksi',$request->bulan)->get();
         $bulans = [
             ['bulan_transaksi'  =>  'Januari'],
@@ -111,7 +114,7 @@ class LaporanController extends Controller
         ];
         $bulan1 = $request->bulan;
         $tahun1 = $request->tahun;
-        return view('backend/operator/laporan.buku_kas',compact('bulans','modal_awal','laporans','bulan1','tahun1'));
+        return view('backend/anggota/laporan.buku_kas',compact('bulans','modal_awal','laporans','bulan1','tahun1'));
     }
 
     public function tabelaris(){
@@ -129,7 +132,7 @@ class LaporanController extends Controller
             ['bulan_transaksi'  =>  'November'],
             ['bulan_transaksi'  =>  'Desember'],
         ];
-        return view('backend/operator/laporan.tabelaris',compact('bulans'));
+        return view('backend/anggota/laporan.tabelaris',compact('bulans'));
     }
 
     public function cariTabelaris(Request $request){
@@ -181,23 +184,22 @@ class LaporanController extends Controller
                             ->select(DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'))
                             ->where('bulan_transaksi',$bulan)
                             ->where('jenis_transaksi','masuk')
+                            ->where('anggota_id',Auth::guard('anggota')->user()->id)
                             ->first();
         $data2 = Transaksi::where('tahun_transaksi',$tahun)
                             ->select(DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'))
                             ->where('bulan_transaksi',$bulan)
                             ->where('jenis_transaksi','keluar')
+                            ->where('anggota_id',Auth::guard('anggota')->user()->id)
                             ->first();
         $modal_awal = $data1->jumlah_transaksi - $data2->jumlah_transaksi;
         $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')
+                                ->where('anggota_id',Auth::guard('anggota')->user()->id)
                                 ->where('tahun_transaksi',$request->tahun)->where('bulan_transaksi',$request->bulan)->get();
         $bulan1 = $request->bulan;
         $tahun1 = $request->tahun;
-        $ketua = Jabatan::where('nm_jabatan','like','%ketua%')->first();
-        $sekretaris = Jabatan::where('nm_jabatan','like','%sekretaris%')->first();
-        $mytime = \Carbon\Carbon::now();
-        $time = $mytime->toDateString();
-        $pdf = PDF::loadView('backend/operator/laporan.print_tabelaris',compact('modal_awal','laporans','bulan1','tahun1','ketua','sekretaris','time'))->setPaper('A4','portrait');
+        $pdf = PDF::loadView('backend/anggota/laporan.print_tabelaris',compact('modal_awal','laporans','bulan1','tahun1'))->setPaper('A4','landscape');
         return$pdf->stream();
     }
 
@@ -205,14 +207,15 @@ class LaporanController extends Controller
         $laporans = Transaksi::where('jenis_transaksi_id',1)
                     ->join('anggotas','anggotas.id','transaksis.anggota_id')
                     ->select(DB::raw('COUNT(bulan_transaksi) as jumlah_bulan'),DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'),'nm_anggota')
+                    ->where('anggota_id',Auth::guard('anggota')->user()->id)
                     ->groupBy('anggota_id')
                     ->get();
-        return view('backend/operator/laporan.cat_simp_wajib',compact('laporans'));
+        return view('backend/anggota/laporan.cat_simp_wajib',compact('laporans'));
     }
 
     public function pinjaman(){
-        $anggotas = Anggota::all();
-        return view('backend/operator/laporan.kartu_pinjaman',compact('anggotas'));
+        $anggotas = Anggota::where('id',Auth::guard('anggota')->user()->id)->get();
+        return view('backend/anggota/laporan.kartu_pinjaman',compact('anggotas'));
     }
 
     public function cariKartu(Request $request){
@@ -223,12 +226,12 @@ class LaporanController extends Controller
         $saldo = Pinjaman::where('anggota_id',$request->anggota)->select('jumlah_pinjaman','jumlah_angsuran_pokok','jumlah_bulan','jumlah_angsuran_bunga','status_pinjaman')->first();
         $angsuran = Transaksi::where('anggota_id',$request->anggota)->where('jenis_transaksi_id',4)->get();
         if (!empty($saldo)) {
-            $pdf = PDF::loadView('backend/operator/laporan.print_kartu_pinjaman',compact('saldo','angsuran','anggota'))->setPaper('A4','landscape');
+            $pdf = PDF::loadView('backend/anggota/laporan.print_kartu_pinjaman',compact('saldo','angsuran','anggota'))->setPaper('A4','landscape');
             return$pdf->stream();
         }
         else{
             return redirect()->back()->with(['error'    =>  'Anggota Tidak Memiliki Hutang']);
         }
-        // return view('backend/operator/laporan.print_kartu_pinjaman.blade.php',compact('saldo','angsuran','anggotas'));
+        // return view('backend/anggota/laporan.print_kartu_pinjaman.blade.php',compact('saldo','angsuran','anggotas'));
     }
 }

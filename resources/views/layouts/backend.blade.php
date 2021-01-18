@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Koperasi Koperasi Amanah | @yield('location')</title>
+  <title>Koperasi Amanah | @yield('location')</title>
   <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -44,7 +44,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><i class="fa fa-home"></i></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg" style="font-size:14px;"><b>KOPERASI </b>Koperasi Amanah</span>
+      <span class="logo-lg" style="font-size:14px;"><b>KOPERASI </b>Amanah</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -76,12 +76,12 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li style="background:#dc3545;">
-            <a data-toggle="control-sidebar" href="{{ route('logout') }}"
+            <a data-toggle="control-sidebar" href="{{ route('anggota.logout') }}"
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                 <i class="fa fa-power-off"></i>&nbsp; {{ __('Logout') }}
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('anggota.logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
           </li>

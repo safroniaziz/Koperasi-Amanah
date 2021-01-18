@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session as Session;
 
 class LoginAnggotaController extends Controller
 {
@@ -69,5 +70,10 @@ class LoginAnggotaController extends Controller
 
         // If Unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function logout(){
+        Session::flush();
+        return redirect()->route('anggota.login');
     }
 }

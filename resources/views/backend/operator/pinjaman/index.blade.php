@@ -35,7 +35,7 @@
                     @if($message2 = Session::get('error'))
                         <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
-                            <i class="fa fa-close"></i><strong>Gagal :</strong> {{ $message2 }}
+                            <strong>Gagal :</strong> {{ $message2 }}
                         </div>
                     @endif
                     <table class="table table-bordered table-hover" id="kelas">

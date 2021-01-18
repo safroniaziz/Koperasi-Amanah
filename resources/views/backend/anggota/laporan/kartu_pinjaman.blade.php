@@ -1,11 +1,11 @@
 @extends('layouts.backend')
-@section('location','Kartu Pinjaman')
+@section('location','Dashboard')
 @section('location2')
     <i class="fa fa-dashboard"></i>&nbsp;Laporan Kartu Pinjaman
 @endsection
-@section('user-login','Operator')
+@section('user-login','Anggota')
 @section('sidebar-menu')
-    @include('backend/operator/sidebar')
+    @include('backend/anggota/sidebar')
 @endsection
 @section('content')
     <div class="callout callout-info ">
@@ -35,7 +35,7 @@
                             <strong>Gagal :</strong> {{ $message2 }}
                         </div>
                     @endif
-                    <form action="{{ route('operator.laporan.cari_kartu') }}" method="POST">
+                    <form action="{{ route('anggota.laporan.cari_kartu') }}" method="POST">
                         {{ csrf_field() }} {{ method_field('POST') }}
                         <div class="row">
                             <div class="col-md-12">

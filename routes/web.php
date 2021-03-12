@@ -114,6 +114,10 @@ Route::group(['prefix' => 'operator/laporan/catatan_simpanan_wajib'], function (
     Route::get('/','Operator\LaporanController@catSimpWajib')->name('operator.laporan.cat_simp_wajib');
 });
 
+Route::group(['prefix' => 'operator/laporan/sisa_hasil_usaha'], function () {
+    Route::get('/simpanan_jasa','Operator\LaporanShuController@simpJasa')->name('operator.laporan.simp_jasa');
+});
+
 Route::group(['prefix' => 'anggota/laporan/buku_kas_koperasi'], function () {
     Route::get('/','Anggota\LaporanController@bukuKas')->name('anggota.laporan.buku_kas');
     Route::post('/','Anggota\LaporanController@cariBukuKas')->name('anggota.laporan.cari_buku_kas');

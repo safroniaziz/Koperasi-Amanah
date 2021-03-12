@@ -49,6 +49,18 @@
     </a>
 </li>
 
+<li class="treeview {{ set_active(['operator.laporan.simp_jasa']) }}">
+    <a href="#">
+        <i class="fa fa-university"></i> <span>Sisa Hasil Usaha (SHU)</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu ">
+        <li class="{{ set_active(['operator.laporan.simp_jasa']) }}"><a href="{{ route('operator.laporan.simp_jasa') }}"><i class="fa fa-save"></i>Daftar Simpanan Jasa</a></li>
+    </ul>
+</li>
+
 <li class="header" style="font-weight:bold;">PENGATURAN</li>
 <li class="treeview {{ set_active(['operator.manajemen_operator','operator.manajemen_operator.add','operator.manajemen_operator.edit','operator.manajemen_anggota','operator.manajemen_anggota.add','operator.manajemen_anggota.edit']) }}">
     <a href="#">

@@ -65,7 +65,7 @@
 
       <nav class="nav-menu float-right d-none d-lg-block">
         <ul>
-          <li class="active"><a href="{{ asset('home') }}">Home</a></li>
+          <li class="active"><a href="{{ route('home') }}">Home</a></li>
           <li><a href="#about">Profil</a></li>
           <li><a href="#portfolio">Berita & Pengumuman</a></li>
           <li><a href="#team">Pengurus & Anggota</a></li>

@@ -29,6 +29,10 @@ Route::get('/', function () {
 Route::get('/berita/detail/{id}/{slug}','Operator\BeritaController@detail')->name('berita.detail');
 // Auth::routes();
 
+Route::get('/operator',function(){
+    return redirect()->route('operator.login');
+});
+
 Route::group(['prefix' => 'operator'], function () {
     Route::get('/login', 'Auth\LoginOperatorController@showLoginForm')->name('operator.login');
     Route::post('/login', 'Auth\LoginOperatorController@login')->name('operator.login.submit');

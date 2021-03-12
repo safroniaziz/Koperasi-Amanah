@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
         <title>Koperasi Amanah Sejati | Login Operator</title>
-        <link rel="shortcut icon" href="{{ asset('assets/login/images/logo.png') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/login/images/koperasi.png') }}">
         <link href="{{ asset('assets/login/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href=" {{ asset('assets/login/style_login.css') }} ">
         <link href="{{ asset('assets/login/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -12,7 +12,7 @@
 	<body style="background-image:linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('{{ asset("assets/login/images/background.png") }}')">
 		<div id="particles-js">
             <div class="loginBox">
-                <img src=" {{ asset('assets/login/images/logo.png') }} " class="user">
+                <img src=" {{ asset('assets/login/images/koperasi.png') }} " class="user">
                 @if ($message = Session::get('error'))
                     <div class="alert alert-danger alert-block" style="font-size:13px;">
                         <button type="button" class="close" data-dismiss="alert">×</button>

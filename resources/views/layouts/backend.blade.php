@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Koperasi Amanah | @yield('location')</title>
-  <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
+  <link rel="shortcut icon" href="{{ asset('assets/images/koperasi.png') }}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -99,7 +99,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image" style="margin-top:6px;">
-          <img src="{{ asset('assets/images/logo2.jpg') }}" style="height:35px;" class="img-circle" alt="User Image">
+          <img src="{{ asset('assets/images/koperasi.png') }}" style="height:auto;" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>

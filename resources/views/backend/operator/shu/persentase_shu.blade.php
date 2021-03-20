@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 @section('location','Buku Kas Koperasi')
 @section('location2')
-    <i class="fa fa-dashboard"></i>&nbsp;Laporan Simpanan/Jasa
+    <i class="fa fa-dashboard"></i>&nbsp;Persentase Pemgagian SHU
 @endsection
 @section('user-login','Operator')
 @section('sidebar-menu')
@@ -11,7 +11,7 @@
     <div class="callout callout-info ">
         <h4>Perhatian!</h4>
         <p>
-            Berikut adalah daftar simpanan dan jasa yang didapatkan oleh setiap anggota
+            Berikut adalah daftar Persentase Pemgagian SHU dan jasa yang didapatkan oleh setiap anggota
             <br>
         </p>
     </div>
@@ -19,9 +19,9 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Daftar Simpanan/Jasa</h3>
+                    <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Persentase Pemgagian SHU</h3>
                     <div class="pull-right">
-                        <a href="{{ route('operator.laporan.simp_jasa_generate') }}" class="btn btn-primary btn-sm"><i class="fa fa-refresh fa-spin"></i>&nbsp;Generate</a>
+                        <a href="{{ route('operator.laporan.persentase_generate') }}" class="btn btn-primary btn-sm"><i class="fa fa-refresh fa-spin"></i>&nbsp;Generate</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -42,21 +42,27 @@
                         <thead class="bg-primary">
                             <tr>
                                 <th>No</th>
-                                <th>Nama Anggota</th>
-                                <th>Jumlah Simpanan</th>
-                                <th>Jumlah Jasa</th>
+                                <th>Tahun</th>
+                                <th>Persentase Simpanan</th>
+                                <th>Persentase Jasa</th>
+                                <th>SHU Tahun Berjalan</th>
+                                <th>Pembagian SHU Simpanan</th>
+                                <th>Pembagian SHU Jasa</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $no=1;
                             @endphp
-                            @foreach ($simpanans as $simpanan)
+                            @foreach ($persentases as $persentase)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $simpanan->nm_anggota }}</td>
-                                    <td>Rp.{{ number_format($simpanan->jumlah_simpanan,2) }}</td>
-                                    <td>Rp.{{ number_format($simpanan->jumlah_jasa,2) }}</td>
+                                    <td>{{ $persentase->tahun }}</td>
+                                    <td>{{ $persentase->persentase_simpanan }}</td>
+                                    <td>{{ $persentase->persentase_jasa }}</td>
+                                    <td>Rp.{{ number_format($persentase->shu_tahun_berjalan,2) }}</td>
+                                    <td>Rp.{{ number_format($persentase->shu_simpanan,2) }}</td>
+                                    <td>Rp.{{ number_format($persentase->shu_jasa_pinjaman,2) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

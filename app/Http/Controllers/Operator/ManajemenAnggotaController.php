@@ -30,7 +30,7 @@ class ManajemenAnggotaController extends Controller
             'tahun_keanggotaan'  =>  'required',
             'email'  =>  'required|email',
             'password'  =>  'required',
-            'foto'    =>  'required',
+            // 'foto'    =>  'required',
             'jabatan'    =>  'required',
         ]);
 

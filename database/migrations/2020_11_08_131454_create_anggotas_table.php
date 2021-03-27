@@ -19,6 +19,7 @@ class CreateAnggotasTable extends Migration
             $table->string('nik');
             $table->text('alamat');
             $table->date('tahun_keanggotaan');
+            $table->integer('simpanan_pokok');
             $table->enum('status_anggota',['1','0'])->default('1');
             $table->string('email')->unique();
             $table->string('password');

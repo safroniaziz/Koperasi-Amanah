@@ -9,6 +9,8 @@ use App\Transaksi;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Anggota;
+use App\JumlahKeseluruhan;
+use App\PembagianShu;
 use Illuminate\Support\Facades\Auth;
 
 class LaporanController extends Controller
@@ -233,5 +235,26 @@ class LaporanController extends Controller
             return redirect()->back()->with(['error'    =>  'Anggota Tidak Memiliki Hutang']);
         }
         // return view('backend/anggota/laporan.print_kartu_pinjaman.blade.php',compact('saldo','angsuran','anggotas'));
+    }
+
+    public function shu(){
+        $tahun = PembagianShu::select('tahun')->get();
+        return view('backend/anggota.shu.shu_anggota',compact('tahun'));
+    }
+
+    public function lihatShu(){
+        if (isset($_GET['tahun'])) {
+            $keseluruhan = JumlahKeseluruhan::first();
+            $pembagian_shu = PembagianShu::where('tahun',$_GET['tahun'])->first();
+            $tahun = PembagianShu::select('tahun')->get();
+            $shus = Anggota::join('simpanan_anggotas','simpanan_anggotas.anggota_id','anggotas.id')
+                            ->join('simpanan_jasas','simpanan_jasas.anggota_id','anggotas.id')
+                            ->join('jabatans','jabatans.id','anggotas.jabatan_id')
+                            ->select('nm_anggota','nm_jabatan',DB::raw('(simpanan_anggotas.jumlah / "'.$keseluruhan->jumlah_simpanan_seluruh.'")* ("'.$pembagian_shu->shu_simpanan.'") as shu_simpanan'),
+                                    DB::raw('(simpanan_jasas.jumlah / "'.$keseluruhan->jumlah_jasa_seluruh.'") * ("'.$pembagian_shu->shu_jasa_pinjaman.'") as shu_jasa'))
+                            ->where('anggotas.id',Auth::guard('anggota')->user()->id)
+                            ->get();
+            return view('backend/anggota.shu.shu_anggota',compact('tahun','shus'));
+        }
     }
 }

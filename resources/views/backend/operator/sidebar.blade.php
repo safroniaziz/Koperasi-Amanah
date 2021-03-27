@@ -49,7 +49,7 @@
     </a>
 </li>
 
-<li class="treeview {{ set_active(['operator.laporan.simp_jasa']) }}">
+<li class="treeview {{ set_active(['operator.laporan.simp_jasa','operator.laporan.shu_tahun_berjalan','operator.laporan.persentase_shu','operator.laporan.shu_anggota','operator.laporan.lihat_shu']) }}">
     <a href="#">
         <i class="fa fa-university"></i> <span>Sisa Hasil Usaha (SHU)</span>
         <span class="pull-right-container">
@@ -58,6 +58,9 @@
     </a>
     <ul class="treeview-menu ">
         <li class="{{ set_active(['operator.laporan.simp_jasa']) }}"><a href="{{ route('operator.laporan.simp_jasa') }}"><i class="fa fa-save"></i>Daftar Simpanan Jasa</a></li>
+        <li class="{{ set_active(['operator.laporan.shu_tahun_berjalan']) }}"><a href="{{ route('operator.laporan.shu_tahun_berjalan') }}"><i class="fa fa-save"></i>SHU Tahun Berjalan</a></li>
+        <li class="{{ set_active(['operator.laporan.persentase_shu']) }}"><a href="{{ route('operator.laporan.persentase_shu') }}"><i class="fa fa-save"></i>Persentase Pembagian SHU</a></li>
+        <li class="{{ set_active(['operator.laporan.shu_anggota','operator.laporan.lihat_shu']) }}"><a href="{{ route('operator.laporan.shu_anggota') }}"><i class="fa fa-save"></i>SHU Anggota</a></li>
     </ul>
 </li>
 

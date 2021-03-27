@@ -20,9 +20,6 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Koperasi</h3>
-                    <div class="box-tools pull-right">
-                        <a href="{{ route('operator.transaksi_koperasi.add') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
-                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">

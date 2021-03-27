@@ -22,9 +22,15 @@
     </a>
 </li>
 
-<li class="{{ set_active('anggota.laporan.buku_kas') }}">
+<li class="{{ set_active('anggota.laporan.cat_simp_wahub') }}">
     <a href="{{ route('anggota.laporan.cat_simp_wajib') }}">
         <i class="fa fa-book"></i> <span>Catatan Simpanan Wajib</span>
+    </a>
+</li>
+
+<li class="{{ set_active('anggota.laporan.shu') }}">
+    <a href="{{ route('anggota.laporan.shu') }}">
+        <i class="fa fa-file-pdf-o"></i> <span>Laporan SHU</span>
     </a>
 </li>
 

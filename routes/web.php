@@ -116,6 +116,14 @@ Route::group(['prefix' => 'operator/laporan/catatan_simpanan_wajib'], function (
 
 Route::group(['prefix' => 'operator/laporan/sisa_hasil_usaha'], function () {
     Route::get('/simpanan_jasa','Operator\LaporanShuController@simpJasa')->name('operator.laporan.simp_jasa');
+    Route::get('/simpanan_jasa_generate','Operator\LaporanShuController@generateSimpJasa')->name('operator.laporan.simp_jasa_generate');
+    Route::get('/shu_tahun_berjalan','Operator\LaporanShuController@shuTahunBerjalan')->name('operator.laporan.shu_tahun_berjalan');
+    Route::get('/tahun_berjalan_generate','Operator\LaporanShuController@generateTahunBerjalan')->name('operator.laporan.tahun_berjalan_generate');
+    Route::get('/persentase_shu','Operator\LaporanShuController@persentaseShu')->name('operator.laporan.persentase_shu');
+    Route::get('/persentase_generate','Operator\LaporanShuController@generatePersentase')->name('operator.laporan.persentase_generate');
+    Route::get('/shu_anggota','Operator\LaporanShuController@shuAnggota')->name('operator.laporan.shu_anggota');
+    Route::get('/lihat_shu','Operator\LaporanShuController@lihatShu')->name('operator.laporan.lihat_shu');
+
 });
 
 Route::group(['prefix' => 'anggota/laporan/buku_kas_koperasi'], function () {
@@ -137,6 +145,10 @@ Route::group(['prefix' => 'anggota/laporan/catatan_simpanan_wajib'], function ()
     Route::get('/','Anggota\LaporanController@catSimpWajib')->name('anggota.laporan.cat_simp_wajib');
 });
 
+Route::group(['prefix' => 'anggota/laporan/sisa_hasil_usaha'], function () {
+    Route::get('/','Anggota\LaporanController@shu')->name('anggota.laporan.shu');
+    Route::get('/lihat_shu','Anggota\LaporanController@lihatShu')->name('anggota.laporan.lihat_shu');
+});
 
 Route::group(['prefix' => 'operator/manajemen_operator'], function () {
     Route::get('/','Operator\ManajemenOperatorController@index')->name('operator.manajemen_operator');

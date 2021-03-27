@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGambarColumnToAnggotasTable extends Migration
+class CreateSimpananJasasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddGambarColumnToAnggotasTable extends Migration
      */
     public function up()
     {
-        Schema::table('anggotas', function (Blueprint $table) {
-            $table->string('gambar')->nullable();
+        Schema::create('simpanan_jasas', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('anggota_id');
+            $table->string('tahun');
+            $table->unsignedBigInteger('jumlah');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddGambarColumnToAnggotasTable extends Migration
      */
     public function down()
     {
-        Schema::table('anggotas', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('simpanan_jasas');
     }
 }

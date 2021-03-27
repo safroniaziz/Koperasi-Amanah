@@ -27,11 +27,25 @@ class LaporanShuController extends Controller
     }
 
     public function generateSimpJasa(){
+        $year = date('Y');
+
+        $simpanan = SimpananAnggota::select(DB::raw('sum(jumlah) as jumlah'))->first();
+        $jasa = SimpananJasa::select(DB::raw('sum(jumlah) as jumlah'))->first();
+        $transaksi = Transaksi::select(DB::raw('sum(jumlah_transaksi) as jumlah'))->where('jenis_transaksi_id',5)->first();
+// return $simpanan->jumlah;
+        JumlahKeseluruhan::create([
+            'jumlah_simpanan_seluruh'   =>  $simpanan->jumlah,
+            'jumlah_jasa_seluruh'   =>  $jasa->jumlah,
+            'jumlah_transaksi_seluruh'          =>  $transaksi->jumlah
+        ]);
+
         $simp = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                             ->where('jenis_transaksis.id',1)
+                            ->where('tahun_transaksi',$year)
                             ->select('anggota_id',DB::raw('sum(jumlah_transaksi) as jumlah'))
                             ->groupBy('anggota_id')
                             ->get();
+        
         
         for ($i=0; $i < count($simp) ; $i++) { 
             $jasa = Pinjaman::join('anggotas','anggotas.id','pinjamen.anggota_id')

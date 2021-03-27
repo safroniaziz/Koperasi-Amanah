@@ -61,6 +61,7 @@
         <li class="{{ set_active(['operator.laporan.shu_tahun_berjalan']) }}"><a href="{{ route('operator.laporan.shu_tahun_berjalan') }}"><i class="fa fa-save"></i>SHU Tahun Berjalan</a></li>
         <li class="{{ set_active(['operator.laporan.persentase_shu']) }}"><a href="{{ route('operator.laporan.persentase_shu') }}"><i class="fa fa-save"></i>Persentase Pembagian SHU</a></li>
         <li class="{{ set_active(['operator.laporan.shu_anggota','operator.laporan.lihat_shu']) }}"><a href="{{ route('operator.laporan.shu_anggota') }}"><i class="fa fa-save"></i>SHU Anggota</a></li>
+
     </ul>
 </li>
 

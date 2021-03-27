@@ -43,7 +43,7 @@ class LaporanShuController extends Controller
                 'jumlah'    =>  $simp[$i]['jumlah'],
             ]);
 
-            if ($jasa->anggota_od != null) {
+            if ($jasa->anggota_id != null) {
                 SimpananJasa::create([
                     'anggota_id'    =>  $simp[$i]['anggota_id'],
                     'jumlah'    =>  $jasa->jumlah,

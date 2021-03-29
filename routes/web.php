@@ -112,6 +112,7 @@ Route::group(['prefix' => 'operator/laporan/kartu_pinjaman'], function () {
 
 Route::group(['prefix' => 'operator/laporan/catatan_simpanan_wajib'], function () {
     Route::get('/','Operator\LaporanController@catSimpWajib')->name('operator.laporan.cat_simp_wajib');
+    Route::get('/{anggota_id}/detail','Operator\LaporanController@detailSimpWajib')->name('operator.laporan.detail_simp_wajib');
 });
 
 Route::group(['prefix' => 'operator/laporan/sisa_hasil_usaha'], function () {

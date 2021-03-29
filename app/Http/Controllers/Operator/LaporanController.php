@@ -204,10 +204,18 @@ class LaporanController extends Controller
     public function catSimpWajib(){
         $laporans = Transaksi::where('jenis_transaksi_id',1)
                     ->join('anggotas','anggotas.id','transaksis.anggota_id')
-                    ->select(DB::raw('COUNT(bulan_transaksi) as jumlah_bulan'),DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'),'nm_anggota')
+                    ->select('anggotas.id as anggota_id',DB::raw('COUNT(bulan_transaksi) as jumlah_bulan'),DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'),'nm_anggota')
                     ->groupBy('anggota_id')
                     ->get();
         return view('backend/operator/laporan.cat_simp_wajib',compact('laporans'));
+    }
+
+    public function detailSimpWajib($anggota_id){
+        $data = Transaksi::where('jenis_transaksi_id',1)
+                        ->join('anggotas','anggotas.id','transaksis.anggota_id')
+                        ->select('bulan_transaksi','tahun_transaksi','jumlah_transaksi','jenis_transaksi')
+                        ->get();
+        return $data;
     }
 
     public function pinjaman(){

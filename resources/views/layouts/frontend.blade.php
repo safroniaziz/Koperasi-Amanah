@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Koperasi Amanah - Home</title>
+  <title>Koperasi Amanah Sejati - Home</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -58,7 +58,7 @@
     <div class="container">
 
       <div class="logo float-left">
-        <h1 class="text-light"><a href="{{ route('home') }}"><span>Koperasi Amanah</span></a></h1>
+        <h1 class="text-light"><a href="{{ route('home') }}"><span>Koperasi Amanah Sejati</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="{{ asset('assets/frontend/assets/img/koperasi.png') }}" alt="" class="img-fluid"></a>-->
       </div>
@@ -305,7 +305,7 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-info">
-            <h3>Koperasi Amanah</h3>
+            <h3>Koperasi Amanah Sejati</h3>
             <p>
               {{ $profils->alamat_lengkap }} <br>
               NY 535022, USA<br><br>

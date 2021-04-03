@@ -21,7 +21,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Shu Tahun Berjalan</h3>
                     <div class="pull-right">
-                        <a href="{{ route('operator.laporan.tahun_berjalan_generate') }}" class="btn btn-primary btn-sm"><i class="fa fa-refresh fa-spin"></i>&nbsp;Generate</a>
+                        <a href="{{ route('operator.laporan.tahun_berjalan_generate') }}" class="btn btn-primary btn-sm"><i class="fa fa-refresh fa-spin"></i>&nbsp;Generate SHU Tahun Berjalan {{ $year }}</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -67,44 +67,10 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script>
-
-        $('#kelas').DataTable({
-            "oLanguage": {
-              "sSearch": "Cari Data :",
-              "sZeroRecords": "Tidak Ada Data Ditampilkan",
-              "sProcessing": "<i class='fa fa-spinner fa-1x fa-fw' style='color:black !important;'></i>&nbsp; Memuat. Harap Tunggu.. !!",
-              "sEmptyTable": 'Tidak Ada Data Yang Dimuat',
-              "sLengthMenu": 'Menampikan: <select>'+
-                '<option value="10">10</option>'+
-                '<option value="50">50</option>'+
-                '<option value="100">100</option>'+
-                '<option value="-1">Semua</option>'+
-                '</select> Data',
-                "sInfoFiltered": " - Filter Dari _MAX_ Data",
-                "sInfo": "Mendapatkan _START_ - _END_ Data Untuk Ditampilkan Dari Total _TOTAL_ Data",
-                "sInfoEmpty": "Mendapatkan 0 Sampai 0 Dari 0Data ",
-                "oPaginate": {
-                    "sPrevious": "Sebelumnya", 
-                    "sNext": "Selanjutnya", 
-                }
-            },
-            dom: 'lBfrtip',
-            buttons: [
-                { extend:'excel', text:'<i class="fa fa-file-excel-o"></i>&nbsp;Export Excel', className:'btn-export-excel',
-                    exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5 ],
-                    },
-                },
-            ],
-        })
+        $(document).ready( function () {
+            $('#kelas').DataTable();
+        } );
 
         $('#tahun').each(function() {
             var year = (new Date()).getFullYear();

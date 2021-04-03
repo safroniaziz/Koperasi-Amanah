@@ -45,9 +45,9 @@
                                 <th>Nama Anggota</th>
                                 <th>Jumlah Pinjaman</th>
                                 <th>Jumlah Bulan Angsuran</th>
-                                <th>Besaran Bunga (%)</th>
+                                <th>Besaran Jasa (%)</th>
                                 <th>Jumlah Angsuran Pokok/Bulan</th>
-                                <th>Jumlah Angsuran Bunga/Bulan</th>
+                                <th>Jumlah Angsuran Jasa/Bulan</th>
                                 <th>Bulan Mulai Angsuran</th>
                                 <th>Bulan Akhir Angsuran</th>
                                 <th>Operator</th>

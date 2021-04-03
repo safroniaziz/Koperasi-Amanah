@@ -75,7 +75,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Persenan Bunga (%)</label>
+                                <label for="exampleInputEmail1">Persenan Jasa (%)</label>
                                 <input type="text" name="bunga" id="bunga" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
@@ -83,7 +83,7 @@
                                 <input type="text" name="jumlah_angsuran_pokok" id="jumlah_angsuran_pokok" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Jumlah Angsuran Bunga / Bulan</label>
+                                <label for="exampleInputEmail1">Jumlah Angsuran Jasa / Bulan</label>
                                 <input type="text" name="jumlah_angsuran_bunga" id="jumlah_angsuran_bunga" class="form-control">
                             </div>
                             <div class="form-group col-md-4">

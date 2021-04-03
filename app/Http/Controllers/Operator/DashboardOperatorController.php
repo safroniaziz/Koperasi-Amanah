@@ -22,8 +22,9 @@ class DashboardOperatorController extends Controller
         $berita = Count(Berita::all());
         $jenis = Count(JenisTransaksi::where('status_jenis_transaksi','1')->get());
         $simpanan = Transaksi::where('jenis_transaksi_id','1')->select(DB::raw('sum(jumlah_transaksi) as jumlah'))->first();
-        $datas = Anggota::rightJoin('transaksis','transaksis.anggota_id','anggotas.id')->where('jenis_transaksi_id','1')
+        $datas = Anggota::leftJoin('transaksis','transaksis.anggota_id','anggotas.id')
                             ->select('nm_anggota',DB::raw('sum(jumlah_transaksi) as jumlah'))
+                            ->where('jenis_transaksi_id','1')
                             ->groupBy('anggotas.id')->get();
         return view('backend/operator.dashboard',compact('anggota','berita','jenis','simpanan','datas'));
     }

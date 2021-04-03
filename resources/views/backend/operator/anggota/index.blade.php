@@ -48,6 +48,14 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label for="exampleInputEmail1">Simpanan Pokok Anggota</label>
+                                                <input type="text" name="simpanan_pokok" value="500000" readonly class="form-control @error('simpanan_pokok') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                @if ($errors->has('simpanan_pokok'))
+                                                    <small class="form-text text-danger">{{ $errors->first('simpanan_pokok') }}</small>
+                                                @endif
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label for="exampleInputEmail1">Jabatan</label>
                                                 <select name="jabatan" class="form-control" @error('jabatan') is-invalid @enderror>
                                                     <option disabled selected>-- pilih jabatan --</option>
@@ -274,7 +282,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>safroni.aziz@gmail.com	
+                    </table>	
                     <div class="modal fade" id="modalhapus">
                         <div class="modal-dialog modal-danger">
                             <div class="modal-content">
@@ -311,7 +319,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="">Password Baru</label>
-                                <input type="text" name="id" id="id_password">
+                                <input type="hidden" name="id" id="id_password">
                                 <input type="text" class="form-control password1" name="password1" id="password1" placeholder="Masukan Password Baru" required>
                             </div>
                             <div class="form-group">

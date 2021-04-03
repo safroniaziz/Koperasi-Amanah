@@ -52,10 +52,10 @@
             </tr>
             <tr>
                 <th>Pokok</th>
-                <th>Bunga</th>
+                <th>Jasa</th>
                 <th>Denda</th>
                 <th>Pokok</th>
-                <th>Bunga</th>
+                <th>Jasa</th>
                 <th>Denda</th>
             </tr>
         </thead>

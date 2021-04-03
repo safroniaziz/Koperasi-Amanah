@@ -44,6 +44,16 @@
                             </div>
 
                             <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">Jenis Transaksi</label>
+                                <select name="jenis_transaksi_id" class="form-control" id="">
+                                    <option disabled selected>-- pilih jenis transaksi --</option>
+                                    @foreach ($jenis_transaksi as $jenis)
+                                        <option value="{{ $jenis->id }}">{{ $jenis->nm_transaksi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Tanggal Transaksi</label>
                                 <input type="date" name="tanggal_transaksi" class="form-control">
                             </div>
@@ -67,7 +77,7 @@
                                 <label for="exampleInputEmail1">Jumlah Transaksi</label>
                                 <input type="text" name="jumlah_transaksi" id="jumlah_transaksi" class="form-control">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-12">
                                 <label for="exampleInputEmail1">Keterangan Transaksi</label>
                                 <textarea name="keterangan" class="form-control" id="" cols="30" rows="3"></textarea>
                             </div>

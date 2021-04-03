@@ -69,9 +69,9 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-red">
                 <div class="inner">
-                    <h3> Rp,{{ number_format($simpanan->jumlah) }} </h3>
+                    <h3> {{ number_format($simpanan->jumlah) }} </h3>
 
-                    <p>Jumlah Simpanan Wajib</p>
+                    <p>Jumlah Simpanan Wajib Anggota</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-key"></i>
@@ -85,11 +85,11 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Tampilan Diagram Batang</h3>
+                    <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Tampilan Grafik Batang</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
-                    <h6 class="text-center text-bold">Jumlah Transaksi Simpanan Wajib Anggota</h6>
+                    <h6 class="text-center text-bold">Grafik Jumlah Transaksi Simpanan Wajib Anggota</h6>
                         @section('chart_data')
                         chart.data = [
                             @foreach ($datas as $data)

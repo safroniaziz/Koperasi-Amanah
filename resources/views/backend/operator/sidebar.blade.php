@@ -26,30 +26,24 @@
 </li>
 
 <li class="header" style="font-weight:bold;">LAPORAN</li>
-<li class="{{ set_active('operator.laporan.buku_kas') }}">
-    <a href="{{ route('operator.laporan.buku_kas') }}">
-        <i class="fa fa-book"></i> <span>Buku Kas Koperasi</span>
+
+<li class="treeview {{ set_active(['operator.laporan.buku_kas','operator.laporan.tabelaris','operator.laporan.pinjaman','operator.laporan.cat_simp_wajib']) }}">
+    <a href="#">
+        <i class="fa fa-university"></i> <span>Laporan Transaksi</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
     </a>
-</li>
-<li class="{{ set_active('operator.laporan.tabelaris') }}">
-    <a href="{{ route('operator.laporan.tabelaris') }}">
-        <i class="fa fa-book"></i> <span>Tabelaris</span>
-    </a>
+    <ul class="treeview-menu ">
+        <li class="{{ set_active(['operator.laporan.buku_kas']) }}"><a href="{{ route('operator.laporan.buku_kas') }}"><i class="fa fa-book"></i>Buku Kas Koperasi</a></li>
+        <li class="{{ set_active(['operator.laporan.tabelaris']) }}"><a href="{{ route('operator.laporan.tabelaris') }}"><i class="fa fa-book"></i>Tabelaris</a></li>
+        <li class="{{ set_active(['operator.laporan.pinjaman']) }}"><a href="{{ route('operator.laporan.pinjaman') }}"><i class="fa fa-id-card"></i>Kartu Pinjaman Anggota</a></li>
+        <li class="{{ set_active(['operator.laporan.cat_simp_wajib','operator.laporan.cat_simp_wajib.detail_simp_wajib']) }}"><a href="{{ route('operator.laporan.cat_simp_wajib') }}"><i class="fa fa-save"></i>Catatan Simpanan Wajib</a></li>
+
+    </ul>
 </li>
 
-<li class="{{ set_active('operator.laporan.pinjaman') }}">
-    <a href="{{ route('operator.laporan.pinjaman') }}">
-        <i class="fa fa-id-card"></i> <span>Kartu Pinjaman</span>
-    </a>
-</li>
-
-<li class="{{ set_active('operator.laporan.buku_kas') }}">
-    <a href="{{ route('operator.laporan.cat_simp_wajib') }}">
-        <i class="fa fa-book"></i> <span>Catatan Simpanan Wajib</span>
-    </a>
-</li>
-
-<li class="treeview {{ set_active(['operator.laporan.simp_jasa','operator.laporan.shu_tahun_berjalan','operator.laporan.persentase_shu','operator.laporan.shu_anggota','operator.laporan.lihat_shu']) }}">
+<li class="treeview {{ set_active(['operator.laporan.simp_jasa','operator.laporan.simp_jasa_generate','operator.laporan.shu_tahun_berjalan','operator.laporan.tahun_berjalan_generate','operator.laporan.persentase_shu','operator.laporan.persentase_generate','operator.laporan.shu_anggota','operator.laporan.generate_shu','operator.laporan.lihat_shu']) }}">
     <a href="#">
         <i class="fa fa-university"></i> <span>Sisa Hasil Usaha (SHU)</span>
         <span class="pull-right-container">
@@ -57,10 +51,10 @@
         </span>
     </a>
     <ul class="treeview-menu ">
-        <li class="{{ set_active(['operator.laporan.simp_jasa']) }}"><a href="{{ route('operator.laporan.simp_jasa') }}"><i class="fa fa-save"></i>Daftar Simpanan Jasa</a></li>
-        <li class="{{ set_active(['operator.laporan.shu_tahun_berjalan']) }}"><a href="{{ route('operator.laporan.shu_tahun_berjalan') }}"><i class="fa fa-save"></i>SHU Tahun Berjalan</a></li>
-        <li class="{{ set_active(['operator.laporan.persentase_shu']) }}"><a href="{{ route('operator.laporan.persentase_shu') }}"><i class="fa fa-save"></i>Persentase Pembagian SHU</a></li>
-        <li class="{{ set_active(['operator.laporan.shu_anggota','operator.laporan.lihat_shu']) }}"><a href="{{ route('operator.laporan.shu_anggota') }}"><i class="fa fa-save"></i>SHU Anggota</a></li>
+        <li class="{{ set_active(['operator.laporan.simp_jasa','operator.laporan.simp_jasa_generate']) }}"><a href="{{ route('operator.laporan.simp_jasa') }}"><i class="fa fa-save"></i>Daftar Simpanan Jasa</a></li>
+        <li class="{{ set_active(['operator.laporan.shu_tahun_berjalan','operator.laporan.tahun_berjalan_generate']) }}"><a href="{{ route('operator.laporan.shu_tahun_berjalan') }}"><i class="fa fa-save"></i>SHU Tahun Berjalan</a></li>
+        <li class="{{ set_active(['operator.laporan.persentase_shu','operator.laporan.persentase_generate']) }}"><a href="{{ route('operator.laporan.persentase_shu') }}"><i class="fa fa-save"></i>Persentase Pembagian SHU</a></li>
+        <li class="{{ set_active(['operator.laporan.shu_anggota','operator.laporan.generate_shu','operator.laporan.lihat_shu']) }}"><a href="{{ route('operator.laporan.shu_anggota') }}"><i class="fa fa-save"></i>SHU Anggota</a></li>
 
     </ul>
 </li>

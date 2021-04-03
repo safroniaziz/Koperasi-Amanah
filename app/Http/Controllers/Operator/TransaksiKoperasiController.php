@@ -21,12 +21,13 @@ class TransaksiKoperasiController extends Controller
                                 ->join('operators','operators.id','transaksis.user_id')
                                 ->join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->select('transaksis.id','nm_transaksi','nm_anggota','nm_operator','jenis_transaksis.jenis_transaksi','jumlah_transaksi','tanggal_transaksi','bulan_transaksi','tahun_transaksi','keterangan')
-                                ->where('jenis_transaksi_id',5)->get();
+                                ->where('jenis_transaksi_id','>','4')->get();
         return view('backend/operator/koperasi.index',compact('koperasis'));
     }
 
     public function add(){
         $anggota = Anggota::where('nm_anggota','Koperasi')->first();
+        $jenis_transaksi = JenisTransaksi::where('status_jenis_transaksi','1')->where('id','>','4')->get();
         $bulans = [
             ['bulan_transaksi'  =>  'Januari'],
             ['bulan_transaksi'  =>  'Februari'],
@@ -41,7 +42,7 @@ class TransaksiKoperasiController extends Controller
             ['bulan_transaksi'  =>  'November'],
             ['bulan_transaksi'  =>  'Desember'],
         ];
-        return view('backend/operator/koperasi.add',compact('anggota','bulans'));
+        return view('backend/operator/koperasi.add',compact('anggota','bulans','jenis_transaksi'));
     }
 
     public function post(Request $request){
@@ -52,10 +53,11 @@ class TransaksiKoperasiController extends Controller
             'tahun_transaksi'    =>  'required',
             'jumlah_transaksi'    =>  'required',
             'keterangan'    =>  'required',
+            'jenis_transaksi_id'    =>  'required',
         ]);
-        $jenis_transaksi = JenisTransaksi::where('id',5)->first();
+        $jenis_transaksi = JenisTransaksi::where('id',$request->jenis_transaksi_id)->first();
         Transaksi::create([
-            'jenis_transaksi_id'    =>  $jenis_transaksi->id,
+            'jenis_transaksi_id'    =>  $request->jenis_transaksi_id,
             'anggota_id'    =>  $request->anggota_id,
             'user_id'   =>  Auth::guard('operator')->user()->id,
             'jumlah_transaksi'  =>  $request->jumlah_transaksi,

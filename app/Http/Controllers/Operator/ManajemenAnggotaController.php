@@ -32,6 +32,7 @@ class ManajemenAnggotaController extends Controller
             'password'  =>  'required',
             // 'foto'    =>  'required',
             'jabatan'    =>  'required',
+            'simpanan_pokok'    =>  'required',
         ]);
 
         $model['foto'] = null;
@@ -49,6 +50,7 @@ class ManajemenAnggotaController extends Controller
                 'password'    =>  bcrypt($request->password),
                 'gambar'    =>  $model['foto'],
                 'jabatan_id'   =>  $request->jabatan,
+                'simpanan_pokok'   =>  $request->simpanan_pokok,
             ]);
         }
         else{
@@ -61,6 +63,7 @@ class ManajemenAnggotaController extends Controller
                 'email'    =>  $request->email,
                 'password'    =>  bcrypt($request->password),
                 'jabatan_id'   =>  $request->jabatan,
+                'simpanan_pokok'   =>  $request->simpanan_pokok,
             ]);
         }
         
@@ -95,6 +98,7 @@ class ManajemenAnggotaController extends Controller
             'tahun_keanggotaan'  =>  'required',
             'email'  =>  'required|email',
             'jabatan'   =>  'required',
+            'simpanan_pokok'   =>  'required',
         ]);
         $anggota = Anggota::find($request->id);
 
@@ -116,6 +120,7 @@ class ManajemenAnggotaController extends Controller
                 'email'    =>  $request->email,
                 'gambar'    =>  $model['foto'],
                 'jabatan_id'   =>  $request->jabatan,
+                'simpanan_pokok'   =>  $request->simpanan_pokok,
             ]);
         }
         else{
@@ -126,6 +131,7 @@ class ManajemenAnggotaController extends Controller
                 'tahun_keanggotaan'    =>  $request->tahun_keanggotaan,
                 'email'    =>  $request->email,
                 'jabatan_id'   =>  $request->jabatan,
+                'simpanan_pokok'   =>  $request->simpanan_pokok,
             ]);
         }
 

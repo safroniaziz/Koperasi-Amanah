@@ -69,7 +69,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Persenan Bunga (%)</label>
+                                <label for="exampleInputEmail1">Persenan Jasa (%)</label>
                                 <input type="text" name="bunga" value="{{ $transaksi->bunga }}" id="bunga" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
@@ -77,7 +77,7 @@
                                 <input type="text" name="jumlah_angsuran_pokok" value="{{ $transaksi->jumlah_angsuran_pokok }}" id="jumlah_angsuran_pokok" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Jumlah Angsuran Bunga / Bulan</label>
+                                <label for="exampleInputEmail1">Jumlah Angsuran Jasa / Bulan</label>
                                 <input type="text" name="jumlah_angsuran_bunga" value="{{ $transaksi->jumlah_angsuran_bunga }}" id="jumlah_angsuran_bunga" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-md-12 text-center">
                                 <button type="reset" name="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i>&nbsp; Ulangi</button>
-                                <a onclick="reset()" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>&nbsp;Reset Bunga & Angsuran </a>
+                                <a onclick="reset()" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>&nbsp;Reset Jasa & Angsuran </a>
                                 <button type="submit" name="submit" id="simpan" disabled class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
                             </div>
                         </form>

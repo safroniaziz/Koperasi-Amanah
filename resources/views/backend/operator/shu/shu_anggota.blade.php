@@ -20,7 +20,9 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Daftar SHU Anggota</h3>
-                    
+                    <div class="pull-right">
+                        <a href="{{ route('operator.laporan.generate_shu') }}" class="btn btn-success btn-sm"><i class="fa fa-refresh"></i>&nbsp; Generate SHU Anggota Tahun 2021</a>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
@@ -42,12 +44,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Pilih Tahun Untuk Ditampilkan</label>
-                                    <select name="tahun" id="" class="form-control">
-                                        <option disabled selected>-- pilih tahun --</option>
-                                        @foreach ($tahun as $tahun)
-                                            <option value="{{ $tahun->tahun }}">{{ $tahun->tahun }}</option>
-                                        @endforeach    
-                                    </select>    
+                                    <select name="tahun" id="tahun" class="form-control" required></select>
                                 </div>  
                                 <div class="form-group">
                                     <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>&nbsp; Lihat Laporan</button>
@@ -55,6 +52,70 @@
                             </div>
                         </div>
                     </form>
+                    @if (isset($shus))
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <div class="info-box" style="background-color: #d2d6de;">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-save"></i></span>
+                
+                            <div class="info-box-content">
+                              <span class="info-box-text">Jumlah Shu Simpanan</span>
+                              <span class="info-box-number">
+                                    @if (!empty($jumlah_simpanan))
+                                    Rp.{{ number_format($jumlah_simpanan->jumlah) }},-
+                                    @endif  
+                                <small></small></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <div class="info-box" style="background-color: #d2d6de;">
+                            <span class="info-box-icon bg-red"><i class="fa fa-check-circle"></i></span>
+                
+                            <div class="info-box-content">
+                              <span class="info-box-text">umlah Shu Jasa</span>
+                              <span class="info-box-number">
+                                @if (!empty($jumlah_jasa))
+                                Rp.{{ number_format($jumlah_jasa->jumlah) }},-
+                                @endif  
+                              </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                
+                        <!-- fix for small devices only -->
+                        <div class="clearfix visible-sm-block"></div>
+                
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <div class="info-box" style="background-color: #d2d6de;">
+                            <span class="info-box-icon bg-green"><i class="fa fa-plus"></i></span>
+                
+                            <div class="info-box-content">
+                              <span class="info-box-text">Total Keseluruhan</span>
+                              <span class="info-box-number">
+                                @if (!empty($jumlah_simpanan) && !empty($jumlah_jasa))
+                                Rp.{{ number_format($jumlah_simpanan->jumlah + $jumlah_jasa->jumlah) }},-
+                                @endif  
+
+                              </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                     
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                
+                    @endif
                     <table class="table table-bordered table-hover" id="kelas">
                         <thead class="bg-primary">
                             <tr>
@@ -75,7 +136,7 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $shu->nm_anggota }}</td>
-                                        <td>{{ $shu->nm_jabatan }}</td>
+                                        <td>{{ $shu->jabatan }}</td>
                                         <td>Rp.{{ number_format($shu->shu_simpanan,2) }}</td>
                                         <td>Rp.{{ number_format($shu->shu_jasa,2) }}</td>
                                         <td>Rp.{{ number_format($shu->shu_jasa + $shu->shu_simpanan,2) }}</td>
@@ -93,50 +154,16 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
     <script>
-
-        $('#kelas').DataTable({
-            "oLanguage": {
-              "sSearch": "Cari Data :",
-              "sZeroRecords": "Tidak Ada Data Ditampilkan",
-              "sProcessing": "<i class='fa fa-spinner fa-1x fa-fw' style='color:black !important;'></i>&nbsp; Memuat. Harap Tunggu.. !!",
-              "sEmptyTable": 'Tidak Ada Data Yang Dimuat',
-              "sLengthMenu": 'Menampikan: <select>'+
-                '<option value="10">10</option>'+
-                '<option value="50">50</option>'+
-                '<option value="100">100</option>'+
-                '<option value="-1">Semua</option>'+
-                '</select> Data',
-                "sInfoFiltered": " - Filter Dari _MAX_ Data",
-                "sInfo": "Mendapatkan _START_ - _END_ Data Untuk Ditampilkan Dari Total _TOTAL_ Data",
-                "sInfoEmpty": "Mendapatkan 0 Sampai 0 Dari 0Data ",
-                "oPaginate": {
-                    "sPrevious": "Sebelumnya", 
-                    "sNext": "Selanjutnya", 
-                }
-            },
-            dom: 'lBfrtip',
-            buttons: [
-                { extend:'excel', text:'<i class="fa fa-file-excel-o"></i>&nbsp;Export Excel', className:'btn-export-excel',
-                    exportOptions: {
-                        columns: [ 0, 1, 2, 3, 4, 5 ],
-                    },
-                },
-            ],
-        })
+        $(document).ready( function () {
+            $('#kelas').DataTable();
+        } );
 
         $('#tahun').each(function() {
             var year = (new Date()).getFullYear();
             var current = year;
-            year -= 3;
-            for (var i = 0; i < 6; i++) {
+            year -= 5;
+            for (var i = 0; i < 10; i++) {
             if ((year+i) == current)
                 $(this).append('<option selected value="' + (year + i) + '">' + (year + i) + '</option>');
             else

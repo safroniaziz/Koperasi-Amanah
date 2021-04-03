@@ -124,6 +124,7 @@ Route::group(['prefix' => 'operator/laporan/sisa_hasil_usaha'], function () {
     Route::get('/persentase_generate','Operator\LaporanShuController@generatePersentase')->name('operator.laporan.persentase_generate');
     Route::get('/shu_anggota','Operator\LaporanShuController@shuAnggota')->name('operator.laporan.shu_anggota');
     Route::get('/lihat_shu','Operator\LaporanShuController@lihatShu')->name('operator.laporan.lihat_shu');
+    Route::get('/generate_shu','Operator\LaporanShuController@generateShu')->name('operator.laporan.generate_shu');
 
 });
 

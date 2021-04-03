@@ -44,6 +44,7 @@
                                 <th>No</th>
                                 <th>Nama Anggota</th>
                                 <th>Jumlah Transaksi</th>
+                                <th>Nama Transaksi</th>
                                 <th>Jenis Transaksi</th>
                                 <th>Tanggal Transaksi</th>
                                 <th>Bulan Transaksi</th>
@@ -63,6 +64,7 @@
                                     <td>{{ $koperasi->nm_anggota }}</td>
                                     <td>Rp.{{ number_format($koperasi->jumlah_transaksi,2) }}</td>
                                     <td>{{ $koperasi->nm_transaksi }}</td>
+                                    <td>{{ $koperasi->jenis_transaksi }}</td>
                                     <td>{{ $koperasi->tanggal_transaksi }}</td>
                                     <td>{{ $koperasi->bulan_transaksi }}</td>
                                     <td>{{ $koperasi->tahun_transaksi }}</td>

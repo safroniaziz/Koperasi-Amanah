@@ -211,9 +211,10 @@ class LaporanController extends Controller
     }
 
     public function detailSimpWajib($anggota_id){
-        $data = Transaksi::where('jenis_transaksi_id',1)
-                        ->join('anggotas','anggotas.id','transaksis.anggota_id')
+        $data = Transaksi::join('anggotas','anggotas.id','transaksis.anggota_id')
                         ->select('bulan_transaksi','tahun_transaksi','jumlah_transaksi','jenis_transaksi')
+                        ->where('jenis_transaksi_id',1)
+                        ->where('anggotas.id',$anggota_id)
                         ->get();
         return $data;
     }

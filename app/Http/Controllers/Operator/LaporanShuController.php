@@ -174,6 +174,7 @@ class LaporanShuController extends Controller
                         ->join('jabatans','jabatans.id','anggotas.jabatan_id')
                         ->select('anggotas.id as anggota_id','nm_anggota','nm_jabatan as jabatan','simpanan_anggotas.jumlah as shu_simpanan','simpanan_jasas.jumlah as shu_jasa')
                         ->groupBy('anggotas.id')
+                        ->where('anggotas.nm_anggota','!=','Koperasi')
                         ->get();
                         // return $datas[0]['nm_jabatan'];
         $shu_anggota = ShuAnggota::where('tahun',$tahun)->get();

@@ -28,8 +28,8 @@ class SliderController extends Controller
             $request->gambar->move(public_path('/upload/gambar_slider/'), $model['gambar']);
         }
         $slider = new Slider;
-        $slider->title = $request->title;
-        $slider->slogan = $request->slogan;
+        // $slider->title = $request->title;
+        // $slider->slogan = $request->slogan;
         $slider->gambar = $model['gambar'];
         $slider->save();
 

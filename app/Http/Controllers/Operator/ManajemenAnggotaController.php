@@ -30,7 +30,7 @@ class ManajemenAnggotaController extends Controller
             'tahun_keanggotaan'  =>  'required',
             'email'  =>  'required|email',
             'password'  =>  'required',
-            // 'foto'    =>  'required',
+            'foto'    =>  'required',
             'jabatan'    =>  'required',
             'simpanan_pokok'    =>  'required',
         ]);
@@ -98,7 +98,7 @@ class ManajemenAnggotaController extends Controller
             'tahun_keanggotaan'  =>  'required',
             'email'  =>  'required|email',
             'jabatan'   =>  'required',
-            'simpanan_pokok'   =>  'required',
+            // 'simpanan_pokok'   =>  'required',
         ]);
         $anggota = Anggota::find($request->id);
 

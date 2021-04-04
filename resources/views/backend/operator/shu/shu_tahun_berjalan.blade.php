@@ -67,10 +67,31 @@
 @endsection
 
 @push('scripts')
-    <script>
-        $(document).ready( function () {
-            $('#kelas').DataTable();
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var table = $('#kelas').DataTable( {
+            buttons: [ 'copy','csv','print', 'excel', 'pdf', 'colvis' ],
+            dom: 
+            "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
+            "<'row'<'col-md-12'tr>>" +
+            "<'row'<'col-md-5'i><'col-md-7'p>>",
+            lengthMenu:[
+                [5,10,25,50,100,-1],
+                [5,10,25,50,100,"All"]
+            ]
         } );
+    
+        table.buttons().container()
+            .appendTo( '#kelas_wrapper .col-md-5:eq(0)' );
+    } );
 
         $('#tahun').each(function() {
             var year = (new Date()).getFullYear();

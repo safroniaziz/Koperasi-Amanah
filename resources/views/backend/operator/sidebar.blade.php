@@ -27,7 +27,7 @@
 
 <li class="header" style="font-weight:bold;">LAPORAN</li>
 
-<li class="treeview {{ set_active(['operator.laporan.buku_kas','operator.laporan.tabelaris','operator.laporan.pinjaman','operator.laporan.cat_simp_wajib']) }}">
+<li class="treeview {{ set_active(['operator.laporan.buku_kas','operator.laporan.cari_buku_kas','operator.laporan.tabelaris','operator.laporan.pinjaman','operator.laporan.cat_simp_wajib']) }}">
     <a href="#">
         <i class="fa fa-university"></i> <span>Laporan Transaksi</span>
         <span class="pull-right-container">
@@ -35,7 +35,7 @@
         </span>
     </a>
     <ul class="treeview-menu ">
-        <li class="{{ set_active(['operator.laporan.buku_kas']) }}"><a href="{{ route('operator.laporan.buku_kas') }}"><i class="fa fa-book"></i>Buku Kas Koperasi</a></li>
+        <li class="{{ set_active(['operator.laporan.buku_kas','operator.laporan.cari_buku_kas']) }}"><a href="{{ route('operator.laporan.buku_kas') }}"><i class="fa fa-book"></i>Buku Kas Koperasi</a></li>
         <li class="{{ set_active(['operator.laporan.tabelaris']) }}"><a href="{{ route('operator.laporan.tabelaris') }}"><i class="fa fa-book"></i>Tabelaris</a></li>
         <li class="{{ set_active(['operator.laporan.pinjaman']) }}"><a href="{{ route('operator.laporan.pinjaman') }}"><i class="fa fa-id-card"></i>Kartu Pinjaman Anggota</a></li>
         <li class="{{ set_active(['operator.laporan.cat_simp_wajib','operator.laporan.cat_simp_wajib.detail_simp_wajib']) }}"><a href="{{ route('operator.laporan.cat_simp_wajib') }}"><i class="fa fa-save"></i>Catatan Simpanan Wajib</a></li>
@@ -80,7 +80,7 @@
 </li>
 
 <li class="header" style="font-weight:bold;">INFORMASI WEBSITE</li>
-<li class="treeview {{ set_active(['operator.profil','operator.berita','operator.testimonial','operator.visi','operator.misi','operator.layanan','operator.slider']) }}">
+<li class="treeview {{ set_active(['operator.profil','operator.galeri','operator.berita','operator.testimonial','operator.visi','operator.misi','operator.layanan','operator.slider']) }}">
     <a href="#">
         <i class="fa fa-info-circle"></i> <span>Pengaturan Informasi</span>
         <span class="pull-right-container">
@@ -89,6 +89,7 @@
     </a>
     <ul class="treeview-menu " style="padding-left:25px;">
         <li class="{{ set_active('operator.slider') }}"><a href="{{ route('operator.slider') }}"><i class="fa fa-sliders"></i>Slider</a></li>
+        <li class="{{ set_active('operator.galeri') }}"><a href="{{ route('operator.galeri') }}"><i class="fa fa-picture-o"></i>Galeri</a></li>
         <li class="{{ set_active('operator.profil') }}"><a href="{{ route('operator.profil') }}"><i class="fa fa-check-circle"></i>Profil</a></li>
         <li class="{{ set_active('operator.berita') }}"><a href="{{ route('operator.berita') }}"><i class="fa fa-newspaper-o"></i>Berita dan Pengumunan</a></li>
     </ul>

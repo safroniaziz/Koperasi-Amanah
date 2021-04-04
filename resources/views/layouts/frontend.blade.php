@@ -24,7 +24,11 @@
   <link href="{{ asset('assets/frontend/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/frontend/lib/animate/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/frontend/lib/venobox/venobox.css') }}" rel="stylesheet">
-
+  <style>
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+      padding:4px !important;
+    }
+  </style>
   <!-- Nivo Slider Theme -->
   <link href="{{ asset('assets/frontend/css/nivo-slider-theme.css') }}" rel="stylesheet">
 
@@ -80,9 +84,6 @@
                     <a class="page-scroll" href="#about">Tentang</a>
                   </li>
                   <li>
-                    <a class="page-scroll" href="#services">Layanan</a>
-                  </li>
-                  <li>
                     <a class="page-scroll" href="#team">Anggota</a>
                   </li>
 
@@ -91,7 +92,7 @@
                   </li>
 
                   <li>
-                    <a class="page-scroll" href="#blog">Berita</a>
+                    <a class="page-scroll" href="{{ route('berita') }}">Berita</a>
                   </li>
                   <li>
                     <a class="page-scroll" href="#contact">Kontak</a>
@@ -113,24 +114,26 @@
   <div id="home" class="slider-area">
     <div class="bend niceties preview-2">
       <div id="ensign-nivoslider" class="slides">
-        <img src="{{ asset('assets/frontend/img/slider/slider1.jpg') }}" alt="" title="#slider-direction-1" />
-        <img src="{{ asset('assets/frontend/img/slider/slider2.jpg') }}" alt="" title="#slider-direction-2" />
-        <img src="{{ asset('assets/frontend/img/slider/slider3.jpg') }}" alt="" title="#slider-direction-3" />
+       @foreach ($sliders as $slider)
+       <img src="{{ asset($slider->gambar) }}" alt="" title="#id" />
+       @endforeach
+        
       </div>
 
       <!-- direction 1 -->
-      <div id="slider-direction-1" class="slider-direction slider-one">
+      <div id="id" class="slider-direction slider-one">
         <div class="container">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="slider-content">
                 <!-- layer 1 -->
                 <div class="layer-1-1 hidden-xs wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
-                  <h2 class="title1">The Best Business Information </h2>
+                  <h2 class="title1">Koperasi Amanah Sejati </h2>
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">We're In The Business Of Helping You Start Your Business</h1>
+                  <h1 class="title2">Jl. Lestari 1 No.4 Puri Lestari, Kota Bengkulu, Provinsi Bengkulu
+                  </h1>
                 </div>
                 <!-- layer 3 -->
                 <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
@@ -142,62 +145,12 @@
           </div>
         </div>
       </div>
-
-      <!-- direction 2 -->
-      <div id="slider-direction-2" class="slider-direction slider-two">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="slider-content text-center">
-                <!-- layer 1 -->
-                <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <h2 class="title1">The Best Business Information </h2>
-                </div>
-                <!-- layer 2 -->
-                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">We're In The Business Of Get Quality Business Service</h1>
-                </div>
-                <!-- layer 3 -->
-                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- direction 3 -->
-      <div id="slider-direction-3" class="slider-direction slider-two">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="slider-content">
-                <!-- layer 1 -->
-                <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <h2 class="title1">The Best business Information </h2>
-                </div>
-                <!-- layer 2 -->
-                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">Helping Business Security  & Peace of Mind for Your Family</h1>
-                </div>
-                <!-- layer 3 -->
-                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <!-- End Slider Area -->
 
   <!-- Start About area -->
-  <div id="about" class="about-area area-padding">
+  <div id="about" class="about-area area-padding" style="padding-bottom: 0px !important;">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -212,7 +165,7 @@
           <div class="well-left">
             <div class="single-well">
               <a href="#">
-								  <img src="{{ asset('assets/frontend/img/about/1.jpg') }}" alt="">
+								  <img src="{{ asset('upload/foto_lembaga/gambar1.jpeg') }}" alt="">
 								</a>
             </div>
           </div>
@@ -222,28 +175,70 @@
           <div class="well-middle">
             <div class="single-well">
               <a href="#">
-                <h4 class="sec-head">project Maintenance</h4>
+                <h4 class="sec-head">Profil Singkat</h4>
               </a>
               <p>
-                Redug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure aspernatur sit adipisci quaerat unde at nequeRedug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure
+                Susunan kepengurusan koperasi Amanah Sejati Tahun 2021 adalah sebagai berikut :
               </p>
-              <ul>
-                <li>
-                  <i class="fa fa-check"></i> Interior design Package
-                </li>
-                <li>
-                  <i class="fa fa-check"></i> Building House
-                </li>
-                <li>
-                  <i class="fa fa-check"></i> Reparing of Residentail Roof
-                </li>
-                <li>
-                  <i class="fa fa-check"></i> Renovaion of Commercial Office
-                </li>
-                <li>
-                  <i class="fa fa-check"></i> Make Quality Products
-                </li>
-              </ul>
+              <table class="table">
+                <tr>
+                  <td>1</td>
+                  <td colspan="2">Pengurus Inti Koperasi</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Ketua</td>
+                  <td>Candra Kesuma. ZA</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Sekretaris</td>
+                  <td>Suharto, SP </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Bendahara</td>
+                  <td>Nurul Komaraiah, S.Si, M.Si </td>
+                </tr>
+                
+                <tr>
+                  <td>2</td>
+                  <td colspan="2">Badan Pengawas</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Koordinator</td>
+                  <td>Untung Idaman, HSB</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Anggota</td>
+                  <td>Ampermi, SH</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Anggota</td>
+                  <td>Soeroso, SH </td>
+                </tr>
+
+                <tr>
+                  <td>3</td>
+                  <td colspan="2">Pembina</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Walikota Bengkulu</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="2">Kepala Dinas Koperasi dan UKM Kota Bengkulu</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="2">Ir. H. Syiful A. Yusuf</td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -252,127 +247,6 @@
     </div>
   </div>
   <!-- End About area -->
-
-  <!-- Start Service area -->
-  <div id="services" class="services-area area-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="section-headline services-head text-center">
-            <h2>Layanan Kami</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="services-contents">
-          <!-- Start Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href="#">
-											<i class="fa fa-code"></i>
-										</a>
-                  <h4>Expert Coder</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href="#">
-											<i class="fa fa-camera-retro"></i>
-										</a>
-                  <h4>Creative Designer</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
-            <div class=" about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href="#">
-											<i class="fa fa-wordpress"></i>
-										</a>
-                  <h4>Wordpress Developer</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
-            <div class=" about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href="#">
-											<i class="fa fa-camera-retro"></i>
-										</a>
-                  <h4>Social Marketer </h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
-          <!-- End Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
-            <div class=" about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href="#">
-											<i class="fa fa-bar-chart"></i>
-										</a>
-                  <h4>Seo Expart</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
-          <!-- End Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
-            <div class=" about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href="#">
-											<i class="fa fa-ticket"></i>
-										</a>
-                  <h4>24/7 Support</h4>
-                  <p>
-                    will have to make sure the prototype looks finished by inserting text or photo.make sure the prototype looks finished by.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Service area -->
   <!-- Faq area start -->
   <div class="faq-area area-padding">
     <div class="container">
@@ -392,14 +266,14 @@
                 <div class="panel-heading">
                   <h4 class="check-title">
 											<a data-toggle="collapse" class="active" data-parent="#accordion" href="#check1">
-                                                <span class="acc-icons"></span>Consectetur adipisicing elit.
+                                                <span class="acc-icons"></span>Pendirian/Pembentukan Koperasi
 											</a>
 										</h4>
                 </div>
                 <div id="check1" class="panel-collapse collapse in">
                   <div class="panel-body">
                     <p>
-                      Redug Lefes dolor sit amet, consectetur adipisicing elit. Aspernatur, tempore, commodi quas mollitia dolore magnam quidem repellat, culpa voluptates laboriosam maiores alias accusamus recusandae vero
+                      Pendirian/pembentukan koperasi dilaksanakan pada tanggal 28 Maret 2015
                     </p>
                   </div>
                 </div>
@@ -410,14 +284,14 @@
                 <div class="panel-heading">
                   <h4 class="check-title">
 											<a data-toggle="collapse" data-parent="#accordion" href="#check2">
-                                                <span class="acc-icons"></span> Dolore magnam quidem repellat.
+                                                <span class="acc-icons"></span> Akta Pendirian
 											</a>
 										</h4>
                 </div>
                 <div id="check2" class="panel-collapse collapse">
                   <div class="panel-body">
                     <p>
-                      Redug Lefes dolor sit amet, consectetur adipisicing elit. Aspernatur, tempore, commodi quas mollitia dolore magnam quidem repellat, culpa voluptates laboriosam maiores alias accusamus recusandae vero aperiam sint nulla beatae eos.
+                      Akta Pendirian Koperasi Nomor: 01/KPAS/2015 pada tanggal 6 April 2015, dikukuhkan dengan akta notaris Kuswari Ahmad, SH, M.Kn No.20 tanggal 13 April 2015 dan selanjutnya disahkan oleh Kepala Dinas Koperasi dan UKM Kota Bengkulu Nomor: 09/IX.4/2015 tanggal 15 April 2015.
                     </p>
                   </div>
                 </div>
@@ -428,14 +302,21 @@
                 <div class="panel-heading">
                   <h4 class="check-title">
 											<a data-toggle="collapse" data-parent="#accordion" href="#check3">
-                                                <span class="acc-icons"></span>Redug Lefes dolor sit.
+                                                <span class="acc-icons"></span>Latar Belakang Pendirian
 											</a>
 										</h4>
                 </div>
                 <div id="check3" class="panel-collapse collapse ">
                   <div class="panel-body">
-                    <p>
-                      Redug Lefes dolor sit amet, consectetur adipisicing elit. Aspernatur, tempore, commodi quas mollitia dolore magnam quidem repellat, culpa voluptates laboriosam maiores alias accusamus recusandae vero aperiam sint nulla beatae eos.
+                    
+                    <p style="text-indent: 45px;">Koperasi merupakan organisasi ekonomi kerakyatan yang berwatak sosial yang didirikan oleh para anggota </p>
+                    <p style="text-indent: 45px;">dipimpin oleh para anggota dan dijalankan untuk meningkatkan kesejahteraan para anggota.
+	Bertitik tolak dari pengertian “Dari, oleh dan untuk anggota”, maka suatu koperasi itu akan mencapai suatu kemajuan dan pengembangan yang wajar kalau koperasi tersebut benar-benar memperoleh dukungan peran serta aktif dan nyata dari para anggotanya, baik itu berupa peran serta didalam pemupukan modal sendiri oleh koperasi maupun peran serta anggota dalam mengambil keputusan-keputusan yang penting bagi kebahagiaan koperasi. </p>
+  <p style="text-indent: 45px;">Dengan demikian dapat disimpulkan bahwa anggota adalah pemilik sekaligus pelanggan dan pada hakekatnya pengolahan dan penanganan kegiatan haruslah berada ditangan para anggota sendiri yang kemudian didalam undang-undang No.12 tahun 1967 tentang Pokok-pokok Perkoperasian telah diatur sedemikian rupa sehingga mewujudkan bentuk mekanisme kerja dari pada alat-alat kelengkapan organisasi koperasi (BAB VIII Undang-undang No.12/1967) </p>
+	<p style="text-indent: 45px;">Berpedoman dari peran dan fungsi koperasi dalam hal kebersamaan dalam pemupukan modal usaha, maka kami dari Ketua P2MKP (Pusat Pelatihan Mandiri Kelautan dan Perikanan) Surabaya Makmur bersama para pembudidaya ikan dan keluarganya dengan semangat kebersamaan untuk mencapai tujuan khususnya untuk memperoleh modal usaha yang lebih cepat, mudah dan murah maka kami sepakat untuk membentuk koperasi. </p>
+  <p style="text-indent: 45px;">Berdasarkan musyawarah dalam pembentukan koperasi disepakati dari pihak anggota sebanyak 3 (tiga) orang bersedia meminjamkan uang untuk modal usaha koperasi sebesar Rp.100.000.000,- (seratus juta rupiah) tanpa bunga dan menghibahkan uang sebanyak Rp.5.000.000,- (lima juta rupiah) untuk biaya operasional kepengurusan pendirian koperasi, akte notaris, pembuatan papan nama, struktur organisasi, cap koperasi, buku administrasi dan keuangan, dll. </p>
+	<p style="text-indent: 45px;">Dengan telah disepakatinya pembentukan koperasi tersebut, maka pada tanggal 28 Maret 2015 dilaksanakan sosialisasi pembentukan koperasi oleh pejabat dari Dinas Koperasi dan UKM Kota Bengkulu bertempat di sekretariat koperasi Jl.Tutwuri No.59 RT.04 RW.02 Kelurahan Surabaya Kecamatan Sungai Serut Kota Bengkulu bergabung dengan sekretariat P2MKP Surabaya Makmur.
+
                     </p>
                   </div>
                 </div>
@@ -446,15 +327,32 @@
                 <div class="panel-heading">
                   <h4 class="check-title">
 											<a data-toggle="collapse" data-parent="#accordion" href="#check4">
-                                                <span class="acc-icons"></span>Maiores alias accusamus
+                                                <span class="acc-icons"></span>Maksud dan Tujuan
 											</a>
 										</h4>
                 </div>
                 <div id="check4" class="panel-collapse collapse">
                   <div class="panel-body">
-                    <p>
-                      Redug Lefes dolor sit amet, consectetur adipisicing elit. Aspernatur, tempore, commodi quas mollitia dolore magnam quidem repellat, culpa voluptates laboriosam maiores alias accusamus recusandae vero aperiam sint nulla beatae eos.
-                    </p>
+                    <ul>
+                      <li>
+                        <i class="fa fa-check text-success"></i> Mendirikan kelembagaan keuangan yang mudah diakses, murah bunga pinjaman, simpel dalam urusan administrasi dan terbuka dalam manajemen keuangan.
+                      </li>
+                      <li>
+                        <i class="fa fa-check text-success"></i> Menumbuh kembangkan rasa kebersamaan, rasa memiliki dan bertanggung jawab dalam kemajuan organisasi.
+                      </li>
+                      <li>
+                        <i class="fa fa-check text-success"></i> Membangun organisasi yang solid untuk kemajuan dan kesejahteraan anggota
+                      </li>
+                      <li>
+                        <i class="fa fa-check text-success"></i> Membangun organisasi yang solid untuk kemajuan dan kesejahteraan anggota
+                      </li>
+                      <li>
+                        <i class="fa fa-check text-success"></i> Menumbuh kembangkan sinergitas antara kelembagaan Pusat Pelatihan Mandiri Kelautan dan Perikanan (P2MKP) Surabaya Makmur sebagai sumber pengetahuan dan ketrampilan dengan Koperasi Produksi Amanah Sejati sebagai sumber keuangan/modal usaha untuk meningkatkan produktivitas dibidang perikanan budidaya.
+                      </li>
+                      <li>
+                        <i class="fa fa-check text-success"></i> Mendorong tumbuh kembangnya jiwa kewirausahaan dan kemandirian dalam usaha serta mendukung program pemerintah dengan mendekatkan sumber usaha serta sumber pengetahuan dan ketrampilan untuk menghasilkan produk yang optimal dan berkualitas.
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -467,13 +365,16 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
               <li class="active">
-                <a href="#p-view-1" role="tab" data-toggle="tab">Project</a>
+                <a href="#p-view-1" role="tab" data-toggle="tab">Visi</a>
               </li>
               <li>
-                <a href="#p-view-2" role="tab" data-toggle="tab">Planning</a>
+                <a href="#p-view-2" role="tab" data-toggle="tab">Misi</a>
               </li>
               <li>
-                <a href="#p-view-3" role="tab" data-toggle="tab">Success</a>
+                <a href="#p-view-3" role="tab" data-toggle="tab">Tujuan</a>
+              </li>
+              <li>
+                <a href="#p-view-4" role="tab" data-toggle="tab">Kerjasama</a>
               </li>
             </ul>
           </div>
@@ -481,12 +382,9 @@
             <div class="tab-pane active" id="p-view-1">
               <div class="tab-inner">
                 <div class="event-content head-team">
-                  <h4>Project</h4>
+                  <h4>Visi</h4>
                   <p>
-                    Redug Lares dolor sit amet, consectetur adipisicing elit. Animi vero excepturi magnam ducimus adipisci voluptas, praesentium maxime necessitatibus in dolor dolores unde ab, libero quo. Aut, laborum sequi.
-                  </p>
-                  <p>
-                    voluptas, praesentium maxime cum fugiat,magnam ducimus adipisci voluptas, praesentium architecto ducimus, doloribus fuga itaque omnis placeat.
+                    Menjadi Koperasi Produksi yang mampu memproduksi, menampung dan mempromosikan produk anggota ke wilayah Provinsi Bengkulu maupun ke Tingkat Nasional untuk meningkatkan kesejahteraan anggota secara demokratis. 
                   </p>
                 </div>
               </div>
@@ -494,26 +392,54 @@
             <div class="tab-pane" id="p-view-2">
               <div class="tab-inner">
                 <div class="event-content head-team">
-                  <h4>Planning</h4>
-                  <p>
-                    voluptas, praesentium maxime cum fugiat,magnam ducimus adipisci voluptas, praesentium architecto ducimus, doloribus fuga itaque omnis.
-                  </p>
-                  <p>
-                    Redug Lares dolor sit amet, consectetur adipisicing elit. Animi vero excepturi magnam ducimus adipisci voluptas, praesentium maxime necessitatibus in dolor dolores unde ab, libero quo. Aut.
-                  </p>
+                  <h4>Misi</h4>
+                  <ol>
+                    <li>Menghasilkan produk pertanian dan perikanan yang berkualitas dan mampu bersaing di pasaran dari hasil produksi koperasi dan/atau anggota koperasi.</li>
+                    <li>Menyediakan peralatan dan bahan-bahan yang diperlukan/dibutuhkan oleh anggota koperasi untuk keperluan produksi.</li>
+                    <li>Menampung hasil produksi, melakukan penyempurnaan dan mempromosikan produk tersebut ke pasaran Tingkat Provinsi Bengkulu maupun Tingkat Nasional.</li>
+                    <li>Menampung hasil produksi, melakukan penyempurnaan dan mempromosikan produk tersebut ke pasaran Tingkat Provinsi Bengkulu maupun Tingkat Nasional.</li>
+                  </ol>
                 </div>
               </div>
             </div>
             <div class="tab-pane" id="p-view-3">
               <div class="tab-inner">
                 <div class="event-content head-team">
-                  <h4>Success</h4>
-                  <p>
-                    voluptas, praesentium maxime cum fugiat,magnam ducimus adipisci voluptas, praesentium architecto ducimus, doloribus fuga itaque omnis placeat.
-                  </p>
-                  <p>
-                    voluptas, praesentium maxime cum fugiat,magnam ducimus adipisci voluptas, praesentium architecto ducimus, doloribus fuga itaque omnis.
-                  </p>
+                  <h4>Tujuan</h4>
+                  <ol>
+                    <li>Memberikan pinjaman modal kerja dengan jasa yang serendah-rendahnya dengan anggota agar dapat mengembangkan usahanya secara berkesinambungan.</li>
+                    <li>Memberikan alternatif produk konsumsi khususnya pertanian dan perikanan kepada masyarakat.</li>
+                    <li>Meningkatkan kesejahteraan anggota Koperasi Produksi Amanah Sejati.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="p-view-4">
+              <div class="tab-inner">
+                <div class="event-content head-team">
+                  <h4>Kerjasama</h4>
+                  <table class="table">
+                    <tr>
+                      <td>1</td>
+                      <td>KERJASAMA DENGAN PT. TASPEN BENGKULU</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>Kerjasama dalam bentuk pemberian pinjaman penguatan modal usaha koperasi yang tertuang dalam Surat Perjanjian Modal Kerja antara PT. Taspen (Perser) dengan Candra Kesuma, ZA (Ketua Koperasi) Nomor: 011/102/2019 tanggal 09 September 2019.</td>
+                    </tr>
+
+                    <tr>
+                      <td>2</td>
+                      <td>KERJASAMA DENGAN PEMERINTAH KOTA BENGKULUU</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>
+                        Kerjasama antara Pemerintah Kota Bengkulu melalui Dinas Koperasi dan UKM Kota Bengkulu dengan Koperasi Produksi Amanah Sejati dalam Program Penguatan Pinjman Modal Bergulir bagi Koperasi Berprestasi di Kota Bengkulu Tahun 2020 yang tertuang dalam Surat Perjanjian Kerjasama Nomor: 518/289/D.KUKM/VIII/2020 dan Nomor: 40/KPAS/VIII/2020.
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
@@ -536,7 +462,7 @@
               <div class="well-text text-center">
                 <h2>Selamat Datang Di Koperasi Amanah Sejati</h2>
                 <p>
-                  Busuness Lorem ipsum dolor sit amet, consectetur adipiscing elit.luctus est eget congue.
+                  UNIT USAHA PERIKANAN BUDIDAYA
                 </p>
               </div>
             </div>
@@ -548,171 +474,44 @@
   <!-- End Wellcome Area -->
 
   <!-- Start team Area -->
-  <div id="team" class="our-team-area area-padding">
+  <div id="team" class="our-team-area area-padding" style="padding-bottom: 0px !important;">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="section-headline text-center">
-            <h2>Anggota Luar Biasa</h2>
+            <h2>Anggota Koperasi</h2>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="team-top">
+          @foreach ($anggotas as $anggota)
           <div class="col-md-3 col-sm-3 col-xs-12">
             <div class="single-team-member">
               <div class="team-img">
                 <a href="#">
-										<img src="{{ asset('assets/frontend/img/team/1.jpg') }}" alt="">
+										<img src="{{ asset($anggota->gambar) }}" alt="" style="height: 300px; width:100%">
 									</a>
                 <div class="team-social-icon text-center">
-                  <ul>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-facebook"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-twitter"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-instagram"></i>
-												</a>
-                    </li>
-                  </ul>
+                  
                 </div>
               </div>
               <div class="team-content text-center">
-                <h4>Jhon Mickel</h4>
-                <p>Seo</p>
+                <h4>{{ $anggota->nm_anggota }}</h4>
+                <p>Terdaftar Sejak {{ $anggota->created_at->diffForHumans() }}</p>
               </div>
             </div>
           </div>
-          <!-- End column -->
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <div class="single-team-member">
-              <div class="team-img">
-                <a href="#">
-										<img src="{{ asset('assets/frontend/img/team/2.jpg') }}" alt="">
-									</a>
-                <div class="team-social-icon text-center">
-                  <ul>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-facebook"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-twitter"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-instagram"></i>
-												</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="team-content text-center">
-                <h4>Andrew Arnold</h4>
-                <p>Web Developer</p>
-              </div>
-            </div>
-          </div>
-          <!-- End column -->
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <div class="single-team-member">
-              <div class="team-img">
-                <a href="#">
-										<img src="{{ asset('assets/frontend/img/team/3.jpg') }}" alt="">
-									</a>
-                <div class="team-social-icon text-center">
-                  <ul>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-facebook"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-twitter"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-instagram"></i>
-												</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="team-content text-center">
-                <h4>Lellien Linda</h4>
-                <p>Web Design</p>
-              </div>
-            </div>
-          </div>
-          <!-- End column -->
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <div class="single-team-member">
-              <div class="team-img">
-                <a href="#">
-										<img src="{{ asset('assets/frontend/img/team/4.jpg') }}" alt="">
-									</a>
-                <div class="team-social-icon text-center">
-                  <ul>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-facebook"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-twitter"></i>
-												</a>
-                    </li>
-                    <li>
-                      <a href="#">
-													<i class="fa fa-instagram"></i>
-												</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="team-content text-center">
-                <h4>Jhon Powel</h4>
-                <p>Seo Expert</p>
-              </div>
-            </div>
-          </div>
+          @endforeach
           <!-- End column -->
         </div>
+      </div>
+      <div class="row">
+        {{ $anggotas->links() }}
       </div>
     </div>
   </div>
   <!-- End Team Area -->
-
-  <!-- Start reviews Area -->
-  <div class="reviews-area hidden-xs">
-    <div class="work-us">
-      <div class="work-left-text">
-        <a href="#">
-						<img src="{{ asset('assets/frontend/img/about/2.jpg') }}" alt="">
-					</a>
-      </div>
-      <div class="work-right-text text-center">
-        <h2>Bekerja Sama Dengan Kami</h2>
-        <h5>Silahkan Hubungi Kami Pada Kontak Yang Sudah Disediakan</h5>
-        <a href="#contact" class="ready-btn">Kontak Kami</a>
-      </div>
-    </div>
-  </div>
-  <!-- End reviews Area -->
 
   <!-- Start portfolio Area -->
   <div id="portfolio" class="portfolio-area area-padding fix" style="padding-bottom: 0px;">
@@ -728,105 +527,23 @@
         <!-- Start Portfolio -page -->
         <div class="awesome-project-content">
           <!-- single-awesome-project start -->
+          @foreach ($galeris as $galeri)
           <div class="col-md-4 col-sm-4 col-xs-12 design development">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/1.jpg') }}" alt="" /></a>
-                <div class="add-actions text-center">
-                  <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="{{ asset('assets/frontend/img/portfolio/1.jpg') }}">
-                      <h4>Business City</h4>
-                      <span>Web Development</span>
-                    </a>
+              <div class="single-awesome-project">
+                <div class="awesome-img">
+                  <a href="#"><img src="{{ asset($galeri->gambar) }}" style="width: 100%" alt="" /></a>
+                  <div class="add-actions text-center">
+                    <div class="project-dec">
+                      <a class="venobox" data-gall="myGallery" href="{{ asset($galeri->gambar) }}">
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- single-awesome-project end -->
-          <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 photo">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/2.jpg') }}" alt="" /></a>
-                <div class="add-actions text-center">
-                  <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="{{ asset('assets/frontend/img/portfolio/2.jpg') }}">
-                      <h4>Blue Sea</h4>
-                      <span>Photosho</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- single-awesome-project end -->
-          <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 design">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/3.jpg') }}" alt="" /></a>
-                <div class="add-actions text-center">
-                  <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="{{ asset('assets/frontend/img/portfolio/3.jpg') }}">
-                      <h4>Beautiful Nature</h4>
-                      <span>Web Design</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- single-awesome-project end -->
-          <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 photo development">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/4.jpg') }}" alt="" /></a>
-                <div class="add-actions text-center">
-                  <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="{{ asset('assets/frontend/img/portfolio/4.jpg') }}">
-                      <h4>Creative Team</h4>
-                      <span>Web design</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- single-awesome-project end -->
-          <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 development">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/5.jpg') }}" alt="" /></a>
-                <div class="add-actions text-center text-center">
-                  <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="{{ asset('assets/frontend/img/portfolio/5.jpg') }}">
-                      <h4>Beautiful Flower</h4>
-                      <span>Web Development</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- single-awesome-project end -->
-          <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 design photo">
-            <div class="single-awesome-project">
-              <div class="awesome-img">
-                <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/6.jpg') }}" alt="" /></a>
-                <div class="add-actions text-center">
-                  <div class="project-dec">
-                    <a class="venobox" data-gall="myGallery" href="{{ asset('assets/frontend/img/portfolio/6.jpg') }}">
-                      <h4>Night Hill</h4>
-                      <span>Photoshop</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          @endforeach
+          <div class="col-md-12">
+            {{ $galeris->links() }}
           </div>
           <!-- single-awesome-project end -->
         </div>
@@ -851,100 +568,40 @@
           </div>
         </div>
         <div class="row">
-          <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a href="blog.html">
-										<img src="{{ asset('assets/frontend/img/blog/1.jpg') }}" alt="">
-									</a>
-              </div>
-              <div class="blog-meta">
-                <span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">13 comments</a>
-									</span>
-                <span class="date-type">
-										<i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
-									</span>
-              </div>
-              <div class="blog-text">
-                <h4>
-                                        <a href="blog.html">Assumenda repud eum veniam</a>
-									</h4>
-                <p>
-                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                </p>
-              </div>
-              <span>
-									<a href="blog.html" class="ready-btn">Lanjutkan Baca</a>
-								</span>
-            </div>
-            <!-- Start single blog -->
-          </div>
-          <!-- End Left Blog-->
-          <!-- Start Left Blog -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="single-blog">
-              <div class="single-blog-img">
-                <a href="blog.html">
-										<img src="{{ asset('assets/frontend/img/blog/2.jpg') }}" alt="">
-									</a>
-              </div>
-              <div class="blog-meta">
-                <span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">130 comments</a>
-									</span>
-                <span class="date-type">
-										<i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
-									</span>
-              </div>
-              <div class="blog-text">
-                <h4>
-                                        <a href="blog.html">Explicabo magnam quibusdam.</a>
-									</h4>
-                <p>
-                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                </p>
-              </div>
-              <span>
-									<a href="blog.html" class="ready-btn">Lanjutkan Baca</a>
-								</span>
-            </div>
-            <!-- Start single blog -->
-          </div>
+          
           <!-- End Left Blog-->
           <!-- Start Right Blog-->
+          @foreach ($beritas as $berita)
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-blog">
               <div class="single-blog-img">
                 <a href="blog.html">
-										<img src="{{ asset('assets/frontend/img/blog/3.jpg') }}" alt="">
+										<img src="{{ asset($berita->gambar) }}" alt="">
 									</a>
               </div>
               <div class="blog-meta">
                 <span class="comments-type">
-										<i class="fa fa-comment-o"></i>
-										<a href="#">10 comments</a>
+										<i class="fa fa-clock-o"></i>
+										<a href="#">{{ $berita->created_at->diffForHumans() }}</a>
 									</span>
                 <span class="date-type">
-										<i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
+										<i class="fa fa-calendar"></i>{{ $berita->created_at }}
 									</span>
               </div>
               <div class="blog-text">
                 <h4>
-                                        <a href="blog.html">Lorem ipsum dolor sit amet</a>
+                                        <a href="blog.html">{{ $berita->judul }}</a>
 									</h4>
                 <p>
-                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
+                  {{ substr($berita->isi,0,35) }}
                 </p>
               </div>
               <span>
-									<a href="blog.html" class="ready-btn">Lanjutkan Baca</a>
+									<a href="{{ route('berita.detail',[$berita->id]) }}" class="ready-btn">Lanjutkan Baca</a>
 								</span>
             </div>
           </div>
+          @endforeach
           <!-- End Right Blog-->
         </div>
       </div>
@@ -970,8 +627,8 @@
               <div class="single-icon">
                 <i class="fa fa-mobile"></i>
                 <p>
-                  Call: +1 5589 55488 55<br>
-                  <span>Monday-Friday (9am-5pm)</span>
+                  Telephone<br>
+                  <span>{{ $profils->telephone }}</span>
                 </p>
               </div>
             </div>
@@ -982,8 +639,8 @@
               <div class="single-icon">
                 <i class="fa fa-envelope-o"></i>
                 <p>
-                  Email: info@example.com<br>
-                  <span>Web: www.example.com</span>
+                  Email<br>
+                  <span>{{ $profils->email }}</span>
                 </p>
               </div>
             </div>
@@ -994,8 +651,7 @@
               <div class="single-icon">
                 <i class="fa fa-map-marker"></i>
                 <p>
-                  Location: A108 Adam Street<br>
-                  <span>NY 535022, USA</span>
+                  <span>{{ $profils->alamat_lengkap }}</span>
                 </p>
               </div>
             </div>
@@ -1026,10 +682,14 @@
             <div class="footer-content">
               <div class="footer-head">
                 <div class="footer-logo">
-                  <h2><span>e</span>Business</h2>
+                  <h2><span>Koperasi</span>Amanah</h2>
                 </div>
 
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+                <p>
+                  Menjadi Koperasi Produksi yang mampu memproduksi, menampung dan mempromosikan produk anggota ke wilayah Provinsi Bengkulu maupun ke Tingkat Nasional untuk meningkatkan kesejahteraan anggota secara demokratis.
+
+
+                </p>
                 <div class="footer-icons">
                   <ul>
                     <li>
@@ -1055,12 +715,12 @@
               <div class="footer-head">
                 <h4>information</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                  Pendirian/pembentukan koperasi dilaksanakan pada tanggal 28 Maret 2015
                 </p>
                 <div class="footer-contacts">
-                  <p><span>Tel:</span> +123 456 789</p>
-                  <p><span>Email:</span> contact@example.com</p>
-                  <p><span>Working Hours:</span> 9am-5pm</p>
+                  <p><span>Telephone:</span> {{ $profils->telephone }}</p>
+                  <p><span>Email:</span> {{ $profils->email }}</p>
+                  <p><span>Alamat:</span> {{ $profils->alamat_lengkap }}</p>
                 </div>
               </div>
             </div>
@@ -1069,14 +729,11 @@
           <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="footer-content">
               <div class="footer-head">
-                <h4>Instagram</h4>
+                <h4>Galeri</h4>
                 <div class="flicker-img">
-                  <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/1.jpg') }}" alt=""></a>
-                  <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/2.jpg') }}" alt=""></a>
-                  <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/3.jpg') }}" alt=""></a>
-                  <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/4.jpg') }}" alt=""></a>
-                  <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/5.jpg') }}" alt=""></a>
-                  <a href="#"><img src="{{ asset('assets/frontend/img/portfolio/6.jpg') }}" alt=""></a>
+                  @foreach ($galeris as $galeri)
+                  <a ><img src="{{ asset($galeri->gambar) }}" alt=""></a>
+                  @endforeach
                 </div>
               </div>
             </div>

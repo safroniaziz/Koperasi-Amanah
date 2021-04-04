@@ -1,9 +1,5 @@
 <?php
 
-use App\Anggota;
-use App\Berita;
-use App\Profil;
-use App\Slider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,15 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $sliders = Slider::all();
-    $profils = Profil::first();
-    $jumlah_anggota = count(Anggota::where('status_anggota','1')->get());
-    $beritas = Berita::paginate(6);
-    $anggotas = Anggota::all();
-    return view('layouts.frontend',compact('sliders','profils','jumlah_anggota','beritas','anggotas'));
-})->name('home');
-Route::get('/berita/detail/{id}/{slug}','Operator\BeritaController@detail')->name('berita.detail');
+Route::get('/', 'FrontendController@index')->name('home');
+Route::get('/berita/detail/{id}','FrontendController@beritaDetail')->name('berita.detail');
+Route::get('/berita_pengumuman','FrontendController@berita')->name('berita');
 // Auth::routes();
 
 Route::get('/operator',function(){
@@ -198,6 +188,12 @@ Route::group(['prefix' => 'operator/manajemen_berita'], function(){
     Route::get('/{id}/edit','Operator\BeritaController@edit')->name('operator.berita.edit');
     Route::patch('/','Operator\BeritaController@update')->name('operator.berita.update');
     Route::delete('/','Operator\BeritaController@delete')->name('operator.berita.delete');
+});
+
+Route::group(['prefix' => 'operator/manajemen_galeri'], function(){
+    Route::get('/','Operator\GaleriController@index')->name('operator.galeri');
+    Route::post('/','Operator\GaleriController@post')->name('operator.galeri.add');
+    Route::delete('/','Operator\GaleriController@delete')->name('operator.galeri.delete');
 });
 
 Route::group(['prefix' => 'operator/anggota'], function(){

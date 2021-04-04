@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Anggota;
 use App\JumlahKeseluruhan;
 use App\PembagianShu;
+use App\ShuAnggota;
 use Illuminate\Support\Facades\Auth;
 
 class LaporanController extends Controller
@@ -194,6 +195,8 @@ class LaporanController extends Controller
                             ->where('jenis_transaksi','keluar')
                             ->where('anggota_id',Auth::guard('anggota')->user()->id)
                             ->first();
+        $mytime = \Carbon\Carbon::now();
+        $time = $mytime->toDateString();
         $modal_awal = $data1->jumlah_transaksi - $data2->jumlah_transaksi;
         $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')
@@ -201,16 +204,15 @@ class LaporanController extends Controller
                                 ->where('tahun_transaksi',$request->tahun)->where('bulan_transaksi',$request->bulan)->get();
         $bulan1 = $request->bulan;
         $tahun1 = $request->tahun;
-        $pdf = PDF::loadView('backend/anggota/laporan.print_tabelaris',compact('modal_awal','laporans','bulan1','tahun1'))->setPaper('A4','landscape');
+        $pdf = PDF::loadView('backend/anggota/laporan.print_tabelaris',compact('modal_awal','laporans','bulan1','tahun1','time'))->setPaper('A4','landscape');
         return$pdf->stream();
     }
 
     public function catSimpWajib(){
         $laporans = Transaksi::where('jenis_transaksi_id',1)
                     ->join('anggotas','anggotas.id','transaksis.anggota_id')
-                    ->select(DB::raw('COUNT(bulan_transaksi) as jumlah_bulan'),DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'),'nm_anggota')
+                    ->select('jumlah_transaksi','nm_anggota')
                     ->where('anggota_id',Auth::guard('anggota')->user()->id)
-                    ->groupBy('anggota_id')
                     ->get();
         return view('backend/anggota/laporan.cat_simp_wajib',compact('laporans'));
     }
@@ -244,17 +246,11 @@ class LaporanController extends Controller
 
     public function lihatShu(){
         if (isset($_GET['tahun'])) {
-            $keseluruhan = JumlahKeseluruhan::first();
-            $pembagian_shu = PembagianShu::where('tahun',$_GET['tahun'])->first();
-            $tahun = PembagianShu::select('tahun')->get();
-            $shus = Anggota::join('simpanan_anggotas','simpanan_anggotas.anggota_id','anggotas.id')
-                            ->join('simpanan_jasas','simpanan_jasas.anggota_id','anggotas.id')
-                            ->join('jabatans','jabatans.id','anggotas.jabatan_id')
-                            ->select('nm_anggota','nm_jabatan',DB::raw('(simpanan_anggotas.jumlah / "'.$keseluruhan->jumlah_simpanan_seluruh.'")* ("'.$pembagian_shu->shu_simpanan.'") as shu_simpanan'),
-                                    DB::raw('(simpanan_jasas.jumlah / "'.$keseluruhan->jumlah_jasa_seluruh.'") * ("'.$pembagian_shu->shu_jasa_pinjaman.'") as shu_jasa'))
-                            ->where('anggotas.id',Auth::guard('anggota')->user()->id)
-                            ->get();
-            return view('backend/anggota.shu.shu_anggota',compact('tahun','shus'));
+            $shus = ShuAnggota::where('tahun',$_GET['tahun'])->where('anggota_id',Auth::guard('anggota')->user()->id)->get();
+            if (count($shus) < 1) {
+                return redirect()->back()->with(['error'    =>  'Pembagian SHU Pada Tahun '.$_GET['tahun'].' Belum Tersedia !!']);
+            }
+            return view('backend/anggota.shu.shu_anggota',compact('shus'));
         }
     }
 }

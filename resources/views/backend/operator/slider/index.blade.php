@@ -44,10 +44,10 @@
                                                         <input type="text" name="title" class="form-control" placeholder="masukan judul" required>
                                                     </div>
 
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <label for="exampleInputEmail1">Masukan Slogan</label>
                                                         <textarea name="slogan" id="" cols="30" rows="3" class="form-control"></textarea>
-                                                    </div>
+                                                    </div> --}} 
 
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Gambar Slider </label>
@@ -91,7 +91,7 @@
                                 <th>No</th>
                                 <th>Gambar</th>
                                 <th>Judul</th>
-                                <th>Slogan</th>
+                                {{-- <th>Slogan</th> --}}
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -106,9 +106,9 @@
                                         <img src="{{ asset($slider->gambar) }}" alt="" style="height:50px;">
                                     </td>
                                     <td>{{ $slider->title }}</td>
-                                    <td>{{ $slider->slogan }}</td>
+                                    {{-- <td>{{ $slider->slogan }}</td> --}}
                                     <td>
-                                        <a onclick="ubahSlider({{ $slider->id }})" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;</a>
+                                        {{-- <a onclick="ubahSlider({{ $slider->id }})" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;</a> --}}
                                         <a onclick="hapusSlider({{ $slider->id }})" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp;</a>
                                         <div class="modal modal-danger fade" id="modalhapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

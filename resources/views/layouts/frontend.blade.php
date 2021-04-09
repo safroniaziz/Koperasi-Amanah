@@ -132,7 +132,7 @@
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">Jl. Lestari 1 No.4 Puri Lestari, Kota Bengkulu, Provinsi Bengkulu
+                  <h1 class="title2">{{ $profils->alamat_lengkap }}
                   </h1>
                 </div>
                 <!-- layer 3 -->
@@ -461,9 +461,6 @@
             <div class="wellcome-text">
               <div class="well-text text-center">
                 <h2>Selamat Datang Di Koperasi Amanah Sejati</h2>
-                <p>
-                  UNIT USAHA PERIKANAN BUDIDAYA
-                </p>
               </div>
             </div>
           </div>

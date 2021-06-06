@@ -24,7 +24,10 @@ class SimpananWajibController extends Controller
                                         ->leftJoin('anggotas','anggotas.id','transaksis.anggota_id')
                                         ->select('transaksis.id','nm_anggota','tanggal_transaksi','bulan_transaksi','tahun_transaksi','jumlah_transaksi','nm_operator')
                                         ->join('operators','operators.id','transaksis.user_id')
-                                        ->where('jenis_transaksis.id','1')->get();
+                                        ->where('jenis_transaksis.id','1')
+                                        ->orderBy('bulan_transaksi')
+                                        ->orderBy('tahun_transaksi')
+                                        ->get();
                                         // return $simpanan_wajibs;
         $jenis_transaksis = JenisTransaksi::select('nm_transaksi','jenis_transaksi')->where('status_jenis_transaksi','1')->get();
         return view('backend/operator/simpanan_wajib.index',compact('simpanan_wajibs','jenis_transaksis'));

@@ -35,7 +35,7 @@
         </span>
     </a>
     <ul class="treeview-menu ">
-        <li class="{{ set_active(['operator.laporan.buku_kas','operator.laporan.cari_buku_kas']) }}"><a href="{{ route('operator.laporan.buku_kas') }}"><i class="fa fa-book"></i>Buku Kas Koperasi</a></li>
+        <li class="{{ set_active(['operator.laporan.buku_kas','operator.laporan.cari_buku_kas']) }}"><a href="{{ route('operator.laporan.buku_kas') }}"><i class="fa fa-book"></i>Buku Kas Pembantu</a></li>
         <li class="{{ set_active(['operator.laporan.tabelaris']) }}"><a href="{{ route('operator.laporan.tabelaris') }}"><i class="fa fa-book"></i>Tabelaris</a></li>
         <li class="{{ set_active(['operator.laporan.pinjaman']) }}"><a href="{{ route('operator.laporan.pinjaman') }}"><i class="fa fa-id-card"></i>Kartu Pinjaman Anggota</a></li>
         <li class="{{ set_active(['operator.laporan.cat_simp_wajib','operator.laporan.cat_simp_wajib.detail_simp_wajib']) }}"><a href="{{ route('operator.laporan.cat_simp_wajib') }}"><i class="fa fa-save"></i>Catatan Simpanan Wajib</a></li>

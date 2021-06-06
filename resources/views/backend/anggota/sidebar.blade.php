@@ -7,7 +7,7 @@
 
 <li class="{{ set_active('anggota.laporan.buku_kas') }}">
     <a href="{{ route('anggota.laporan.buku_kas') }}">
-        <i class="fa fa-book"></i> <span>Buku Kas Koperasi</span>
+        <i class="fa fa-book"></i> <span>Buku Kas Pembantu</span>
     </a>
 </li>
 <li class="{{ set_active('anggota.laporan.tabelaris') }}">

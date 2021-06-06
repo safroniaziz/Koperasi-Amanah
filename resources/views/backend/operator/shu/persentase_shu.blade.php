@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('location','Buku Kas Koperasi')
+@section('location','Buku Kas Pembantu')
 @section('location2')
     <i class="fa fa-dashboard"></i>&nbsp;Persentase Pemgagian SHU
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 @section('location','Catatan Simpanan Wajib')
 @section('location2')
-    <i class="fa fa-dashboard"></i>&nbsp;Laporan Buku Kas Koperasi
+    <i class="fa fa-dashboard"></i>&nbsp;Laporan Buku Kas Pembantu
 @endsection
 @section('user-login','Operator')
 @section('sidebar-menu')
@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Koperasi</h3>
+                    <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Pembantu</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">

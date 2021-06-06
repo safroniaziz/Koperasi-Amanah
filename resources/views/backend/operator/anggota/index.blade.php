@@ -41,7 +41,7 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nama Anggota</label>
-                                                <input type="text" name="nm_anggota" class="form-control @error('nm_anggota') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                <input type="text" name="nm_anggota" class="form-control @error('nm_anggota') is-invalid @enderror" placeholder="masukan nama anggota">
                                                 @if ($errors->has('nm_anggota'))
                                                     <small class="form-text text-danger">{{ $errors->first('nm_anggota') }}</small>
                                                 @endif
@@ -49,7 +49,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Simpanan Pokok Anggota</label>
-                                                <input type="text" name="simpanan_pokok" value="500000" readonly class="form-control @error('simpanan_pokok') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                <input type="text" name="simpanan_pokok" value="500000" readonly class="form-control @error('simpanan_pokok') is-invalid @enderror" placeholder="masukan simpanan pokok">
                                                 @if ($errors->has('simpanan_pokok'))
                                                     <small class="form-text text-danger">{{ $errors->first('simpanan_pokok') }}</small>
                                                 @endif
@@ -70,7 +70,7 @@
                                            
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">NIK</label>
-                                                <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="masukan nik">
                                                 @if ($errors->has('nik'))
                                                     <small class="form-text text-danger">{{ $errors->first('nik') }}</small>
                                                 @endif
@@ -86,7 +86,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Tahun Keanggotaan</label>
-                                                <input type="date" name="tahun_keanggotaan" class="form-control @error('tahun_keanggotaan') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                <input type="date" name="tahun_keanggotaan" class="form-control @error('tahun_keanggotaan') is-invalid @enderror" placeholder="masukan tahun">
                                                 @if ($errors->has('tahun_keanggotaan'))
                                                     <small class="form-text text-danger">{{ $errors->first('tahun_keanggotaan') }}</small>
                                                 @endif
@@ -94,7 +94,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email</label>
-                                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="masukan email">
                                                 @if ($errors->has('email'))
                                                     <small class="form-text text-danger">{{ $errors->first('email') }}</small>
                                                 @endif
@@ -102,7 +102,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Password Login</label>
-                                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="masukan password">
                                                 @if ($errors->has('password'))
                                                     <small class="form-text text-danger">{{ $errors->first('password') }}</small>
                                                 @endif
@@ -212,7 +212,7 @@
                                                         <input type="hidden" name="id" id="id_edit">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Nama Anggota</label>
-                                                            <input type="text" name="nm_anggota" id="nm_anggota" class="form-control @error('nm_anggota') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                            <input type="text" name="nm_anggota" id="nm_anggota" class="form-control @error('nm_anggota') is-invalid @enderror" placeholder="masukan nama anggota">
                                                             @if ($errors->has('nm_anggota'))
                                                                 <small class="form-text text-danger">{{ $errors->first('nm_anggota') }}</small>
                                                             @endif
@@ -233,7 +233,7 @@
                                                        
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">NIK</label>
-                                                            <input type="text" name="nik" id="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                            <input type="text" name="nik" id="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="masukan nik">
                                                             @if ($errors->has('nik'))
                                                                 <small class="form-text text-danger">{{ $errors->first('nik') }}</small>
                                                             @endif
@@ -249,7 +249,7 @@
             
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Tahun Keanggotaan</label>
-                                                            <input type="date" name="tahun_keanggotaan" id="tahun_keanggotaan" class="form-control @error('tahun_keanggotaan') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                            <input type="date" name="tahun_keanggotaan" id="tahun_keanggotaan" class="form-control @error('tahun_keanggotaan') is-invalid @enderror" placeholder="masukan tahun">
                                                             @if ($errors->has('tahun_keanggotaan'))
                                                                 <small class="form-text text-danger">{{ $errors->first('tahun_keanggotaan') }}</small>
                                                             @endif
@@ -257,7 +257,7 @@
             
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Email</label>
-                                                            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="masukan jenis transaksi">
+                                                            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="masukan email">
                                                             @if ($errors->has('email'))
                                                                 <small class="form-text text-danger">{{ $errors->first('email') }}</small>
                                                             @endif

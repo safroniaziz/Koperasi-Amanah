@@ -72,6 +72,7 @@
                                     <td>{{ $koperasi->nm_operator }}</td>
                                     <td>
                                         <a href="{{ route('operator.transaksi_koperasi.edit',[$koperasi->id]) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;</a>
+                                        <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp;</a>
                                     </td>
                                 </tr>
                             @endforeach

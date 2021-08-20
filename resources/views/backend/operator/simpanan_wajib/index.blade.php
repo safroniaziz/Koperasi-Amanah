@@ -69,6 +69,7 @@
                                     <td>{{ $simpanan->nm_operator }}</td>
                                     <td>
                                         <a href="{{ route('operator.simpanan_wajib.edit',[$simpanan->id]) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;</a>
+                                        <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>&nbsp;</a>
                                     </td>
                                 </tr>
                             @endforeach

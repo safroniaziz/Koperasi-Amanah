@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Operator;
 
+use App\Anggota;
 use App\Http\Controllers\Controller;
 use App\JenisTransaksi;
 use App\Pinjaman;
@@ -102,5 +103,41 @@ class AngsuranController extends Controller
         ]);
 
         return redirect()->route('operator.transaksi_angsuran')->with(['success' =>  'Transaksi Angsuran Berhasil Ditambahkan !!']);
+    }
+
+    public function delete($id){
+        $galeri = Transaksi::find($id);
+        $galeri->delete();
+
+        return redirect()->route('operator.transaksi_angsuran')->with(['success'    =>  'Data transaksi baru sudah dihapus !']);
+    }
+
+
+    public function edit($id){
+        $transaksi = TransaksiPinjaman::join('transaksis','transaksis.id','transaksi_pinjamen.transaksi_id')
+                    ->join('pinjamen','pinjamen.id','transaksi_pinjamen.pinjaman_id')
+                    ->join('anggotas','anggotas.id','transaksis.anggota_id')
+                    ->join('operators','operators.id','transaksis.user_id')
+                    ->select('transaksi_pinjamen.id','transaksi_pinjamen.pinjaman_id','transaksi_pinjamen.transaksi_id','transaksis.anggota_id','jumlah_pinjaman','jumlah_bulan','bunga','jumlah_angsuran_pokok',
+                                'jumlah_angsuran_bunga','bulan_mulai_angsuran','tanggal_transaksi','bulan_transaksi','tahun_transaksi','tahun_mulai_angsuran','bulan_akhir_angsuran','tahun_akhir_angsuran','nm_operator')
+                    ->where('transaksi_pinjamen.id',$id)            
+                    ->first();
+        $anggotas = Anggota::where('status_anggota','1')->get();
+        $tahun = date("Y");
+        $bulans = [
+            ['bulan_transaksi'  =>  'Januari'],
+            ['bulan_transaksi'  =>  'Februari'],
+            ['bulan_transaksi'  =>  'Maret'],
+            ['bulan_transaksi'  =>  'April'],
+            ['bulan_transaksi'  =>  'Mei'],
+            ['bulan_transaksi'  =>  'Juni'],
+            ['bulan_transaksi'  =>  'Juli'],
+            ['bulan_transaksi'  =>  'Agustus'],
+            ['bulan_transaksi'  =>  'September'],
+            ['bulan_transaksi'  =>  'Oktober'],
+            ['bulan_transaksi'  =>  'November'],
+            ['bulan_transaksi'  =>  'Desember'],
+        ];
+        return view('backend/operator/pinjaman.edit',compact('transaksi','anggotas','bulans','tahun'));
     }
 }

@@ -56,6 +56,7 @@ Route::group(['prefix' => 'operator/simpanan_wajib'], function () {
     Route::get('/{id}/edit','Operator\SimpananWajibController@edit')->name('operator.simpanan_wajib.edit');
     Route::patch('/update','Operator\SimpananWajibController@update')->name('operator.simpanan_wajib.update');
     Route::get('/cari_bulan','Operator\SimpananWajibController@cariBulan')->name('admin.simpanan_wajib.cari_bulan');
+    Route::delete('/{id}/delete','Operator\SimpananWajibController@delete')->name('operator.simpanan_wajib.delete');
 });
 
 Route::group(['prefix' => 'operator/pinjaman'], function () {
@@ -65,6 +66,7 @@ Route::group(['prefix' => 'operator/pinjaman'], function () {
     Route::get('/{id}/edit','Operator\PinjamanController@edit')->name('operator.pinjaman.edit');
     Route::patch('/update','Operator\PinjamanController@update')->name('operator.pinjaman.update');
     Route::get('/cari_bulan','Operator\PinjamanController@cariBulan')->name('admin.pinjaman.cari_bulan');
+    Route::delete('/{id}/delete','Operator\PinjamanController@delete')->name('operator.pinjaman.delete');
 });
 
 Route::group(['prefix' => 'operator/transaksi_angsuran'], function () {
@@ -74,6 +76,7 @@ Route::group(['prefix' => 'operator/transaksi_angsuran'], function () {
     Route::get('/{id}/edit','Operator\AngsuranController@edit')->name('operator.transaksi_angsuran.edit');
     Route::patch('/update','Operator\AngsuranController@update')->name('operator.transaksi_angsuran.update');
     Route::get('/cari_angsuran','Operator\AngsuranController@cariAngsuran')->name('admin.transaksi_angsuran.cari_angsuran');
+    Route::delete('/{id}/delete','Operator\AngsuranController@delete')->name('operator.transaksi_angsuran.delete');
 });
 
 Route::group(['prefix' => 'operator/transaksi_koperasi'], function () {
@@ -83,6 +86,8 @@ Route::group(['prefix' => 'operator/transaksi_koperasi'], function () {
     Route::get('/{id}/edit','Operator\TransaksiKoperasiController@edit')->name('operator.transaksi_koperasi.edit');
     Route::patch('/update','Operator\TransaksiKoperasiController@update')->name('operator.transaksi_koperasi.update');
     Route::get('/cari_angsuran','Operator\TransaksiKoperasiController@cariAngsuran')->name('admin.transaksi_koperasi.cari_angsuran');
+    Route::delete('/{id}/delete','Operator\TransaksiKoperasiController@delete')->name('operator.transaksi_koperasi.delete');
+
 });
 
 Route::group(['prefix' => 'operator/laporan/buku_kas_koperasi'], function () {

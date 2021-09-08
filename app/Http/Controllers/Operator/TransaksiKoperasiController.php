@@ -111,4 +111,11 @@ class TransaksiKoperasiController extends Controller
 
         return redirect()->route('operator.transaksi_koperasi')->with(['success'    =>  'Transaksi Koperasi Berhasil Diubah !!']);
     }
+
+    public function delete($id){
+        $galeri = Transaksi::find($id);
+        $galeri->delete();
+
+        return redirect()->route('operator.transaksi_koperasi')->with(['success'    =>  'Data transaksi baru sudah dihapus !']);
+    }
 }

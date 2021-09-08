@@ -49,6 +49,7 @@
                                 <th>Bulan Transaksi</th>
                                 <th>Tahun Transaksi</th>
                                 <th>Operator</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,6 +66,13 @@
                                     <td>{{ $angsuran->bulan_transaksi }}</td>
                                     <td>{{ $angsuran->tahun_transaksi }}</td>
                                     <td>{{ $angsuran->nm_operator }}</td>
+                                    <td>
+                                        <a href="{{ route('operator.transaksi_angsuran.edit',[$angsuran->id]) }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;</a>
+                                        <form action="{{ route('operator.transaksi_angsuran.delete',[$angsuran->id]) }}" method="POST">
+                                            {{ csrf_field() }} {{ method_field('DELETE') }}
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

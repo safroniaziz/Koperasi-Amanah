@@ -338,4 +338,11 @@ class PinjamanController extends Controller
             return redirect()->route('operator.pinjaman.add')->with(['error' =>  'Transaksi Pinjaman Gagal Berhasil Ditambahkan !!']);
         }
     }
+
+    public function delete($id){
+        $galeri = Pinjaman::find($id);
+        $galeri->delete();
+
+        return redirect()->route('operator.pinjaman')->with(['success'    =>  'Data transaksi baru sudah dihapus !']);
+    }
 }

@@ -167,4 +167,11 @@ class SimpananWajibController extends Controller
 
         return redirect()->route('operator.simpanan_wajib')->with(['success'    =>  'Transaksi Simpanan Wajib Berhasil Diubah !!']);
     }
+
+    public function delete($id){
+        $galeri = Transaksi::find($id);
+        $galeri->delete();
+
+        return redirect()->route('operator.simpanan_wajib')->with(['success'    =>  'Data transaksi baru sudah dihapus !']);
+    }
 }

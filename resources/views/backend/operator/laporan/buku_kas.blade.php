@@ -98,7 +98,7 @@
                                     @foreach ($laporans as $laporan)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                        <td>{{ ($laporan->tanggal_transaksi) }}</td>
+                                        <td>{{ ($laporan->created_at) }}</td>
                                             <td>{{ $laporan->nm_transaksi }} - {{ $laporan->nm_anggota }}</td>
                                             <td>
                                                 @if ($laporan->jenis_transaksi == "masuk")

@@ -95,7 +95,7 @@ class LaporanController extends Controller
         $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')
                                 ->where('tahun_transaksi',$request->tahun)->where('bulan_transaksi',$request->bulan)
-                                ->orderBy('transaksis.created_at')
+                                ->orderBy('transaksis.created_at','asc')
                                 ->get();
         $bulans = [
             ['bulan_transaksi'  =>  'Januari'],
@@ -192,7 +192,9 @@ class LaporanController extends Controller
         $modal_awal = $data1->jumlah_transaksi - $data2->jumlah_transaksi;
         $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')
-                                ->where('tahun_transaksi',$request->tahun)->where('bulan_transaksi',$request->bulan)->get();
+                                ->where('tahun_transaksi',$request->tahun)->where('bulan_transaksi',$request->bulan)
+                                ->orderBy('transaksis.created_at','asc')
+                                ->get();
         $bulan1 = $request->bulan;
         $tahun1 = $request->tahun;
         $ketua = Jabatan::where('nm_jabatan','like','%ketua%')->first();

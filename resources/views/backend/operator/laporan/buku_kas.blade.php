@@ -98,7 +98,7 @@
                                     @foreach ($laporans as $laporan)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                        <td>{{ ($laporan->created_at) }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($laporan->created_at)->format('d/m/Y')}}</td>
                                             <td>{{ $laporan->nm_transaksi }} - {{ $laporan->nm_anggota }}</td>
                                             <td>
                                                 @if ($laporan->jenis_transaksi == "masuk")

@@ -89,7 +89,7 @@
                             @if (isset($_POST['bulan']))
                                 <tr>
                                     <td>1</td>
-                                    <td>{{ $bulan1 }} {{ $tahun1 }}</td>
+                                    <td>1 {{ $bulan1 }} {{ $tahun1 }}</td>
                                     <td>Modal Awal</td>
                                     <td>Rp.{{ number_format($modal_awal,2) }}</td>
                                     <td> - </td>
@@ -98,7 +98,7 @@
                                     @foreach ($laporans as $laporan)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($laporan->tanggal_transaksi)->format('j F Y') }}</td>
+                                        <td>{{ ($laporan->tanggal_transaksi) }}</td>
                                             <td>{{ $laporan->nm_transaksi }} - {{ $laporan->nm_anggota }}</td>
                                             <td>
                                                 @if ($laporan->jenis_transaksi == "masuk")

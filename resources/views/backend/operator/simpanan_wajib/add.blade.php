@@ -55,6 +55,9 @@
                                 <label for="exampleInputEmail1">Bulan Transaksi</label>
                                 <select name="bulan_transaksi" class="form-control" id="bulan">
                                 <option disabled selected>-- pilih bulan --</option>
+                                @foreach ($bulans as $bulan)
+                                    <option value="{{ $bulan['bulan_transaksi'] }}">{{ $bulan['bulan_transaksi'] }}</option>
+                                @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
@@ -84,27 +87,27 @@
             $('#kelas').DataTable();
         } );
 
-        $(document).on('change','#anggota_id',function(){
-            var anggota_id = $(this).val();
-            var div = $(this).parent().parent();
-            var op=" ";
-            $.ajax({
-            type :'get',
-            url: "{{ url('operator/simpanan_wajib/cari_bulan') }}",
-            data:{'anggota_id':anggota_id},
-                success:function(data){
-                    op+='<option value="0" selected disabled>-- pilih bulan --</option>';
-                    for(var i=0; i<data.length;i++){
-                        // alert(data[i].id);
-                        // alert(data['jenis_publikasi'][i].anggota_id);
-                        op+='<option value="'+data[i].bulan_transaksi+'">'+data[i].bulan_transaksi+'</option>';
-                    }
-                    div.find('#bulan').html(" ");
-                    div.find('#bulan').append(op);
-                },
-                    error:function(){
-                }
-            });
-        })
+        // $(document).on('change','#anggota_id',function(){
+        //     var anggota_id = $(this).val();
+        //     var div = $(this).parent().parent();
+        //     var op=" ";
+        //     $.ajax({
+        //     type :'get',
+        //     url: "{{ url('operator/simpanan_wajib/cari_bulan') }}",
+        //     data:{'anggota_id':anggota_id},
+        //         success:function(data){
+        //             op+='<option value="0" selected disabled>-- pilih bulan --</option>';
+        //             for(var i=0; i<data.length;i++){
+        //                 // alert(data[i].id);
+        //                 // alert(data['jenis_publikasi'][i].anggota_id);
+        //                 op+='<option value="'+data[i].bulan_transaksi+'">'+data[i].bulan_transaksi+'</option>';
+        //             }
+        //             div.find('#bulan').html(" ");
+        //             div.find('#bulan').append(op);
+        //         },
+        //             error:function(){
+        //         }
+        //     });
+        // })
     </script>
 @endpush

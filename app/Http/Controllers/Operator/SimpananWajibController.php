@@ -36,7 +36,21 @@ class SimpananWajibController extends Controller
     public function add(){
         $anggotas = Anggota::where('status_anggota','1')->get();
         $tahun = date("Y");
-        return view('backend/operator/simpanan_wajib.add',compact('anggotas','tahun'));
+        $bulans = [
+            ['bulan_transaksi'  =>  'Januari'],
+            ['bulan_transaksi'  =>  'Februari'],
+            ['bulan_transaksi'  =>  'Maret'],
+            ['bulan_transaksi'  =>  'April'],
+            ['bulan_transaksi'  =>  'Mei'],
+            ['bulan_transaksi'  =>  'Juni'],
+            ['bulan_transaksi'  =>  'Juli'],
+            ['bulan_transaksi'  =>  'Agustus'],
+            ['bulan_transaksi'  =>  'September'],
+            ['bulan_transaksi'  =>  'Oktober'],
+            ['bulan_transaksi'  =>  'November'],
+            ['bulan_transaksi'  =>  'Desember'],
+        ];
+        return view('backend/operator/simpanan_wajib.add',compact('anggotas','tahun','bulans'));
     }
 
     public function post(Request $request){

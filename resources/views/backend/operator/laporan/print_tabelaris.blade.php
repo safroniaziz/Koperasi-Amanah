@@ -45,14 +45,30 @@
                     <td>1 {{ $bulan1 }} {{ $tahun1 }}</td>
                     <td>Modal Awal</td>
                     <td>
-                        @if ($bulan1 == "Januari" && $tahun1 == "2021")
-                            Rp.{{ number_format(6061417,2) }}
-                            @else
-                            Rp.{{ number_format($modal_awal,2) }}
-                        @endif
+                        <td>
+                            @if ($bulan1 == "Januari" && $tahun1 == "2021")
+                            @php
+                                $modal_awal = 6061417;
+                            @endphp
+                                Rp.{{ number_format($modal_awal,2) }}
+                                @else
+                                Rp.{{ number_format($modal_awal,2) }}
+                            @endif
+                        </td>
                     </td>
                     <td> - </td>
-                    <td>Rp.{{ number_format(6061417,2) }}</td>
+                    <td>
+                        <td>
+                            @if ($bulan1 == "Januari" && $tahun1 == "2021")
+                            @php
+                                $modal_awal = 6061417;
+                            @endphp
+                                Rp.{{ number_format($modal_awal,2) }}
+                                @else
+                                Rp.{{ number_format($modal_awal,2) }}
+                            @endif
+                        </td>
+                    </td>
                 </tr>
                     @foreach ($laporans as $laporan)
                         <tr class="tr">

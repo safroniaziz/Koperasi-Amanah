@@ -200,8 +200,8 @@ class LaporanController extends Controller
                 $modal_sebelumnya = 0;
                 $modal_awal = $awal;
             } else if($request->bulan == "Februari" && $request->tahun == "2021"){
-                $modal_sebelumnya = 6061417;
-                $modal_awal = $awal + $modal_sebelumnya;
+                $modal_sekarang = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang)->first();
+                $modal_awal = $modal_sekarang->modal_awal;
 
             } else{
                 $modal_sebelumnya = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang -1)->first();

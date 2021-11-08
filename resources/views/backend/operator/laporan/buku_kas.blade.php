@@ -92,25 +92,25 @@
                                     <td>1 {{ $bulan1 }} {{ $tahun1 }}</td>
                                     <td>Modal Awal</td>
                                     <td>
-                                        @if ($bulan1 == "Januari" && $tahun1 == "2021")
+                                        {{-- @if ($bulan1 == "Januari" && $tahun1 == "2021")
                                         @php
                                             $modal_awal = 6061417;
                                         @endphp
                                             Rp.{{ number_format($modal_awal,2) }}
-                                            @else
+                                            @else --}}
                                             Rp.{{ number_format($modal_awal,2) }}
-                                        @endif
+                                        {{-- @endif --}}
                                     </td>
                                     <td> - </td>
                                     <td>
-                                        @if ($bulan1 == "Januari" && $tahun1 == "2021")
+                                        {{-- @if ($bulan1 == "Januari" && $tahun1 == "2021")
                                         @php
                                             $modal_awal = 6061417;
                                         @endphp
+                                            Rp.{{ number_format($modal_awal,2) }} --}}
+                                            {{-- @else --}}
                                             Rp.{{ number_format($modal_awal,2) }}
-                                            @else
-                                            Rp.{{ number_format($modal_awal,2) }}
-                                        @endif
+                                        {{-- @endif --}}
                                     </td>
                                 </tr>
                                     @foreach ($laporans as $laporan)

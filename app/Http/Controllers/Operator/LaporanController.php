@@ -208,13 +208,13 @@ class LaporanController extends Controller
                 $modal_sekarang = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang)->first();
                 $modal_awal = $modal_sekarang->modal_awal;
             }
-            $data = array([
-                'data1' =>  $data1,
-                'data2' =>  $data2,
-                'modal_awal' =>  $modal_awal,
-                'modal_sebelumnya'  =>  $modal_sebelumnya,
-                'jumlah'    =>  $data1->jumlah_transaksi - $data2->jumlah_transaksi,
-            ]);
+            // $data = array([
+            //     'data1' =>  $data1,
+            //     'data2' =>  $data2,
+            //     'modal_awal' =>  $modal_awal,
+            //     'modal_sebelumnya'  =>  $modal_sebelumnya,
+            //     'jumlah'    =>  $data1->jumlah_transaksi - $data2->jumlah_transaksi,
+            // ]);
 
             $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')

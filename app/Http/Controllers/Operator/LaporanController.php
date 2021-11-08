@@ -154,7 +154,8 @@ class LaporanController extends Controller
         if (empty($input)) {
             
             $modal_sebelumnya = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang -1)->first();
-            $modal_awal = $awal + $modal_sebelumnya->modal_awal;
+            $modal_sekarang = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang -1)->first();
+            $modal_awal = $modal_sekarang->modal_awal;
             CatatanBulan::create([
                 'tahun' =>  $request->tahun,
                 'bulan' =>  $angka_sekarang,
@@ -175,7 +176,7 @@ class LaporanController extends Controller
                                 ->whereYear('tanggal_transaksi',$request->tahun)->whereMonth('tanggal_transaksi',$angka_sekarang)
                                 ->orderBy('transaksis.created_at','asc')
                                 ->get();
-                                // return $laporans;
+                                return $laporans;
             $bulans = [
                 ['bulan_transaksi'  =>  'Januari'],
                 ['bulan_transaksi'  =>  'Februari'],
@@ -204,7 +205,8 @@ class LaporanController extends Controller
 
             } else{
                 $modal_sebelumnya = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang -1)->first();
-                $modal_awal = $awal + $modal_sebelumnya->modal_awal;
+                $modal_sekarang = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang)->first();
+                $modal_awal = $modal_sekarang->modal_awal;
             }
             $data = array([
                 'data1' =>  $data1,

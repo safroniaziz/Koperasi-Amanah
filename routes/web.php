@@ -93,6 +93,7 @@ Route::group(['prefix' => 'operator/transaksi_koperasi'], function () {
 Route::group(['prefix' => 'operator/laporan/buku_kas_koperasi'], function () {
     Route::get('/','Operator\LaporanController@bukuKas')->name('operator.laporan.buku_kas');
     Route::post('/','Operator\LaporanController@cariBukuKas')->name('operator.laporan.cari_buku_kas');
+    Route::patch('/update/{tahun}/{bulanUpdate}','Operator\LaporanController@updateTersedia')->name('operator.laporan.update_tersedia');
 });
 
 Route::group(['prefix' => 'operator/laporan/tabelaris'], function () {

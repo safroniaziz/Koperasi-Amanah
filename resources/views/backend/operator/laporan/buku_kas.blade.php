@@ -70,6 +70,19 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-12" style="text-align: center">
+                            @if (isset($input))
+                                    @if (!empty($input))
+                                        <form action="{{ route('operator.laporan.update_tersedia',[$input->tahun,$input->bulan]) }}" method="POST">
+                                            @csrf @method('PATCH')
+                                            <button type="submit" name="submit" class="btn btn-success btn-sm"><i class="fa fa-refresh"></i>&nbsp; Perbarui Modal Awal</button>
+                                        </form>
+                                    @endif
+                                @endif
+                        </div>
+                    </div>
+                    
                     <table class="table table-bordered table-hover" id="kelas">
                         <thead class="bg-primary">
                             <tr>

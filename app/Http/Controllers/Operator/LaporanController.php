@@ -43,7 +43,7 @@ class LaporanController extends Controller
             'tahun' =>  'required',
         ]);
         if ($request->bulan == "Januari") {
-            $tahun = $request->tahun-1;
+            $tahun = $request->tahun;
             $bulan = 'Desember';
             $angka_sebelumnya = '12';
             $angka_sekarang = '01';
@@ -121,8 +121,8 @@ class LaporanController extends Controller
                             ->where('jenis_transaksi','masuk')
                             ->first();
                             // return $data1;
-        $data2 = Transaksi::where('tahun_transaksi',$request->tahun)
-                            ->select(DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'))
+        $data2 = Transaksi::select(DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'))
+                            ->whereYear('tanggal_transaksi',$request->tahun)
                             ->whereMonth('tanggal_transaksi',$angka_sebelumnya)
                             ->where('jenis_transaksi','keluar')
                             ->first();
@@ -152,8 +152,6 @@ class LaporanController extends Controller
         }
         $input = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang)->first();
         if (empty($input)) {
-            
-            $modal_sebelumnya = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang -1)->first();
             $modal_sekarang = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang -1)->first();
             $modal_awal = $modal_sekarang->modal_awal;
             CatatanBulan::create([
@@ -161,22 +159,14 @@ class LaporanController extends Controller
                 'bulan' =>  $angka_sekarang,
                 'modal_awal'    =>  $modal_awal,
             ]);
-            $data = array([
-                'data1' =>  $data1,
-                'data2' =>  $data2,
-                'modal_awal' =>  $modal_awal,
-                'modal_sebelumnya'  =>  $modal_sebelumnya,
-                'jumlah'    =>  $data1->jumlah_transaksi - $data2->jumlah_transaksi,
-            ]);
-            // return $data;
-
             $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')
                                 // ->select('transaksis.id','jumlah_transaksi')
-                                ->whereYear('tanggal_transaksi',$request->tahun)->whereMonth('tanggal_transaksi',$angka_sekarang)
+                                ->whereYear('tanggal_transaksi',$request->tahun)
+                                ->whereMonth('tanggal_transaksi',$angka_sekarang)
                                 ->orderBy('transaksis.created_at','asc')
                                 ->get();
-                                return $laporans;
+                                // return $laporans;
             $bulans = [
                 ['bulan_transaksi'  =>  'Januari'],
                 ['bulan_transaksi'  =>  'Februari'],
@@ -193,8 +183,7 @@ class LaporanController extends Controller
             ];
             $bulan1 = $request->bulan;
             $tahun1 = $request->tahun;
-            return view('backend/operator/laporan.buku_kas',compact('bulans','modal_awal','laporans','bulan1','tahun1'));
-            
+            return view('backend/operator/laporan.buku_kas',compact('bulans','input','modal_awal','laporans','bulan1','tahun1'));
         } else{
             if ($request->bulan == "Januari" && $request->tahun == "2021"){
                 $modal_sebelumnya = 0;
@@ -219,7 +208,8 @@ class LaporanController extends Controller
             $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
                                 ->join('anggotas','anggotas.id','transaksis.anggota_id')
                                 // ->select('transaksis.id','jumlah_transaksi')
-                                ->whereYear('tanggal_transaksi',$request->tahun)->whereMonth('tanggal_transaksi',$angka_sekarang)
+                                ->whereYear('tanggal_transaksi',$request->tahun)
+                                ->whereMonth('tanggal_transaksi',$angka_sekarang)
                                 ->orderBy('transaksis.created_at','asc')
                                 ->get();
                                 // return $laporans;
@@ -239,13 +229,107 @@ class LaporanController extends Controller
             ];
             $bulan1 = $request->bulan;
             $tahun1 = $request->tahun;
-            return view('backend/operator/laporan.buku_kas',compact('bulans','modal_awal','laporans','bulan1','tahun1'));
+            return view('backend/operator/laporan.buku_kas',compact('bulans','input','modal_awal','laporans','bulan1','tahun1'));
             }
         // $modal_awal = $data1->jumlah_transaksi - $data2->jumlah_transaksi +6061417;
 
         // $modal_awal = 0;
        
         
+    }
+
+    public function updateTersedia($tahun,$bulan){
+        if ($bulan == "01") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '12';
+            $angka_sekarang = '01';
+            $sebelumnya = '11';
+        } elseif ($bulan == "02") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '01';
+            $angka_sekarang = '02';
+            $sebelumnya = '12';
+        }elseif ($bulan == "03") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '02';
+            $angka_sekarang = '03';
+            $sebelumnya = '01';
+        }elseif ($bulan == "04") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '03';
+            $angka_sekarang = '04';
+            $sebelumnya = '02';
+        }elseif ($bulan == "05") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '04';
+            $angka_sekarang = '05';
+            $sebelumnya = '03';
+        }elseif ($bulan == "06") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '05';
+            $angka_sekarang = '06';
+            $sebelumnya = '04';
+        }elseif ($bulan == "07") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '06';
+            $angka_sekarang = '07';
+            $sebelumnya = '05';
+        }elseif ($bulan == "08") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '07';
+            $angka_sekarang = '08';
+            $sebelumnya = '06';
+        }elseif ($bulan == "09") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '08';
+            $angka_sekarang = '09';
+            $sebelumnya = '07';
+        }elseif ($bulan == "10") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '09';
+            $angka_sekarang = '10';
+            $sebelumnya = '08';
+        }elseif ($bulan == "11") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '10';
+            $angka_sekarang = '11';
+            $sebelumnya = '09';
+        }elseif ($bulan == "12") {
+            $tahun = $tahun;
+            $angka_sebelumnya = '11';
+            $angka_sekarang = '12';
+            $sebelumnya = '10';
+        }
+        $data1 = Transaksi::select(DB::raw('sum(jumlah_transaksi) as jumlah_transaksi'))
+                            ->whereYear('tanggal_transaksi',$tahun)
+                            ->whereMonth('tanggal_transaksi',$angka_sebelumnya)
+                            ->where('jenis_transaksi','masuk')
+                            ->first();
+                            // return $data1;
+        $data2 = Transaksi::select(DB::raw('SUM(jumlah_transaksi) as jumlah_transaksi'))
+                            ->whereYear('tanggal_transaksi',$tahun)
+                            ->whereMonth('tanggal_transaksi',$angka_sebelumnya)
+                            ->where('jenis_transaksi','keluar')
+                            ->first();
+                            // return $data1;
+        $data = array([
+            'data1' =>  $data1,
+            'data2' =>  $data2,
+            'jumlah'    =>  $data1->jumlah_transaksi - $data2->jumlah_transaksi,
+        ]);
+        // return $data;
+        $jumlah = $data1->jumlah_transaksi - $data2->jumlah_transaksi;
+        $modal_sekarang = CatatanBulan::where('tahun',$tahun)->where('bulan',$angka_sekarang -1)->first();
+        if (!empty($modal_sekarang)) {
+                $modal_awal = $modal_sekarang->modal_awal + $jumlah;
+            CatatanBulan::where('tahun',$tahun)->where('bulan',$bulan)->update([
+                'modal_awal'    =>  $modal_awal,
+            ]);
+            return redirect()->back()->with(['success'  =>  'Saldo awal berhasil diperbarui']);
+        }
+        else{
+            return redirect()->back()->with(['error'  =>  'Ups, terjadi kesalahan']);
+        }
     }
 
     public function tabelaris(){

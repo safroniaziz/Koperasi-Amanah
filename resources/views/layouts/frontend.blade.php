@@ -95,8 +95,9 @@
                     <a class="page-scroll" href="{{ route('berita') }}">Berita</a>
                   </li>
                   <li>
-                    <a class="page-scroll" href="#contact">Kontak</a>
+                    <a class="page-scroll" href="{{ route('anggota.login') }}">Login</a>
                   </li>
+
                 </ul>
               </div>
               <!-- navbar-collapse -->

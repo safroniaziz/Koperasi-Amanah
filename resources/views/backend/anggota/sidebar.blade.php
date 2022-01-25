@@ -5,7 +5,7 @@
     </a>
 </li>
 
-<li class="{{ set_active('anggota.laporan.buku_kas') }}">
+{{-- <li class="{{ set_active('anggota.laporan.buku_kas') }}">
     <a href="{{ route('anggota.laporan.buku_kas') }}">
         <i class="fa fa-book"></i> <span>Buku Kas Pembantu</span>
     </a>
@@ -14,7 +14,7 @@
     <a href="{{ route('anggota.laporan.tabelaris') }}">
         <i class="fa fa-book"></i> <span>Tabelaris</span>
     </a>
-</li>
+</li> --}}
 
 <li class="{{ set_active('anggota.laporan.pinjaman') }}">
     <a href="{{ route('anggota.laporan.pinjaman') }}">

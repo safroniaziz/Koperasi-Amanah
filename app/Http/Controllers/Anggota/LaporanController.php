@@ -211,7 +211,7 @@ class LaporanController extends Controller
     public function catSimpWajib(){
         $laporans = Transaksi::where('jenis_transaksi_id',1)
                     ->join('anggotas','anggotas.id','transaksis.anggota_id')
-                    ->select('jumlah_transaksi','nm_anggota')
+                    ->select('jumlah_transaksi','nm_anggota','bulan_transaksi','tahun_transaksi')
                     ->where('anggota_id',Auth::guard('anggota')->user()->id)
                     ->get();
         return view('backend/anggota/laporan.cat_simp_wajib',compact('laporans'));

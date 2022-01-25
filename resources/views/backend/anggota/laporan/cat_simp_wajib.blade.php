@@ -41,6 +41,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Anggota</th>
+                                <th>Bulan Transaksi</th>
+                                <th>Tahun Transaksi</th>
                                 <th>Jumlah Transaksi</th>
                             </tr>
                         </thead>
@@ -52,6 +54,8 @@
                                <tr>
                                    <td>{{ $no++ }}</td>
                                    <td>{{ $laporan->nm_anggota }}</td>
+                                   <td>{{ $laporan->bulan_transaksi }}</td>
+                                   <td>{{ $laporan->tahun_transaksi }}</td>
                                    <td>{{ $laporan->jumlah_transaksi }}</td>
                                </tr>
                            @endforeach

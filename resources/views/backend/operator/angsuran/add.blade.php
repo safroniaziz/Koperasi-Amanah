@@ -45,6 +45,16 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">Pilih Pinjaman</label>
+                                <select name="pinjaman" id="pinjaman" class="form-control" id="">
+                                    <option disabled selected>-- pilih pinjaman --</option>
+                                </select>
+                                @if ($errors->has('pinjaman'))
+                                    <small class="form-text text-danger">{{ $errors->first('pinjaman') }}</small>
+                                @endif
+                            </div>
+                            {{-- <input type="text" name="pinjamanId" id="pinjamanId"> --}}
 
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Tanggal Transaksi</label>
@@ -124,15 +134,42 @@
             });
         });
 
+        $(document).on('change','#pinjaman',function(){
+            var pinjaman = $(this).val();
+            $.ajax({
+            type :'get',
+            url: "{{ url('operator/transaksi_angsuran/cari_angsuran_id') }}",
+            data:{'pinjaman':pinjaman},
+                success:function(data){
+                    $('#pinjaman').val(data.id);
+                    $('#jumlah_angsuran_pokok').val(data.jumlah_angsuran_pokok);
+                    $('#jumlah_angsuran_bunga').val(data.jumlah_angsuran_bunga);
+                },
+                    error:function(){
+                }
+            });
+        })
+
         $(document).on('change','#anggota_id',function(){
             var anggota_id = $(this).val();
+            // alert(anggota_id);
+            var div = $(this).parent().parent();
+            
+            var op=" ";
             $.ajax({
             type :'get',
             url: "{{ url('operator/transaksi_angsuran/cari_angsuran') }}",
             data:{'anggota_id':anggota_id},
                 success:function(data){
-                    $('#jumlah_angsuran_pokok').val(data.jumlah_angsuran_pokok);
-                    $('#jumlah_angsuran_bunga').val(data.jumlah_angsuran_bunga);
+                    // alert(data[i].id);
+                    // alert(data['prodi'][0]['dosen'][0]['pegawai'].pegIsAktif);
+                    op+='<option value="0" selected disabled>-- pilih pinjaman --</option>';
+                    for(var i=0; i<data.length;i++){
+                        var ke = 1+i;
+                        op+='<option value="'+data[i].id+'">'+'Pinjaman Ke '+ke+'= '+data[i].jumlah_pinjaman+'</option>';
+                    }
+                    div.find('#pinjaman').html(" ");
+                    div.find('#pinjaman').append(op);
                 },
                     error:function(){
                 }

@@ -80,29 +80,29 @@
 @push('scripts')
     <script>
         $(document).on('change','#anggota',function(){
-                var anggota = $(this).val();
-                // alert(anggota);
-                var div = $(this).parent().parent();
-                
-                var op=" ";
-                $.ajax({
-                type :'get',
-                url: "{{ url('operator/laporan/kartu_pinjaman/cari_pinjaman') }}",
-                data:{'anggota':anggota},
-                    success:function(data){
-                        // alert(data[i].id);
-                        // alert(data['prodi'][0]['dosen'][0]['pegawai'].pegIsAktif);
-                        op+='<option value="0" selected disabled>-- pilih pinjaman --</option>';
-                        for(var i=0; i<data.length;i++){
-                            var ke = 1+i;
-                            op+='<option value="'+data[i].id+'">'+'Pinjaman Ke '+ke+'= '+data[i].jumlah_pinjaman+'</option>';
-                        }
-                        div.find('#pinjaman').html(" ");
-                        div.find('#pinjaman').append(op);
-                    },
-                        error:function(){
+            var anggota = $(this).val();
+            // alert(anggota);
+            var div = $(this).parent().parent();
+            
+            var op=" ";
+            $.ajax({
+            type :'get',
+            url: "{{ url('operator/laporan/kartu_pinjaman/cari_pinjaman') }}",
+            data:{'anggota':anggota},
+                success:function(data){
+                    // alert(data[i].id);
+                    // alert(data['prodi'][0]['dosen'][0]['pegawai'].pegIsAktif);
+                    op+='<option value="0" selected disabled>-- pilih pinjaman --</option>';
+                    for(var i=0; i<data.length;i++){
+                        var ke = 1+i;
+                        op+='<option value="'+data[i].id+'">'+'Pinjaman Ke '+ke+'= '+data[i].jumlah_pinjaman+'</option>';
                     }
-                });
-            })
+                    div.find('#pinjaman').html(" ");
+                    div.find('#pinjaman').append(op);
+                },
+                    error:function(){
+                }
+            });
+        })
     </script>
 @endpush

@@ -76,6 +76,7 @@ Route::group(['prefix' => 'operator/transaksi_angsuran'], function () {
     Route::get('/{id}/edit','Operator\AngsuranController@edit')->name('operator.transaksi_angsuran.edit');
     Route::patch('/update','Operator\AngsuranController@update')->name('operator.transaksi_angsuran.update');
     Route::get('/cari_angsuran','Operator\AngsuranController@cariAngsuran')->name('admin.transaksi_angsuran.cari_angsuran');
+    Route::get('/cari_angsuran_id','Operator\AngsuranController@cariAngsuranId')->name('admin.transaksi_angsuran.cari_angsuran_id');
     Route::delete('/{id}/delete','Operator\AngsuranController@delete')->name('operator.transaksi_angsuran.delete');
 });
 
@@ -137,6 +138,7 @@ Route::group(['prefix' => 'anggota/laporan/tabelaris'], function () {
 
 Route::group(['prefix' => 'anggota/laporan/kartu_pinjaman'], function () {
     Route::get('/','Anggota\LaporanController@pinjaman')->name('anggota.laporan.pinjaman');
+    Route::get('/cari_pinjaman','Anggota\LaporanController@cariPinjaman')->name('anggota.laporan.cari_pinjaman');
     Route::post('/cetak_kartu_pinjaman','Anggota\LaporanController@cariKartu')->name('anggota.laporan.cari_kartu');
 });
 

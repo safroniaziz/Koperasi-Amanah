@@ -52,8 +52,24 @@ class AngsuranController extends Controller
     }
 
     public function cariAngsuran(Request $request){
-        $angsuran = Pinjaman::where('anggota_id',$request->anggota_id)->first();
+        $angsuran = Pinjaman::where('anggota_id',$request->anggota_id)->select('id','jumlah_pinjaman')->get();
+        // $bulan_mulai = $angsuran->bulan_mulai_angsuran;
+        // $tahun_mulai = $angsuran->tahun_mulai_angsuran;
+        // $bulan_akhir = $angsuran->bulan_akhir_angsuran;
+        // $tahun_akhir = $angsuran->tahun_akhir_angsuran;
+        
+        // if ($request->jumlah_bulan == "12") {
+        //     $tahun_akhir = $request->tahun_mulai_angsuran +1;
+        // }
+        // else{
+        //     $tahun_akhir = $request->tahun_mulai_angsuran +2;
+        // }
 
+        return $angsuran;
+    }
+
+    public function cariAngsuranId(Request $request){
+        $angsuran = Pinjaman::where('id',$request->pinjaman)->first();
         $bulan_mulai = $angsuran->bulan_mulai_angsuran;
         $tahun_mulai = $angsuran->tahun_mulai_angsuran;
         $bulan_akhir = $angsuran->bulan_akhir_angsuran;
@@ -83,7 +99,7 @@ class AngsuranController extends Controller
         try {
             $jenis_transaksi = JenisTransaksi::where('id',3)->first();
 
-            Transaksi::create([
+            $transaksi = Transaksi::create([
                 'jenis_transaksi_id'    =>  3,
                 'anggota_id'    =>  $request->anggota_id,
                 'user_id'   =>  Auth::guard('operator')->user()->id,
@@ -104,6 +120,11 @@ class AngsuranController extends Controller
                 'bulan_transaksi'   =>  $request->bulan_transaksi,
                 'tahun_transaksi'   =>  $request->tahun_transaksi,
                 'jenis_transaksi'   =>  $jenis_transaksi2->jenis_transaksi,
+            ]);
+
+            TransaksiPinjaman::create([
+                'transaksi_id'  => $transaksi->id,
+                'pinjaman_id' => $request->pinjaman,
             ]);
             DB::commit();
 

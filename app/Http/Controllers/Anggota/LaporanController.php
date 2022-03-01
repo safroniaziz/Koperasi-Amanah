@@ -227,16 +227,32 @@ class LaporanController extends Controller
             'anggota'   =>  'required',
         ]);
         $anggota = Anggota::where('id',$request->anggota)->first();
-        $saldo = Pinjaman::where('anggota_id',$request->anggota)->select('jumlah_pinjaman','jumlah_angsuran_pokok','jumlah_bulan','jumlah_angsuran_bunga','status_pinjaman')->first();
-        $angsuran = Transaksi::where('anggota_id',$request->anggota)->where('jenis_transaksi_id',4)->get();
+        $saldo = Pinjaman::where('id',$request->pinjaman)->select('jumlah_pinjaman','jumlah_angsuran_pokok','jumlah_bulan','jumlah_angsuran_bunga','status_pinjaman')->first();
+        // $angsuran = Transaksi::leftJoin('transaksi_pinjamen','transaksi_pinjamen.transaksi_id','transaksis.id')
+        //                         ->where('anggota_id',$request->anggota)
+        //                         ->where('jenis_transaksi_id',4)
+        //                         ->where('transaksi_pinjamen.pinjaman_id',20)
+        //                         ->orderBy('tanggal_transaksi')
+        //                         ->get();
+        // return $request->all();
+        $angsuran = DB::table('transaksi_pinjamen')
+                        ->rightJoin('pinjamen','pinjamen.id','transaksi_pinjamen.pinjaman_id')
+                        ->rightJoin('transaksis','transaksis.id','transaksi_pinjamen.transaksi_id')
+                        ->where('pinjaman_id',$request->pinjaman)
+                        ->where('transaksis.anggota_id',$request->anggota)
+                        ->where('jenis_transaksi_id',3)
+                        ->orderBy('tanggal_transaksi')
+                        ->get();
+        // return $angsuran;
         if (!empty($saldo)) {
-            $pdf = PDF::loadView('backend/anggota/laporan.print_kartu_pinjaman',compact('saldo','angsuran','anggota'))->setPaper('A4','landscape');
+            // return $saldo;
+            $pdf = PDF::loadView('backend/operator/laporan.print_kartu_pinjaman',compact('saldo','angsuran','anggota'))->setPaper('A4','landscape');
             return$pdf->stream();
         }
         else{
             return redirect()->back()->with(['error'    =>  'Anggota Tidak Memiliki Hutang']);
         }
-        // return view('backend/anggota/laporan.print_kartu_pinjaman.blade.php',compact('saldo','angsuran','anggotas'));
+        // return view('backend/operator/laporan.print_kartu_pinjaman.blade.php',compact('saldo','angsuran','anggotas'));
     }
 
     public function shu(){
@@ -252,5 +268,10 @@ class LaporanController extends Controller
             }
             return view('backend/anggota.shu.shu_anggota',compact('shus'));
         }
+    }
+
+    public function cariPinjaman(Request $request){
+        $pinjaman =Pinjaman::where('anggota_id',$request->anggota)->select('id','jumlah_pinjaman')->get();
+        return $pinjaman;
     }
 }

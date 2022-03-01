@@ -449,7 +449,7 @@ class LaporanController extends Controller
             'anggota'   =>  'required',
         ]);
         $anggota = Anggota::where('id',$request->anggota)->first();
-        $saldo = Pinjaman::where('anggota_id',$request->anggota)->select('jumlah_pinjaman','jumlah_angsuran_pokok','jumlah_bulan','jumlah_angsuran_bunga','status_pinjaman')->first();
+        $saldo = Pinjaman::where('id',$request->pinjaman)->select('jumlah_pinjaman','jumlah_angsuran_pokok','jumlah_bulan','jumlah_angsuran_bunga','status_pinjaman')->first();
         // $angsuran = Transaksi::leftJoin('transaksi_pinjamen','transaksi_pinjamen.transaksi_id','transaksis.id')
         //                         ->where('anggota_id',$request->anggota)
         //                         ->where('jenis_transaksi_id',4)
@@ -467,6 +467,7 @@ class LaporanController extends Controller
                         ->get();
         // return $angsuran;
         if (!empty($saldo)) {
+            // return $saldo;
             $pdf = PDF::loadView('backend/operator/laporan.print_kartu_pinjaman',compact('saldo','angsuran','anggota'))->setPaper('A4','landscape');
             return$pdf->stream();
         }

@@ -152,38 +152,7 @@ class LaporanController extends Controller
         }
         $input = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang)->first();
         if (empty($input)) {
-            $modal_sekarang = CatatanBulan::where('tahun',$request->tahun)->where('bulan',$angka_sekarang -1)->first();
-            $modal_awal = $modal_sekarang->modal_awal;
-            CatatanBulan::create([
-                'tahun' =>  $request->tahun,
-                'bulan' =>  $angka_sekarang,
-                'modal_awal'    =>  $modal_awal,
-            ]);
-            $laporans = Transaksi::join('jenis_transaksis','jenis_transaksis.id','transaksis.jenis_transaksi_id')
-                                ->join('anggotas','anggotas.id','transaksis.anggota_id')
-                                // ->select('transaksis.id','jumlah_transaksi')
-                                ->whereYear('tanggal_transaksi',$request->tahun)
-                                ->whereMonth('tanggal_transaksi',$angka_sekarang)
-                                ->orderBy('transaksis.created_at','asc')
-                                ->get();
-                                // return $laporans;
-            $bulans = [
-                ['bulan_transaksi'  =>  'Januari'],
-                ['bulan_transaksi'  =>  'Februari'],
-                ['bulan_transaksi'  =>  'Maret'],
-                ['bulan_transaksi'  =>  'April'],
-                ['bulan_transaksi'  =>  'Mei'],
-                ['bulan_transaksi'  =>  'Juni'],
-                ['bulan_transaksi'  =>  'Juli'],
-                ['bulan_transaksi'  =>  'Agustus'],
-                ['bulan_transaksi'  =>  'September'],
-                ['bulan_transaksi'  =>  'Oktober'],
-                ['bulan_transaksi'  =>  'November'],
-                ['bulan_transaksi'  =>  'Desember'],
-            ];
-            $bulan1 = $request->bulan;
-            $tahun1 = $request->tahun;
-            return view('backend/operator/laporan.buku_kas',compact('bulans','input','modal_awal','laporans','bulan1','tahun1'));
+            return redirect()->route('operator.laporan.buku_kas')->with(['error' => 'Harap inputkan modal awal di manajemen modal awal terlebih dahulu']);
         } else{
             if ($request->bulan == "Januari" && $request->tahun == "2021"){
                 $modal_sebelumnya = 0;
@@ -234,8 +203,8 @@ class LaporanController extends Controller
         // $modal_awal = $data1->jumlah_transaksi - $data2->jumlah_transaksi +6061417;
 
         // $modal_awal = 0;
-       
-        
+
+
     }
 
     public function updateTersedia($tahun,$bulan){

@@ -102,6 +102,12 @@ Route::group(['prefix' => 'operator/laporan/tabelaris'], function () {
     Route::post('/','Operator\LaporanController@cariTabelaris')->name('operator.laporan.cari_tabelaris');
 });
 
+Route::group(['prefix' => 'operator/modal_awal'], function () {
+    Route::get('/','Operator\ModalAwalController@index')->name('operator.modal_awal');
+    Route::post('/','Operator\ModalAwalController@post')->name('operator.modal_awal.post');
+    Route::delete('/{id}','Operator\ModalAwalController@delete')->name('operator.modal_awal.delete');
+});
+
 Route::group(['prefix' => 'operator/laporan/kartu_pinjaman'], function () {
     Route::get('/','Operator\LaporanController@pinjaman')->name('operator.laporan.pinjaman');
     Route::post('/cetak_kartu_pinjaman','Operator\LaporanController@cariKartu')->name('operator.laporan.cari_kartu');

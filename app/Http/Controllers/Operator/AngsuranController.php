@@ -29,11 +29,12 @@ class AngsuranController extends Controller
     }
 
     public function add(){
-        $anggotas = TransaksiPinjaman::join('pinjamen','pinjamen.id','transaksi_pinjamen.pinjaman_id')
-                                            ->join('anggotas','anggotas.id','pinjamen.anggota_id')
+        $anggotas = TransaksiPinjaman::leftJoin('pinjamen','pinjamen.id','transaksi_pinjamen.pinjaman_id')
+                                            ->leftJoin('anggotas','anggotas.id','pinjamen.anggota_id')
                                             ->select('anggotas.id as anggota_id','nm_anggota','jumlah_angsuran_pokok','jumlah_angsuran_bunga')
                                             ->groupBy('anggota_id')
                                             ->get();
+        // $anggotas = Anggota::where('nm_anggota','!=','Koperasi')->get();
         $bulans = [
             ['bulan_transaksi'  =>  'Januari'],
             ['bulan_transaksi'  =>  'Februari'],
@@ -57,7 +58,7 @@ class AngsuranController extends Controller
         // $tahun_mulai = $angsuran->tahun_mulai_angsuran;
         // $bulan_akhir = $angsuran->bulan_akhir_angsuran;
         // $tahun_akhir = $angsuran->tahun_akhir_angsuran;
-        
+
         // if ($request->jumlah_bulan == "12") {
         //     $tahun_akhir = $request->tahun_mulai_angsuran +1;
         // }
@@ -74,7 +75,7 @@ class AngsuranController extends Controller
         $tahun_mulai = $angsuran->tahun_mulai_angsuran;
         $bulan_akhir = $angsuran->bulan_akhir_angsuran;
         $tahun_akhir = $angsuran->tahun_akhir_angsuran;
-        
+
         if ($request->jumlah_bulan == "12") {
             $tahun_akhir = $request->tahun_mulai_angsuran +1;
         }

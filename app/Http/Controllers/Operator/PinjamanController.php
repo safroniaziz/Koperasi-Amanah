@@ -20,7 +20,7 @@ class PinjamanController extends Controller
     {
         $this->middleware('auth:operator');
     }
-    
+
     public function index(){
         $pinjamans = TransaksiPinjaman::join('transaksis','transaksis.id','transaksi_pinjamen.transaksi_id')
                                         ->join('pinjamen','pinjamen.id','transaksi_pinjamen.pinjaman_id')
@@ -28,10 +28,12 @@ class PinjamanController extends Controller
                                         ->join('operators','operators.id','transaksis.user_id')
                                         ->select('transaksi_pinjamen.id','nm_anggota','jumlah_pinjaman','jumlah_bulan','bunga','jumlah_angsuran_pokok',
                                                     'jumlah_angsuran_bunga','bulan_mulai_angsuran','tahun_mulai_angsuran','bulan_akhir_angsuran','tahun_akhir_angsuran','nm_operator')
+                                        ->groupBy('pinjamen.id')
                                         ->get();
+                                        // return $pinjamans;
         return view('backend/operator/pinjaman.index',compact('pinjamans'));
     }
-    
+
     public function add(){
         $anggotas = Anggota::where('status_anggota','1')->get();
         $tahun = date("Y");
@@ -131,7 +133,7 @@ class PinjamanController extends Controller
         }
         $bulan = ($mulai + $request->jumlah_bulan)-1;
 
-        for ($i=0; $i < count($bulans); $i++) { 
+        for ($i=0; $i < count($bulans); $i++) {
             if ($bulans[$i]['no']   == $bulan) {
                 $month = $bulans[$i]['bulan'];
             }
@@ -145,7 +147,7 @@ class PinjamanController extends Controller
         $jenis_transaksi = JenisTransaksi::where('id',2)->first();
         DB::beginTransaction();
         try {
-            
+
             Transaksi::create([
                 'jenis_transaksi_id'    =>  2,
                 'anggota_id'    =>  $request->anggota_id,
@@ -192,7 +194,7 @@ class PinjamanController extends Controller
                     ->join('operators','operators.id','transaksis.user_id')
                     ->select('transaksi_pinjamen.id','transaksi_pinjamen.pinjaman_id','transaksi_pinjamen.transaksi_id','transaksis.anggota_id','jumlah_pinjaman','jumlah_bulan','bunga','jumlah_angsuran_pokok',
                                 'jumlah_angsuran_bunga','bulan_mulai_angsuran','tanggal_transaksi','bulan_transaksi','tahun_transaksi','tahun_mulai_angsuran','bulan_akhir_angsuran','tahun_akhir_angsuran','nm_operator')
-                    ->where('transaksi_pinjamen.id',$id)            
+                    ->where('transaksi_pinjamen.id',$id)
                     ->first();
         $anggotas = Anggota::where('status_anggota','1')->get();
         $tahun = date("Y");
@@ -292,7 +294,7 @@ class PinjamanController extends Controller
         }
         $bulan = ($mulai + $request->jumlah_bulan)-1;
 
-        for ($i=0; $i < count($bulans); $i++) { 
+        for ($i=0; $i < count($bulans); $i++) {
             if ($bulans[$i]['no']   == $bulan) {
                 $month = $bulans[$i]['bulan'];
             }
@@ -306,7 +308,7 @@ class PinjamanController extends Controller
         $jenis_transaksi = JenisTransaksi::where('id',2)->first();
         DB::beginTransaction();
         try {
-            
+
             Transaksi::where('id',$request->transaksi_id)->update([
                 'anggota_id'    =>  $request->anggota_id,
                 'jumlah_transaksi'  =>  $request->jumlah_transaksi,

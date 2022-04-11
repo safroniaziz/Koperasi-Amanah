@@ -29,11 +29,7 @@ class AngsuranController extends Controller
     }
 
     public function add(){
-        $anggotas = TransaksiPinjaman::leftJoin('pinjamen','pinjamen.id','transaksi_pinjamen.pinjaman_id')
-                                            ->leftJoin('anggotas','anggotas.id','pinjamen.anggota_id')
-                                            ->select('anggotas.id as anggota_id','nm_anggota','jumlah_angsuran_pokok','jumlah_angsuran_bunga')
-                                            ->groupBy('anggota_id')
-                                            ->get();
+        $anggotas = Anggota::where('nm_anggota','!=','Koperasi')->select('id','nm_anggota')->get();
         // $anggotas = Anggota::where('nm_anggota','!=','Koperasi')->get();
         $bulans = [
             ['bulan_transaksi'  =>  'Januari'],
@@ -65,7 +61,6 @@ class AngsuranController extends Controller
         // else{
         //     $tahun_akhir = $request->tahun_mulai_angsuran +2;
         // }
-
         return $angsuran;
     }
 

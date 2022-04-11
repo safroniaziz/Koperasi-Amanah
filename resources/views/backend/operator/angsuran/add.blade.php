@@ -41,7 +41,7 @@
                                 <select name="anggota_id" class="form-control" id="anggota_id">
                                     <option disabled selected>-- pilih anggota --</option>
                                     @foreach ($anggotas as $anggota)
-                                        <option value="{{ $anggota->anggota_id }}">{{ $anggota->nm_anggota }}</option>
+                                        <option value="{{ $anggota->id }}">{{ $anggota->nm_anggota }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                                 <label for="exampleInputEmail1">Tanggal Transaksi</label>
                                 <input type="date" name="tanggal_transaksi" class="form-control">
                             </div>
-                          
+
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Bulan Transaksi</label>
                                 <select name="bulan_transaksi" class="form-control" id="bulan">
@@ -70,7 +70,7 @@
                                 @endforeach
                                 </select>
                             </div>
-                          
+
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Tahun Transaksi</label>
                                 <select name="tahun_transaksi" id="tahun_transaksi" class="form-control" required></select>
@@ -84,7 +84,7 @@
                                 <label for="exampleInputEmail1">Jumlah Angsuran Bunga / Bulan</label>
                                 <input type="text" name="jumlah_angsuran_bunga" id="jumlah_angsuran_bunga" class="form-control">
                             </div>
-                         
+
 
                             <div class="col-md-12">
                                 @if ($errors->any())
@@ -154,7 +154,7 @@
             var anggota_id = $(this).val();
             // alert(anggota_id);
             var div = $(this).parent().parent();
-            
+
             var op=" ";
             $.ajax({
             type :'get',

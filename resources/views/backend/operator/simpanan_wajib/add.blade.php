@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Jumlah Transaksi</label>
-                                <input type="number" name="jumlah_transaksi" value="25000" readonly class="form-control">
+                                <input type="number" name="jumlah_transaksi" value="25000" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Tanggal Transaksi</label>

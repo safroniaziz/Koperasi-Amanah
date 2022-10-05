@@ -227,7 +227,7 @@ class LaporanShuController extends Controller
 
     public function shuAnggotaDelete($id){
         ShuAnggota::where('id',$id)->delete();
-        return redirect()->route('operator.laporan.shu_anggota')->with(['error'    =>'Shu anggota berhasil dihapus']);
+        return redirect()->route('operator.laporan.shu_anggota')->with(['success'    =>'Shu anggota berhasil dihapus']);
     }
 
     public function generateShu(){

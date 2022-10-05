@@ -118,7 +118,7 @@
        @foreach ($sliders as $slider)
        <img src="{{ asset($slider->gambar) }}" alt="" title="#id" />
        @endforeach
-        
+
       </div>
 
       <!-- direction 1 -->
@@ -133,7 +133,7 @@
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">{{ $profils->alamat_lengkap }}
+                  {{-- <h1 class="title2">{{ $profils->alamat_lengkap }} --}}
                   </h1>
                 </div>
                 <!-- layer 3 -->
@@ -201,7 +201,7 @@
                   <td>Bendahara</td>
                   <td>Nurul Komaraiah, S.Si, M.Si </td>
                 </tr>
-                
+
                 <tr>
                   <td>2</td>
                   <td colspan="2">Badan Pengawas</td>
@@ -309,7 +309,7 @@
                 </div>
                 <div id="check3" class="panel-collapse collapse ">
                   <div class="panel-body">
-                    
+
                     <p style="text-indent: 45px;">Koperasi merupakan organisasi ekonomi kerakyatan yang berwatak sosial yang didirikan oleh para anggota </p>
                     <p style="text-indent: 45px;">dipimpin oleh para anggota dan dijalankan untuk meningkatkan kesejahteraan para anggota.
 	Bertitik tolak dari pengertian “Dari, oleh dan untuk anggota”, maka suatu koperasi itu akan mencapai suatu kemajuan dan pengembangan yang wajar kalau koperasi tersebut benar-benar memperoleh dukungan peran serta aktif dan nyata dari para anggotanya, baik itu berupa peran serta didalam pemupukan modal sendiri oleh koperasi maupun peran serta anggota dalam mengambil keputusan-keputusan yang penting bagi kebahagiaan koperasi. </p>
@@ -385,7 +385,7 @@
                 <div class="event-content head-team">
                   <h4>Visi</h4>
                   <p>
-                    Menjadi Koperasi Produksi yang mampu memproduksi, menampung dan mempromosikan produk anggota ke wilayah Provinsi Bengkulu maupun ke Tingkat Nasional untuk meningkatkan kesejahteraan anggota secara demokratis. 
+                    Menjadi Koperasi Produksi yang mampu memproduksi, menampung dan mempromosikan produk anggota ke wilayah Provinsi Bengkulu maupun ke Tingkat Nasional untuk meningkatkan kesejahteraan anggota secara demokratis.
                   </p>
                 </div>
               </div>
@@ -491,7 +491,7 @@
 										<img src="{{ asset($anggota->gambar) }}" alt="" style="height: 300px; width:100%">
 									</a>
                 <div class="team-social-icon text-center">
-                  
+
                 </div>
               </div>
               <div class="team-content text-center">
@@ -566,7 +566,7 @@
           </div>
         </div>
         <div class="row">
-          
+
           <!-- End Left Blog-->
           <!-- Start Right Blog-->
           @foreach ($beritas as $berita)
@@ -626,7 +626,7 @@
                 <i class="fa fa-mobile"></i>
                 <p>
                   Telephone<br>
-                  <span>{{ $profils->telephone }}</span>
+                  {{-- <span>{{ $profils->telephone }}</span> --}}
                 </p>
               </div>
             </div>
@@ -638,7 +638,7 @@
                 <i class="fa fa-envelope-o"></i>
                 <p>
                   Email<br>
-                  <span>{{ $profils->email }}</span>
+                  {{-- <span>{{ $profils->email }}</span> --}}
                 </p>
               </div>
             </div>
@@ -649,7 +649,7 @@
               <div class="single-icon">
                 <i class="fa fa-map-marker"></i>
                 <p>
-                  <span>{{ $profils->alamat_lengkap }}</span>
+                  {{-- <span>{{ $profils->alamat_lengkap }}</span> --}}
                 </p>
               </div>
             </div>
@@ -716,9 +716,9 @@
                   Pendirian/pembentukan koperasi dilaksanakan pada tanggal 28 Maret 2015
                 </p>
                 <div class="footer-contacts">
-                  <p><span>Telephone:</span> {{ $profils->telephone }}</p>
-                  <p><span>Email:</span> {{ $profils->email }}</p>
-                  <p><span>Alamat:</span> {{ $profils->alamat_lengkap }}</p>
+                  {{-- <p><span>Telephone:</span> {{ $profils->telephone }}</p> --}}
+                  {{-- <p><span>Email:</span> {{ $profils->email }}</p> --}}
+                  {{-- <p><span>Alamat:</span> {{ $profils->alamat_lengkap }}</p> --}}
                 </div>
               </div>
             </div>

@@ -133,7 +133,7 @@
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  {{-- <h1 class="title2">{{ $profils->alamat_lengkap }} --}}
+                  <h1 class="title2">{{ $profils->alamat_lengkap }}
                   </h1>
                 </div>
                 <!-- layer 3 -->
@@ -626,7 +626,7 @@
                 <i class="fa fa-mobile"></i>
                 <p>
                   Telephone<br>
-                  {{-- <span>{{ $profils->telephone }}</span> --}}
+                  <span>{{ $profils->telephone }}</span>
                 </p>
               </div>
             </div>
@@ -638,7 +638,7 @@
                 <i class="fa fa-envelope-o"></i>
                 <p>
                   Email<br>
-                  {{-- <span>{{ $profils->email }}</span> --}}
+                  <span>{{ $profils->email }}</span>
                 </p>
               </div>
             </div>
@@ -649,7 +649,7 @@
               <div class="single-icon">
                 <i class="fa fa-map-marker"></i>
                 <p>
-                  {{-- <span>{{ $profils->alamat_lengkap }}</span> --}}
+                  <span>{{ $profils->alamat_lengkap }}</span>
                 </p>
               </div>
             </div>
@@ -716,9 +716,9 @@
                   Pendirian/pembentukan koperasi dilaksanakan pada tanggal 28 Maret 2015
                 </p>
                 <div class="footer-contacts">
-                  {{-- <p><span>Telephone:</span> {{ $profils->telephone }}</p> --}}
-                  {{-- <p><span>Email:</span> {{ $profils->email }}</p> --}}
-                  {{-- <p><span>Alamat:</span> {{ $profils->alamat_lengkap }}</p> --}}
+                  <p><span>Telephone:</span> {{ $profils->telephone }}</p>
+                  <p><span>Email:</span> {{ $profils->email }}</p>
+                  <p><span>Alamat:</span> {{ $profils->alamat_lengkap }}</p>
                 </div>
               </div>
             </div>

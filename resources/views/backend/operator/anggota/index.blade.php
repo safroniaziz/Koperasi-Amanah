@@ -67,7 +67,7 @@
                                                     <small class="form-text text-danger">{{ $errors->first('jabatan') }}</small>
                                                 @endif
                                             </div>
-                                           
+
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">NIK</label>
                                                 <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="masukan nik">
@@ -183,7 +183,7 @@
                                             @else
                                             <form action="{{ route('operator.manajemen_anggota.aktifkan_status', [$anggota->id]) }}" method="POST">
                                                 {{ csrf_field() }} {{ method_field('PATCH') }}
-                                                <button type="submit" class="btn btn-primary btn-sm" style="color:white; cursor:pointer;"><i class="fa fa-thumbs-up"></i></button>
+                                                <button type="submit" class="btn btn-primary btn-sm btn-flat" style="color:white; cursor:pointer;"><i class="fa fa-thumbs-up"></i></button>
                                         </form>
                                         @endif
                                     </td>
@@ -230,7 +230,7 @@
                                                                 <small class="form-text text-danger">{{ $errors->first('jabatan') }}</small>
                                                             @endif
                                                         </div>
-                                                       
+
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">NIK</label>
                                                             <input type="text" name="nik" id="nik" class="form-control @error('nik') is-invalid @enderror" placeholder="masukan nik">
@@ -238,7 +238,7 @@
                                                                 <small class="form-text text-danger">{{ $errors->first('nik') }}</small>
                                                             @endif
                                                         </div>
-            
+
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Alamat</label>
                                                             <textarea name="alamat" id="alamat" class="form-control" id="" cols="30" rows="5"></textarea>
@@ -246,7 +246,7 @@
                                                                 <small class="form-text text-danger">{{ $errors->first('alamat') }}</small>
                                                             @endif
                                                         </div>
-            
+
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Tahun Keanggotaan</label>
                                                             <input type="date" name="tahun_keanggotaan" id="tahun_keanggotaan" class="form-control @error('tahun_keanggotaan') is-invalid @enderror" placeholder="masukan tahun">
@@ -254,7 +254,7 @@
                                                                 <small class="form-text text-danger">{{ $errors->first('tahun_keanggotaan') }}</small>
                                                             @endif
                                                         </div>
-            
+
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Email</label>
                                                             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="masukan email">
@@ -266,7 +266,7 @@
                                                             <label for="">Foto</label>
                                                             <input type="file"class="form-control" id="file2" onchange="previewFoto()" name="foto">
                                                         </div>
-            
+
                                                         <div class="form-group">
                                                             <img class="foto-baru" id="preview-foto" src="" height="100" width="100" alt="" style="font-size:12px;">
                                                         </div>
@@ -282,7 +282,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>	
+                    </table>
                     <div class="modal fade" id="modalhapus">
                         <div class="modal-dialog modal-danger">
                             <div class="modal-content">

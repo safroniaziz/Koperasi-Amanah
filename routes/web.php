@@ -127,7 +127,10 @@ Route::group(['prefix' => 'operator/laporan/sisa_hasil_usaha'], function () {
     Route::get('/persentase_shu','Operator\LaporanShuController@persentaseShu')->name('operator.laporan.persentase_shu');
     Route::get('/persentase_generate','Operator\LaporanShuController@generatePersentase')->name('operator.laporan.persentase_generate');
     Route::get('/shu_anggota','Operator\LaporanShuController@shuAnggota')->name('operator.laporan.shu_anggota');
-    Route::get('/lihat_shu','Operator\LaporanShuController@lihatShu')->name('operator.laporan.lihat_shu');
+    Route::get('{id}/shu_anggota_edit','Operator\LaporanShuController@shuAnggotaEdit')->name('operator.laporan.shu_anggota.edit');
+    Route::patch('{id}/shu_anggota_update','Operator\LaporanShuController@shuAnggotaUpdate')->name('operator.laporan.shu_anggota.update');
+    Route::delete('{id}/shu_anggota','Operator\LaporanShuController@shuAnggotaDelete')->name('operator.laporan.shu_anggota.delete');
+    Route::post('/simpan','Operator\LaporanShuController@simpanShu')->name('operator.laporan.simpan');
     Route::get('/generate_shu','Operator\LaporanShuController@generateShu')->name('operator.laporan.generate_shu');
 
 });

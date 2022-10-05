@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>&nbsp; Cari</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-search"></i>&nbsp; Cari</button>
                             </div>
                         </div>
                     </form>
@@ -84,7 +84,7 @@
             var anggota = $(this).val();
             // alert(anggota);
             var div = $(this).parent().parent();
-            
+
             var op=" ";
             $.ajax({
             type :'get',

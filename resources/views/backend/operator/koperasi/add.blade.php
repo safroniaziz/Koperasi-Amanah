@@ -57,7 +57,7 @@
                                 <label for="exampleInputEmail1">Tanggal Transaksi</label>
                                 <input type="date" name="tanggal_transaksi" class="form-control">
                             </div>
-                          
+
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Bulan Transaksi</label>
                                 <select name="bulan_transaksi" class="form-control" id="bulan">
@@ -67,7 +67,7 @@
                                 @endforeach
                                 </select>
                             </div>
-                          
+
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Tahun Transaksi</label>
                                 <select name="tahun_transaksi" id="tahun_transaksi" class="form-control" required></select>
@@ -81,7 +81,7 @@
                                 <label for="exampleInputEmail1">Keterangan Transaksi</label>
                                 <textarea name="keterangan" class="form-control" id="" cols="30" rows="3"></textarea>
                             </div>
-                         
+
 
                             <div class="col-md-12">
                                 @if ($errors->any())
@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-md-12 text-center">
                                 <button type="reset" name="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i>&nbsp; Ulangi</button>
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
                             </div>
                         </form>
                     </div>

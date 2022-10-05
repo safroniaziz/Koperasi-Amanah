@@ -100,7 +100,7 @@
                                             @else
                                             <form action="{{ route('operator.jabatan.aktifkan_status', [$jabatan->id]) }}" method="POST">
                                                 {{ csrf_field() }} {{ method_field('PATCH') }}
-                                                <button type="submit" class="btn btn-primary btn-sm" style="color:white; cursor:pointer;"><i class="fa fa-thumbs-up"></i></button>
+                                                <button type="submit" class="btn btn-primary btn-sm btn-flat" style="color:white; cursor:pointer;"><i class="fa fa-thumbs-up"></i></button>
                                         </form>
                                         @endif
                                     </td>
@@ -141,7 +141,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                   
+
                  </div>
             </div>
         </div>

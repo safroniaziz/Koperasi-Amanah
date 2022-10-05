@@ -202,8 +202,7 @@ class LaporanController extends Controller
             }
         // $modal_awal = $data1->jumlah_transaksi - $data2->jumlah_transaksi +6061417;
 
-        // $modal_awal = 0;
-
+        // $modal_awal = 0
 
     }
 
@@ -426,6 +425,7 @@ class LaporanController extends Controller
         //                         ->orderBy('tanggal_transaksi')
         //                         ->get();
         // return $request->all();
+        // return $request->pinjaman;
         $angsuran = DB::table('transaksi_pinjamen')
                         ->rightJoin('pinjamen','pinjamen.id','transaksi_pinjamen.pinjaman_id')
                         ->rightJoin('transaksis','transaksis.id','transaksi_pinjamen.transaksi_id')

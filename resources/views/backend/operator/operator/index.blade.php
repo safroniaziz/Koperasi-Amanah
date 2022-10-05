@@ -132,7 +132,7 @@
                                             @else
                                             <form action="{{ route('operator.manajemen_operator.aktifkan_status', [$operator->id]) }}" method="POST">
                                                 {{ csrf_field() }} {{ method_field('PATCH') }}
-                                                <button type="submit" class="btn btn-primary btn-sm" style="color:white; cursor:pointer;"><i class="fa fa-thumbs-up"></i></button>
+                                                <button type="submit" class="btn btn-primary btn-sm btn-flat" style="color:white; cursor:pointer;"><i class="fa fa-thumbs-up"></i></button>
                                         </form>
                                         @endif
                                     </td>
@@ -185,7 +185,7 @@
                                                                 <small class="form-text text-danger">{{ $errors->first('email') }}</small>
                                                             @endif
                                                         </div>
-            
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Batalkan</button>

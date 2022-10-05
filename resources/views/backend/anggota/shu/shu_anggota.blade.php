@@ -20,10 +20,10 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Daftar SHU Anggota</h3>
-                    
+
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body table-responsive">
+                <div class="box-body">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -45,40 +45,48 @@
                                     <select name="tahun" id="tahun" class="form-control" required></select>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>&nbsp; Lihat Laporan</button>
+                                    <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-search"></i>&nbsp; Lihat Laporan</button>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <table class="table table-bordered table-hover" id="kelas">
-                        <thead class="bg-primary">
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Anggota</th>
-                                <th>SHU Simpanan</th>
-                                <th>SHU Jasa</th>
-                                <th>Jumlah</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (isset($shus))
-                                @php
-                                    $no=1;
-                                @endphp
-                                @foreach ($shus as $shu)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $shu->nm_anggota }}</td>
-                                        <td>Rp.{{ number_format($shu->shu_simpanan,2) }}</td>
-                                        <td>Rp.{{ number_format($shu->shu_jasa,2) }}</td>
-                                        <td>Rp.{{ number_format($shu->shu_jasa + $shu->shu_simpanan,2) }}</td>
-                                    </tr>
-                                @endforeach
-                                @else
-                            @endif
-                        </tbody>
-                    </table>
-                   
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" id="kelas">
+                            <thead class="bg-primary">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Anggota</th>
+                                    <th>SHU Simpanan</th>
+                                    <th>SHU Jasa</th>
+                                    <th>Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($_GET['tahun']))
+                                    @if (isset($shus) && !empty($shus))
+                                        @php
+                                            $no=1;
+                                        @endphp
+                                        @forelse ($shus as $shu)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $shu->nm_anggota }}</td>
+                                                <td>Rp.{{ number_format($shu->shu_simpanan,2) }}</td>
+                                                <td>Rp.{{ number_format($shu->shu_jasa,2) }}</td>
+                                                <td>Rp.{{ number_format($shu->shu_jasa + $shu->shu_simpanan,2) }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" style="text-align: center; color: red">data shu tidak ditemukan</td>
+                                            </tr>
+                                        @endforelse
+
+                                    @endif
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+
                  </div>
             </div>
         </div>

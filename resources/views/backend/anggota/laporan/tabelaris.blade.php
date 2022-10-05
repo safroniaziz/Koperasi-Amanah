@@ -20,7 +20,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Pembantu</h3>
-                    
+
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>&nbsp; Cari Laporan</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-search"></i>&nbsp; Cari Laporan</button>
                             </div>
                         </div>
                     </form>
@@ -99,8 +99,8 @@
                 "sInfo": "Mendapatkan _START_ - _END_ Data Untuk Ditampilkan Dari Total _TOTAL_ Data",
                 "sInfoEmpty": "Mendapatkan 0 Sampai 0 Dari 0Data ",
                 "oPaginate": {
-                    "sPrevious": "Sebelumnya", 
-                    "sNext": "Selanjutnya", 
+                    "sPrevious": "Sebelumnya",
+                    "sNext": "Selanjutnya",
                 }
             },
             dom: 'lBfrtip',

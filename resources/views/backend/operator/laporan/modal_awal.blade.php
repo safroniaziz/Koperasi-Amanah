@@ -52,7 +52,7 @@
 
                             <div class="col-md-12" style="text-align:center">
                                 <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-close"></i>&nbsp; Ulangi</button>
-                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan Modal Awal</button>
+                                <button type="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Simpan Modal Awal</button>
                             </div>
                         </div>
                     </form>

@@ -56,7 +56,7 @@
                                    <td>{{ $laporan->jumlah_bulan }}</td>
                                    <td>{{ $laporan->jumlah_transaksi }}</td>
                                    <td>
-                                       <a onclick="detail({{ $laporan->anggota_id }})" class="btn btn-primary btn-sm"><i class="fa fa-info-circle"></i>&nbsp; Detail Informasi</a>
+                                       <a onclick="detail({{ $laporan->anggota_id }})" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-info-circle"></i>&nbsp; Detail Informasi</a>
                                    </td>
                                </tr>
                            @endforeach
@@ -77,7 +77,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="alert alert-success alert-block" id="berhasil">
-                                            
+
                                             <strong><i class="fa fa-info-circle"></i>&nbsp;Data Simpanan Wajib Terurut Dari Awal Sampai Akhir</strong>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
     $(document).ready(function() {
         var table = $('#kelas').DataTable( {
             buttons: [ 'copy','csv','print', 'excel', 'pdf', 'colvis' ],
-            dom: 
+            dom:
             "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
             "<'row'<'col-md-12'tr>>" +
             "<'row'<'col-md-5'i><'col-md-7'p>>",
@@ -132,7 +132,7 @@
                 [5,10,25,50,100,"All"]
             ]
         } );
-    
+
         table.buttons().container()
             .appendTo( '#kelas_wrapper .col-md-5:eq(0)' );
     } );

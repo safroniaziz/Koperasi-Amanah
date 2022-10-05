@@ -21,7 +21,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Manajemen Data Angsuran</h3>
                     <div class="box-tools pull-right">
-                        <a href="{{ route('operator.transaksi_angsuran.add') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
+                        <a href="{{ route('operator.transaksi_angsuran.add') }}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -77,7 +77,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                   
+
                  </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
     $(document).ready(function() {
         var table = $('#kelas').DataTable( {
             buttons: [ 'copy','csv','print', 'excel', 'pdf', 'colvis' ],
-            dom: 
+            dom:
             "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
             "<'row'<'col-md-12'tr>>" +
             "<'row'<'col-md-5'i><'col-md-7'p>>",
@@ -106,7 +106,7 @@
                 [5,10,25,50,100,"All"]
             ]
         } );
-    
+
         table.buttons().container()
             .appendTo( '#kelas_wrapper .col-md-5:eq(0)' );
     } );

@@ -102,7 +102,7 @@
                             <div class="col-md-12 text-center">
                                 <button type="reset" name="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i>&nbsp; Ulangi</button>
                                 <a onclick="reset()" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i>&nbsp;Reset Jasa & Angsuran </a>
-                                <button type="submit" name="submit" id="simpan" disabled class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
+                                <button type="submit" name="submit" id="simpan" disabled class="btn btn-primary btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
                             </div>
                         </form>
                     </div>

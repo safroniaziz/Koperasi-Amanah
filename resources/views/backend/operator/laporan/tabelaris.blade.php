@@ -21,7 +21,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-calendar"></i>&nbsp;Buku Kas Pembantu</h3>
                     <div class="box-tools pull-right">
-                        <a href="{{ route('operator.transaksi_koperasi.add') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
+                        <a href="{{ route('operator.transaksi_koperasi.add') }}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>&nbsp; Tambah Baru</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>&nbsp; Cari Laporan</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-search"></i>&nbsp; Cari Laporan</button>
                             </div>
                         </div>
                     </form>

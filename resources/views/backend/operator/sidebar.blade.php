@@ -44,7 +44,7 @@
     </ul>
 </li>
 
-<li class="treeview {{ set_active(['operator.laporan.simp_jasa','operator.laporan.simp_jasa_generate','operator.laporan.shu_tahun_berjalan','operator.laporan.tahun_berjalan_generate','operator.laporan.persentase_shu','operator.laporan.persentase_generate','operator.laporan.shu_anggota','operator.laporan.generate_shu','operator.laporan.lihat_shu']) }}">
+{{-- <li class="treeview {{ set_active(['operator.laporan.simp_jasa','operator.laporan.simp_jasa_generate','operator.laporan.shu_tahun_berjalan','operator.laporan.tahun_berjalan_generate','operator.laporan.persentase_shu','operator.laporan.persentase_generate','operator.laporan.shu_anggota','operator.laporan.generate_shu','operator.laporan.lihat_shu']) }}">
     <a href="#">
         <i class="fa fa-university"></i> <span>Sisa Hasil Usaha (SHU)</span>
         <span class="pull-right-container">
@@ -58,6 +58,12 @@
         <li class="{{ set_active(['operator.laporan.shu_anggota','operator.laporan.generate_shu','operator.laporan.lihat_shu']) }}"><a href="{{ route('operator.laporan.shu_anggota') }}"><i class="fa fa-save"></i>SHU Anggota</a></li>
 
     </ul>
+</li> --}}
+
+<li class="{{ set_active('operator.laporan.shu_anggota') }}">
+    <a href="{{ route('operator.laporan.shu_anggota') }}">
+        <i class="fa fa-pencil"></i> <span>Sisa Hasil usaha</span>
+    </a>
 </li>
 
 <li class="header" style="font-weight:bold;">PENGATURAN</li>
@@ -99,11 +105,5 @@
 <li class="">
     <a href="{{ route('home') }}">
         <i class="fa fa-globe"></i> <span>Kunjungi Website</span>
-    </a>
-</li>
-
-<li class="">
-    <a href="">
-        <i class="fa fa-power-off text-danger"></i> <span class="text-danger">Keluar</span>
     </a>
 </li>

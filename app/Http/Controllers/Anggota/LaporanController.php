@@ -263,9 +263,6 @@ class LaporanController extends Controller
     public function lihatShu(){
         if (isset($_GET['tahun'])) {
             $shus = ShuAnggota::where('tahun',$_GET['tahun'])->where('anggota_id',Auth::guard('anggota')->user()->id)->get();
-            if (count($shus) < 1) {
-                return redirect()->back()->with(['error'    =>  'Pembagian SHU Pada Tahun '.$_GET['tahun'].' Belum Tersedia !!']);
-            }
             return view('backend/anggota.shu.shu_anggota',compact('shus'));
         }
     }

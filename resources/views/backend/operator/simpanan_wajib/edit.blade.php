@@ -33,7 +33,7 @@
                                 <label for="exampleInputEmail1">Jenis Transaksi</label>
                                 <select name="jenis_transaksi_id" class="form-control" id="">
                                     <option disabled selected>-- pilih jenis transaksi --</option>
-                                   
+
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
@@ -56,7 +56,7 @@
                                 <label for="exampleInputEmail1">Bulan Transaksi</label>
                                 <select name="bulan_transaksi" class="form-control" id="bulan">
                                 <option disabled selected>-- pilih bulan --</option>
-                                  
+
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-md-12 text-center">
                                 <button type="reset" name="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i>&nbsp; Ulangi</button>
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
                             </div>
                         </form>
                     </div>

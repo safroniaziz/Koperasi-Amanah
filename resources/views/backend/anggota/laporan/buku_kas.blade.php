@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>&nbsp; Cari Laporan</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-search"></i>&nbsp; Cari Laporan</button>
                             </div>
                         </div>
                     </form>
@@ -100,7 +100,7 @@
                                             <td>
                                                 @if ($laporan->jenis_transaksi == "masuk")
                                                     Rp.{{ number_format($laporan->jumlah_transaksi,2) }}
-                                                    @else 
+                                                    @else
                                                     -
                                                 @endif
                                             </td>
@@ -112,7 +112,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                
+
                                                 @if ($laporan->jenis_transaksi == "masuk")
                                                     Rp.{{ number_format($laporan->jumlah_transaksi + $modal_awal,2) }}
                                                     @php
@@ -130,7 +130,7 @@
                             @endif
                         </tbody>
                     </table>
-                   
+
                  </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
 $(document).ready(function() {
         var table = $('#kelas').DataTable( {
             buttons: [ 'copy','csv','print', 'excel', 'pdf', 'colvis' ],
-            dom: 
+            dom:
             "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>" +
             "<'row'<'col-md-12'tr>>" +
             "<'row'<'col-md-5'i><'col-md-7'p>>",
@@ -160,7 +160,7 @@ $(document).ready(function() {
                 [5,10,25,50,100,"All"]
             ]
         } );
-    
+
         table.buttons().container()
             .appendTo( '#kelas_wrapper .col-md-5:eq(0)' );
     } );

@@ -133,32 +133,101 @@ class LaporanShuController extends Controller
         $persentases = PembagianShu::all();
         return view('backend/operator.shu.persentase_shu',compact('persentases','year'));
     }
-    
+
     public function shuAnggota(){
-        // $keseluruhan = JumlahKeseluruhan::first();
-        $tahun = PembagianShu::select('tahun')->get();
-        // if (empty($pembagian_shu)) {
-        //     return redirect()->back()->with(['error'    =>  'Tidak Bisa Melihat SHU Anggota, Karena Persentase Pembagian SHU Belum Tersedia']);
-        // }
-        // $shus = Anggota::join('simpanan_anggotas','simpanan_anggotas.anggota_id','anggotas.id')
-        //                 ->join('simpanan_jasas','simpanan_jasas.anggota_id','anggotas.id')
-        //                 ->join('jabatans','jabatans.id','anggotas.jabatan_id')
-        //                 ->select('nm_anggota','nm_jabatan',DB::raw('(simpanan_anggotas.jumlah / "'.$keseluruhan->jumlah_simpanan_seluruh.'")* ("'.$pembagian_shu->shu_simpanan.'") as shu_simpanan'),
-        //                         DB::raw('(simpanan_jasas.jumlah / "'.$keseluruhan->jumlah_jasa_seluruh.'") * ("'.$pembagian_shu->shu_jasa_pinjaman.'") as shu_jasa'))
-        //                 ->groupBy('anggotas.id')
-        //                 ->get();
-        return view('backend/operator.shu.shu_anggota',compact('tahun'));
+        $anggotas = Anggota::where('nm_anggota','!=','Koperasi')->get();
+        $shus = ShuAnggota::select('id','shu_anggotas.nm_anggota','jabatan','shu_simpanan','shu_jasa','jumlah')
+                            ->get();
+        $jumlah = ShuAnggota::select('nm_anggota',DB::raw('sum(jumlah) as jumlah'))
+                            ->groupBy('anggota_id')
+                            ->get();
+        return view('backend/operator.shu.shu_anggota',compact('shus','anggotas','jumlah'));
     }
 
-    public function lihatShu(){
-        if (isset($_GET['tahun'])) {
-            $shus = ShuAnggota::where('tahun',$_GET['tahun'])->get();
-            if (count($shus) < 1) {
-                return redirect()->back()->with(['error'    =>  'Pembagian SHU Pada Tahun '.$_GET['tahun'].' Belum Tersedia !!']);
-            }
-            return view('backend/operator.shu.shu_anggota',compact('shus'));
+    public function simpanShu(Request $request){
+        $attributes = [
+            'anggota_id'    =>  'Nama Anggota',
+            'tahun'         =>  'Tahun',
+            'shu_jasa'      =>  'Jumlah Shu Jasa',
+            'shu_simpanan'  =>  'Jumlah Shu Simpanan',
+            'jumlah'        =>  'Jumlah Shu Diterima',
+        ];
+        $this->validate($request, [
+            'anggota_id'    =>'required',
+            'tahun'         =>'required',
+            'shu_jasa'      =>'required',
+            'shu_simpanan'  =>'required',
+            'jumlah'        =>'required',
+        ],$attributes);
+        DB::beginTransaction();
+        try {
+            $anggota = Anggota::join('jabatans','jabatans.id','anggotas.jabatan_id')
+                                ->select('nm_anggota','nm_jabatan')
+                                ->where('anggotas.id',$request->anggota_id)->first();
+            ShuAnggota::create([
+                'anggota_id'    =>  $request->anggota_id,
+                'jabatan'       =>  $anggota->nm_jabatan,
+                'nm_anggota'       =>  $anggota->nm_anggota,
+                'tahun'         =>  $request->tahun,
+                'shu_jasa'      =>  $request->shu_jasa,
+                'shu_simpanan'  =>  $request->shu_simpanan,
+                'jumlah'        =>  $request->jumlah,
+            ]);
+            DB::commit();
+            return redirect()->route('operator.laporan.shu_anggota')->with(['success'    =>'Shu anggota berhasil ditambahkan']);
+        }catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('operator.laporan.shu_anggota')->with(['error'    =>'Shu anggota gagal ditambahkan']);
         }
+    }
 
+    public function shuAnggotaUpdate(Request $request,$id){
+        $attributes = [
+            'anggota_id'    =>  'Nama Anggota',
+            'tahun'         =>  'Tahun',
+            'shu_jasa'      =>  'Jumlah Shu Jasa',
+            'shu_simpanan'  =>  'Jumlah Shu Simpanan',
+            'jumlah'        =>  'Jumlah Shu Diterima',
+        ];
+        $this->validate($request, [
+            'anggota_id'    =>'required',
+            'tahun'         =>'required',
+            'shu_jasa'      =>'required',
+            'shu_simpanan'  =>'required',
+            'jumlah'        =>'required',
+        ],$attributes);
+        DB::beginTransaction();
+        try {
+            $anggota = Anggota::join('jabatans','jabatans.id','anggotas.jabatan_id')
+                                ->select('nm_anggota','nm_jabatan')
+                                ->where('anggotas.id',$request->anggota_id)->first();
+            ShuAnggota::where('id',$id)->update([
+                'anggota_id'    =>  $request->anggota_id,
+                'jabatan'       =>  $anggota->nm_jabatan,
+                'nm_anggota'       =>  $anggota->nm_anggota,
+                'tahun'         =>  $request->tahun,
+                'shu_jasa'      =>  $request->shu_jasa,
+                'shu_simpanan'  =>  $request->shu_simpanan,
+                'jumlah'        =>  $request->jumlah,
+            ]);
+
+            DB::commit();
+            return redirect()->route('operator.laporan.shu_anggota')->with(['success'    =>'Shu anggota berhasil diubah']);
+        }catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('operator.laporan.shu_anggota')->with(['error'    =>'Shu anggota gagal diubah']);
+        }
+    }
+
+    public function shuAnggotaEdit($id){
+        $data = ShuAnggota::find($id);
+        $anggotas = Anggota::where('nm_anggota','!=','Koperasi')->get();
+        return view('backend/operator/shu.shu_anggota_edit',compact('data','anggotas'));
+    }
+
+    public function shuAnggotaDelete($id){
+        ShuAnggota::where('id',$id)->delete();
+        return redirect()->route('operator.laporan.shu_anggota')->with(['error'    =>'Shu anggota berhasil dihapus']);
     }
 
     public function generateShu(){
@@ -181,7 +250,7 @@ class LaporanShuController extends Controller
         if (count($shu_anggota)>0) {
             ShuAnggota::where('tahun',$tahun)->delete();
         }
-        for ($i=0; $i <count($datas) ; $i++) { 
+        for ($i=0; $i <count($datas) ; $i++) {
             ShuAnggota::create([
                 'anggota_id'    => $datas[$i]['anggota_id'],
                 'nm_anggota'    => $datas[$i]['nm_anggota'],

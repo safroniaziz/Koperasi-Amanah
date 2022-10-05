@@ -100,7 +100,7 @@
                                 <label for="exampleInputEmail1">Tahun Mulai Angsuran</label>
                                 <select name="tahun_mulai_angsuran" id="tahun_mulai_angsuran" class="form-control" required></select>
                             </div>
-                          
+
                             <div class="col-md-12">
                                 @if ($errors->any())
                                     <div class="alert alert-danger"> <strong>Perhatian : </strong> Silahkan isi semua form lalu klik simpan </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-md-12 text-center">
                                 <button type="reset" name="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i>&nbsp; Ulangi</button>
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -172,6 +172,6 @@
                 })
             });
         });
-     
+
     </script>
 @endpush

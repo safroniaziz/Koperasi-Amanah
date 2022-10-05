@@ -51,7 +51,7 @@
                                 <label for="exampleInputEmail1">Tanggal Transaksi</label>
                                 <input type="date" name="tanggal_transaksi" value="{{ $transaksi->tanggal_transaksi }}" class="form-control">
                             </div>
-                          
+
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Bulan Transaksi</label>
                                 <select name="bulan_transaksi" class="form-control" id="bulan">
@@ -61,7 +61,7 @@
                                 @endforeach
                                 </select>
                             </div>
-                          
+
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Tahun Transaksi</label>
                                 <select name="tahun_transaksi" id="tahun_transaksi" va class="form-control" required></select>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-md-12 text-center">
                                 <button type="reset" name="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i>&nbsp; Ulangi</button>
-                                <button type="submit" name="submit" class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
+                                <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
                             </div>
                         </form>
                     </div>

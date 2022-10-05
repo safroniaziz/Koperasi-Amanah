@@ -56,7 +56,7 @@ Fancy larger or smaller buttons? Add `.btn-lg` or `.btn-sm` for additional sizes
 {% include example.html content=example %}
 
 {% capture example %}
-<button type="button" class="btn btn-primary btn-sm">Small button</button>
+<button type="button" class="btn btn-primary btn-sm btn-flat">Small button</button>
 <button type="button" class="btn btn-secondary btn-sm">Small button</button>
 {% endcapture %}
 {% include example.html content=example %}

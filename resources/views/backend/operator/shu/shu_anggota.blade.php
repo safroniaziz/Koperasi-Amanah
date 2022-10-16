@@ -66,8 +66,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="">Jumlah SHU Simpanan <a style="color:red">Angka tanpa koma dan titik</a></label>
-                                        <input type="number" name="shu_simpanan" class="form-control" id="">
+                                        <label for="">Jumlah SHU Pinjaman <a style="color:red">Angka tanpa koma dan titik</a></label>
+                                        <input type="number" name="shu_simpanan" class="form-control" id="shu_simpanan">
                                         <div>
                                             @if ($errors->has('shu_simpanan'))
                                                 <small class="form-text text-danger">{{ $errors->first('shu_simpanan') }}</small>
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="">Jumlah SHU Jasa <a style="color:red">Angka tanpa koma dan titik</a></label>
-                                        <input type="number" name="shu_jasa" class="form-control" id="">
+                                        <input type="number" name="shu_jasa" class="form-control" id="shu_jasa">
                                         <div>
                                             @if ($errors->has('shu_jasa'))
                                                 <small class="form-text text-danger">{{ $errors->first('shu_jasa') }}</small>
@@ -84,8 +84,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="">Jumlah SHU Ditetima <a style="color:red">Angka tanpa koma dan titik</a></label>
-                                        <input type="number" name="jumlah" class="form-control" id="">
+                                        <label for="">Jumlah SHU Diterima <a style="color:red">Angka tanpa koma dan titik</a></label>
+                                        <input type="number" name="jumlah" class="form-control" id="jumlah" readonly>
                                         <div>
                                             @if ($errors->has('jumlah'))
                                                 <small class="form-text text-danger">{{ $errors->first('jumlah') }}</small>
@@ -119,7 +119,7 @@
                                     <th>No</th>
                                     <th>Nama Anggota</th>
                                     <th>Jabatan</th>
-                                    <th>SHU Simpanan</th>
+                                    <th>SHU Pinjaman</th>
                                     <th>SHU Jasa</th>
                                     <th>Jumlah</th>
                                     <th>Aksi</th>
@@ -174,6 +174,16 @@
             $('#table').DataTable({
             });
         } );
+
+        $(document).ready(function(){
+            $("#shu_simpanan, #shu_jasa").keyup(function(){
+                var shu_simpanan = $("#shu_simpanan").val();
+                var shu_jasa = $("#shu_jasa").val();
+                var shu_diterima = parseInt(shu_simpanan)+parseInt(shu_jasa);
+                $('#jumlah').val(shu_diterima);
+
+            });
+        });
     </script>
     <script>
         $('#tahun').each(function() {

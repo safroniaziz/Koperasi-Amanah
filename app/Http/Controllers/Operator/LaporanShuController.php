@@ -141,7 +141,10 @@ class LaporanShuController extends Controller
         $jumlah = ShuAnggota::select('nm_anggota',DB::raw('sum(jumlah) as jumlah'))
                             ->groupBy('anggota_id')
                             ->get();
-        return view('backend/operator.shu.shu_anggota',compact('shus','anggotas','jumlah'));
+        $total_simpanan = ShuAnggota::select(DB::raw('sum(shu_simpanan) as total'))->first();
+        $total_jasa = ShuAnggota::select(DB::raw('sum(shu_jasa) as total'))->first();
+        $total_diterima = ShuAnggota::select(DB::raw('sum(jumlah) as total'))->first();
+        return view('backend/operator.shu.shu_anggota',compact('shus','anggotas','jumlah','total_simpanan','total_jasa','total_diterima'));
     }
 
     public function simpanShu(Request $request){

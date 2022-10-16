@@ -112,6 +112,48 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Shu Pinjaman Seluruh</span>
+                              <span class="info-box-number">Rp.{{ number_format($total_simpanan->total) }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Shu Jasa Seluruh</span>
+                              <span class="info-box-number">Rp.{{ number_format($total_jasa->total) }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Shu Diterima Seluruh</span>
+                              <span class="info-box-number">Rp.{{ number_format($total_diterima->total) }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="table">
                             <thead class="bg-primary">
@@ -135,9 +177,9 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $shu->nm_anggota }}</td>
                                             <td>{{ $shu->jabatan }}</td>
-                                            <td>Rp.{{ number_format($shu->shu_simpanan,2) }}</td>
-                                            <td>Rp.{{ number_format($shu->shu_jasa,2) }}</td>
-                                            <td>Rp.{{ number_format($shu->shu_jasa + $shu->shu_simpanan,2) }}</td>
+                                            <td>Rp.{{ number_format($shu->shu_simpanan) }}</td>
+                                            <td>Rp.{{ number_format($shu->shu_jasa) }}</td>
+                                            <td>Rp.{{ number_format($shu->shu_jasa + $shu->shu_simpanan) }}</td>
                                             <td>
                                                 <table>
                                                     <tr>

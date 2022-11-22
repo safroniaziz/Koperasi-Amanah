@@ -46,7 +46,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Jumlah Transaksi <a style="display: none;" id="alert" class="text-danger">Maksimal Rp.15.000.000</a></label>
+                                <label for="exampleInputEmail1">Jumlah Transaksi <a style="display: none;" id="alert" class="text-danger">Maksimal Rp.25.000.000</a></label>
                                 <input type="number" id="jumlah_transaksi" name="jumlah_transaksi" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
@@ -140,7 +140,7 @@
         $(document).ready(function(){
             $("#jumlah_transaksi").keyup(function(){
                 var jumlah_transaksi = $("#jumlah_transaksi").val();
-                if (jumlah_transaksi >15000000) {
+                if (jumlah_transaksi >25000000) {
                     $('#alert').show();
                 }
                 else{

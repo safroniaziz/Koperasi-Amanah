@@ -158,10 +158,10 @@
                 $(document).on('change','#jumlah_bulan',function(){
                     // alert('berhasil');
                     var jumlah_bulan = $('#jumlah_bulan').val();
-                    var jumlah = jumlah_transaksi / jumlah_bulan;
+                    var jumlah = jumlah_transaksi / jumlah_bulan;   
                     if (jumlah_bulan == "12") {
-                        var bunga = ((jumlah_transaksi *7) /100) / jumlah_bulan;
-                        $('#bunga').val("7");
+                        var bunga = ((jumlah_transaksi *8) /100) / jumlah_bulan;
+                        $('#bunga').val("8");
                     }
                     else{
                         var bunga = ((jumlah_transaksi *14) /100) / jumlah_bulan;

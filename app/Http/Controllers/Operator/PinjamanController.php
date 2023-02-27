@@ -29,6 +29,7 @@ class PinjamanController extends Controller
                                         ->select('transaksi_pinjamen.id','nm_anggota','jumlah_pinjaman','jumlah_bulan','bunga','jumlah_angsuran_pokok',
                                                     'jumlah_angsuran_bunga','bulan_mulai_angsuran','tahun_mulai_angsuran','bulan_akhir_angsuran','tahun_akhir_angsuran','nm_operator')
                                         ->groupBy('pinjamen.id')
+                                        ->orderBy('id','desc')
                                         ->get();
                                         // return $pinjamans;
         return view('backend/operator/pinjaman.index',compact('pinjamans'));

@@ -136,15 +136,16 @@ class LaporanShuController extends Controller
 
     public function shuAnggota(){
         $anggotas = Anggota::where('nm_anggota','!=','Koperasi')->get();
-        $shus = ShuAnggota::select('id','shu_anggotas.nm_anggota','jabatan','shu_simpanan','shu_jasa','jumlah')
+        $shus = ShuAnggota::select('id','shu_anggotas.nm_anggota','jabatan','shu_simpanan','shu_jasa','jumlah','tahun')
+                            ->orderBy('id','desc')
                             ->get();
         $jumlah = ShuAnggota::select('nm_anggota',DB::raw('sum(jumlah) as jumlah'))
                             ->groupBy('anggota_id')
                             ->get();
-        $total_simpanan = ShuAnggota::select(DB::raw('sum(shu_simpanan) as total'))->first();
-        $total_jasa = ShuAnggota::select(DB::raw('sum(shu_jasa) as total'))->first();
-        $total_diterima = ShuAnggota::select(DB::raw('sum(jumlah) as total'))->first();
-        return view('backend/operator.shu.shu_anggota',compact('shus','anggotas','jumlah','total_simpanan','total_jasa','total_diterima'));
+        $shu_2020 = ShuAnggota::select(DB::raw('sum(shu_simpanan) as total'))->where('tahun','2020')->first();
+        $shu_2021 = ShuAnggota::select(DB::raw('sum(shu_simpanan) as total'))->where('tahun','2021')->first();
+        $shu_2022 = ShuAnggota::select(DB::raw('sum(shu_simpanan) as total'))->where('tahun','2022')->first();
+        return view('backend/operator.shu.shu_anggota',compact('shus','anggotas','jumlah','shu_2020','shu_2021','shu_2022'));
     }
 
     public function simpanShu(Request $request){

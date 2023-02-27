@@ -118,8 +118,8 @@
                             <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text">Shu Pinjaman Seluruh</span>
-                              <span class="info-box-number">Rp.{{ number_format($total_simpanan->total) }}</span>
+                              <span class="info-box-text">Jumlah SHU 2023</span>
+                              <span class="info-box-number">Rp.{{ number_format($shu_2020->total) }}</span>
                             </div>
                             <!-- /.info-box-content -->
                           </div>
@@ -131,8 +131,8 @@
                             <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text">Shu Jasa Seluruh</span>
-                              <span class="info-box-number">Rp.{{ number_format($total_jasa->total) }}</span>
+                              <span class="info-box-text">Jumlah SHU 2021</span>
+                              <span class="info-box-number">Rp.{{ number_format($shu_2021->total) }}</span>
                             </div>
                             <!-- /.info-box-content -->
                           </div>
@@ -144,8 +144,8 @@
                             <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
 
                             <div class="info-box-content">
-                              <span class="info-box-text">Shu Diterima Seluruh</span>
-                              <span class="info-box-number">Rp.{{ number_format($total_diterima->total) }}</span>
+                              <span class="info-box-text">Jumlah SHU 2022</span>
+                              <span class="info-box-number">Rp.{{ number_format($shu_2022->total) }}</span>
                             </div>
                             <!-- /.info-box-content -->
                           </div>
@@ -164,6 +164,7 @@
                                     <th>SHU Pinjaman</th>
                                     <th>SHU Jasa</th>
                                     <th>Jumlah</th>
+                                    <th>Tahun</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -180,6 +181,7 @@
                                             <td>Rp.{{ number_format($shu->shu_simpanan) }}</td>
                                             <td>Rp.{{ number_format($shu->shu_jasa) }}</td>
                                             <td>Rp.{{ number_format($shu->shu_jasa + $shu->shu_simpanan) }}</td>
+                                            <td>{{ $shu->tahun }}</td>
                                             <td>
                                                 <table>
                                                     <tr>

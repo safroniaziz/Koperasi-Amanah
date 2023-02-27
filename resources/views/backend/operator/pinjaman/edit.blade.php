@@ -144,7 +144,7 @@
             }
             if (jumlah_bulan == "12") {
                 var bunga = ((jumlah_transaksi *7) /100) / jumlah_bulan;
-                $('#bunga').val("7");
+                $('#bunga').val("8");
             }
             else{
                 var bunga = ((jumlah_transaksi *14) /100) / jumlah_bulan;
